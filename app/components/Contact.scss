@@ -1,0 +1,66 @@
+@import "ui/variables";
+
+.Contact {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .Contact-form {
+    width: 50rem;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+
+    textarea {
+      max-height: 27rem;
+      min-height: 27rem;
+      max-width: 50rem;
+      min-width: 50rem;
+    }
+
+    .Contact-form-input {
+      font-family: 'RobotoLight';
+      color: $linkColorActive;
+      background: $formGrey;
+      margin-bottom: 2rem;
+      font-size: 1.6rem;
+      padding: 1.5rem;
+      outline: none;
+      border: none;
+      width: 100%;
+
+      &.Contact-form-input--placeholder {
+        text-transform: uppercase;
+        text-align: right;
+        color: $formColor;
+      }
+
+      &.Contact-form-input--error {
+        border: 0.1rem solid $red;
+      }
+    }
+
+    .Contact-form-error-mesg {
+      margin-top: -1.5rem;
+      margin-bottom: 2rem;
+      color: $red;
+    }
+
+    .Contact-form-submit {
+      background: $formGrey;
+      margin-right: -1.5rem;
+      padding: 1.5rem 4rem;
+      color: $formColor;
+      font-size: 1.8rem;
+      margin-left: auto;
+
+      &:hover {
+        color: $linkColorActive;
+      }
+    }
+  }
+}

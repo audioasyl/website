@@ -1,0 +1,34 @@
+@import "ui/variables";
+
+.HeaderDropdown {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    .HeaderDropdown-content {
+      display: block;
+    }
+  }
+
+  .HeaderDropdown-label {
+    text-decoration: none;
+    color: $linkColor;
+
+    &.HeaderDropdown-label--filter-active {
+      color: $checkBoxGreen !important;
+    }
+  }
+
+  .HeaderDropdown-content {
+    top: 6rem;
+    display: none;
+    min-width: 20rem;
+    min-height: 10rem;
+    position: absolute;
+    background: $background;
+
+    &.HeaderDropdown-content--opened {
+      display: block;
+    }
+  }
+}

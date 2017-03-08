@@ -1,0 +1,9 @@
+@import "ui/variables";
+
+.LikeButton {
+  transform: scale(1);
+  font-size: 3rem;
+  margin: 2rem;
+  color: $white;
+  z-index: 100;
+}

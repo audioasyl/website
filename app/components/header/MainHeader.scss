@@ -1,0 +1,66 @@
+@import "ui/variables";
+
+.Header {
+  width: 100vw;
+  display: flex;
+  z-index: 99999;
+  min-height: 8rem;
+  align-items: center;
+  background: $background;
+  justify-content: space-between;
+}
+
+.Header-fixed {
+  width: 100vw;
+  display: flex;
+  z-index: 99999;
+  position: fixed;
+  min-height: 8rem;
+  align-items: center;
+  background: $background;
+  justify-content: space-between;
+
+  &.Header-fixed--scrolled {
+    box-shadow: 0 0.5rem 3rem $black;
+  }
+
+  .Header-logo-wrapper {
+    margin-left: 2rem;
+
+    .Header-logo {
+      width: 6rem;
+    }
+  }
+
+  .Header-left {
+    display: flex;
+    align-items: center;
+    padding-right: 2rem;
+    justify-content: space-between;
+  }
+
+  .Header-nav {
+    display: flex;
+
+    .Header-nav-item {
+      border-bottom: 0.1rem solid transparent;
+      transition: border 0.5s ease-out;
+      text-transform: uppercase;
+      padding: 1rem 1.7rem;
+      font-size: 1.6rem;
+      color: $linkColor;
+
+      &:hover {
+        border-bottom: 0.1rem solid $linkColor;
+        transition: border 0.5s ease-out;
+        color: $linkColorActive;
+      }
+
+      &.Header-nav-item--active {
+        border-bottom: 0.1rem solid $linkColor;
+        transition: border 0.5s ease-out;
+        color: $linkColorActive;
+      }
+    }
+  }
+}

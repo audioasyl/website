@@ -1,0 +1,16 @@
+$path: './../public/fonts';
+
+@font-face {
+    font-family: 'RobotoBold';
+    src: url($path + '/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'RobotoRegular';
+    src: url($path + '/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'RobotoLight';
+    src: url($path + '/Roboto-Light.ttf') format('truetype');
+}

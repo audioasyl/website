@@ -1,0 +1,23 @@
+@import "ui/variables";
+
+.Search {
+  input[type="text"] {
+    padding: 1rem 2rem;
+    padding-right: 3.5rem;
+    font-size: 1.4rem;
+    outline: none;
+    border: none;
+  }
+
+  .Search-button {
+    position: relative;
+    font-size: 2rem;
+
+    span {
+      position: absolute;
+      display: block;
+      top: -1.6rem;
+      left: -3rem;
+    }
+  }
+}

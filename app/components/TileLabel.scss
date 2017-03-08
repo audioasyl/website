@@ -1,0 +1,23 @@
+@import "ui/variables";
+
+.TileLabel {
+  font-family: 'RobotoLight';
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 0.6rem 3rem;
+  background: $black;
+  position: absolute;
+  font-size: 1.8rem;
+  color: $white;
+  z-index: 100;
+  right: 2rem;
+  top: 2rem;
+
+  &.TileLabel--live {
+    background: $red;
+  }
+
+  &.TileLabel--fresh {
+    background: $green;
+  }
+}

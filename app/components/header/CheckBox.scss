@@ -1,0 +1,61 @@
+@import "ui/variables";
+
+.CheckBox {
+  label {
+    display: flex;
+    cursor: pointer;
+    padding: 1.2rem;
+    align-items: center;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+
+      .CheckBox-label {
+        font-size: 1.6rem;
+        transition: font 0.3s ease;
+      }
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    span {
+      width: 1.2rem;
+      color: $white;
+      height: 1.2rem;
+      font-size: 1.2rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      border: 0.1rem solid $checkBoxGreen;
+    }
+
+    span:before {
+      display: none;
+    }
+
+    input[type=checkbox]:checked + span:before {
+      background: $checkBoxGreen;
+      position: absolute;
+      display: block;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    input[type=checkbox]:checked + span {
+      border: none;
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+
+    .CheckBox-label {
+      font-size: 1.4rem;
+      padding-left: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+}
