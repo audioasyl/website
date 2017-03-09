@@ -25,12 +25,12 @@ export default class AudioTile extends React.Component {
     );
   }
 
-  renderLiveBadge = () => (this.props.isLive > 88 && <TileLabel type="live" />)
+  renderLiveBadge = () => (this.props.isLive && <TileLabel type="live" />)
 
   renderFreshBadge = () => (this.props.isFresh && <TileLabel type="fresh" />)
 
   render() {
-    const { audio, type, isSpecial } = this.props;
+    const { audio, type, isSpecial, likes } = this.props;
     const audioTileClasses = classNames(
       'AudioTile',
       { 'AudioTile-big': isSpecial }
@@ -41,15 +41,15 @@ export default class AudioTile extends React.Component {
         {this.renderLiveBadge()}
         {this.renderFreshBadge()}
         <PlayButton audioID={audio.id} />
-        {this.renderImage()}
+        {/* this.renderImage() */}
         <div className="AudioTile-info">
           <div className="AudioTile-info-bold-wrapper">
             <div className="AudioTile-info-bold">
               {audio.name}
             </div>
             <LikeButton
+              likes={likes}
               itemID={audio.id}
-              likes={this.props.likes}
               storageKey={`${type}_likes`}
             />
           </div>
@@ -65,7 +65,7 @@ AudioTile.propTypes = {
   isSpecial: PropTypes.bool,
   likes: PropTypes.array.isRequired,
   audio: PropTypes.object.isRequired,
-  type: PropTypes.oneOf(['artists', 'albums']).isRequired,
+  type: PropTypes.oneOf(['filters', 'genre', 'authors', 'series']).isRequired,
 };
 
 AudioTile.contextTypes = {

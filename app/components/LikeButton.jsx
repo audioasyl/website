@@ -3,7 +3,7 @@ import { remove } from 'lodash';
 import Icon from './Icon';
 
 import './LikeButton.scss';
-export default class LikeButton extends React.Component {
+class LikeButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,12 +11,12 @@ export default class LikeButton extends React.Component {
     };
   }
 
-  componentWillReceiveProps = (nextProps) => {
+  componentWillReceiveProps = nextProps => {
     this.setState({ isLiked: nextProps.likes.indexOf(this.props.itemID) >= 0 });
   }
 
   onLikeClick = e => {
-    e.preventDefault()
+    e.preventDefault();
     const likes = this.props.likes;
 
     if (likes.indexOf(this.props.itemID) < 0) {
@@ -29,14 +29,14 @@ export default class LikeButton extends React.Component {
     localStorage.setItem(this.props.storageKey, likes);
   }
 
-  render () {
+  render() {
     const icon = this.state.isLiked ? 'heart' : 'heart-empty';
 
     return (
       <button className="LikeButton" onClick={e => this.onLikeClick(e)}>
         <Icon icon={icon} />
       </button>
-    )
+    );
   }
 }
 
@@ -44,4 +44,6 @@ LikeButton.propTypes = {
   storageKey: PropTypes.string.isRequired,
   itemID: PropTypes.string.isRequired,
   likes: PropTypes.array.isRequired,
-}
+};
+
+export default LikeButton;

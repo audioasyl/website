@@ -1,0 +1,26 @@
+@import "ui/variables";
+
+.Category-section {
+  height: 6.5rem;
+  overflow: hidden;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  font-family: 'RobotoRegular';
+
+  .Category-section-title {
+    height: 100%;
+    width: 30rem;
+    color: $white;
+    display: block;
+    padding: 2rem 0;
+    text-align: center;
+    background: $black;
+    text-decoration: none;
+    transition: font 0.3s ease;
+
+    &:hover {
+      font-size: 2.6rem;
+      transition: font 0.3s ease;
+    }
+  }
+}

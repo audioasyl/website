@@ -34,3 +34,5 @@ PlayButton.contextTypes = {
   router: PropTypes.object,
   location: PropTypes.object,
 };
+
+export default PlayButton;

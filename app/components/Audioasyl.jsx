@@ -1,13 +1,12 @@
-import { Link } from 'react-router';
-import { map, split } from 'lodash';
 import React, { PropTypes } from 'react';
-import Masonry from 'react-masonry-component';
+import { map, flattenDeep } from 'lodash';
 
-import AudioTile from './AudioTile';
+import { tagCategoriesWithTagItemsAndSchema } from '../queries/tagCategory';
+import { tagItemsWithMetaData } from '../queries/tagItem';
+import { tagCategoriesToMap } from '../parsers/category';
+import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
-import {
-  getLikes,
-} from '../utils';
+import Category from './Category';
 
 import './Audioasyl.scss';
 class Audioasyl extends React.Component {
@@ -18,9 +17,7 @@ class Audioasyl extends React.Component {
         artist: artists => this.setState({ artists }),
         album: albums => this.setState({ albums }),
       },
-      artists: {},
-      albums: {},
-      play: {},
+      categories: {},
     };
   }
 
@@ -38,78 +35,55 @@ class Audioasyl extends React.Component {
   }
 
   loadData = () => {
-    this.setState({ artistIsLoading: true, albumIsLoading: true });
+    this.setState({ isLoading: true });
+    tagCategoriesWithTagItemsAndSchema()
+      .fetch()
+      .on('fetch', (_, __, data) => {
+        this.setState({ categories: tagCategoriesToMap(data.toJS()) });
+        this.loadMetaData(pickTegItemIds(data.toJS()));
+      })
+      .on('error', (_, __, err) => console.log('error', err));
   }
 
-  renderArtists = () => {
-    const likes = split((localStorage.getItem('artists_likes') || ''), ',');
-
-    return map(this.state.artists.items, artist => (
-      <AudioTile
-        type="artists"
-        likes={likes}
-        audio={artist}
-        key={artist.id}
-        isLive={artist.popularity > 88}
-        isFresh={artist.popularity < 50}
-        isSpecial={artist.followers && artist.followers.total > 3000000}
-      />
-    ));
+  loadMetaData = ids => {
+    tagItemsWithMetaData(ids)
+      .fetch()
+      .on('fetch', (_, __, data) =>
+        this.setState({
+          metaData: tagItemsToMap(data.toJS()),
+          isLoading: false,
+        })
+      )
+      .on('error', (_, __, err) => console.log('error', err));
   }
 
-  renderAlbums = () => {
-    const likes = getLikes('albums_likes');
-
-    return map(this.state.albums.items, album => (
-      <AudioTile
-        audio={album}
-        type="albums"
-        likes={likes}
-        key={album.id}
-        isSpecial={false}
-        isLive={album.available_markets.length > 60}
-        isFresh={album.available_markets.length < 3}
-      />
-    ));
-  }
+  renderCategories = () =>
+    map(this.state.categories, category => (
+      <Category key={category.id} category={category} metaData={this.state.metaData} />
+    ))
 
   render() {
-    const masonryOptions = {
-      percentPosition: true,
-      columnWidth: '.grid-sizer',
-      itemSelector: '.AudioTile',
-    };
+    if (this.state.isLoading) {
+      return (<div>LOADING !!!</div>);
+    }
 
+    console.log(this.state);
     return (
       <div className="Audioasyl">
         <MainHeader
           searchContext={this.state.searchContext}
           onFilterChange={this.buildSearchContext}
         />
-        <div className="Audioasyl-section" id="artists-section">
-          <Link to="/artists" className="Audioasyl-section-title">Artists</Link>
-        </div>
-        <Masonry
-          options={masonryOptions}
-          className="Audioasyl-tiles"
-        >
-          <div className="grid-sizer" />
-          {this.renderArtists()}
-        </Masonry>
-        <div className="Audioasyl-section" id="albums-section">
-          <Link to="/albums" className="Audioasyl-section-title">Albums</Link>
-        </div>
-        <Masonry
-          options={masonryOptions}
-          className="Audioasyl-tiles"
-        >
-          <div className="grid-sizer" />
-          {this.renderAlbums()}
-        </Masonry>
+        {this.renderCategories()}
       </div>
     );
   }
 }
+
+const pickTegItemIds = categories =>
+  flattenDeep(map(categories, category =>
+    map(category.tag_items, tagItem => tagItem.id))
+  );
 
 Audioasyl.childContextTypes = {
   router: PropTypes.object,
