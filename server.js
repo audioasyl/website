@@ -5,8 +5,8 @@ const Koa     = require('koa'),
       convert = require('koa-convert');
 
 
-const port = process.env.AUDIOASYL_PORT || 8000;
-const hostname = process.env.AUDIOASYL_HOST || '127.0.0.1';
+const port = process.env.PORT || 8000;
+const hostname = process.env.HOST || '127.0.0.1';
 
 const app = new Koa();
 const appUse = app.use;
