@@ -14,10 +14,10 @@ app.use = x => appUse.call(app, convert(x)); // convert old middleware
 
 app.use(serve('./dist'));
 
-app.use(async (ctx, next) =>
-  send(ctx, '/index.html')
-    .then(() => next())
-);
+app.use(async function (ctx, next) {
+  return send(ctx, '/index.html')
+    .then(() => next());
+});
 
 const httpServer = http.createServer(app.callback());
 httpServer.listen(port, () => {
