@@ -26,7 +26,7 @@ class Player extends React.Component {
     const { id: idNext, play: playStatus } = nextContext.location.query;
 
     if (id !== idNext) {
-      this.state.player.stop();
+      this.state.player && this.state.player.stop();
       this.fetchData(idNext);
     }
 
