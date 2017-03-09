@@ -5,11 +5,6 @@ import TileLabel from './TileLabel';
 import LikeButton from './LikeButton';
 import PlayButton from './PlayButton';
 import placeholder from '../../public/images/placeholder.png';
-import { recordFilesForTagItems, recordFiles } from '../queries/recordItem';
-
-
-window.ri = recordFilesForTagItems;
-window.rf = recordFiles;
 
 import './AudioTile.scss';
 export default class AudioTile extends React.Component {
