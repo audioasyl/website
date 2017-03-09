@@ -9,7 +9,6 @@
     "start-dev": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors",
-    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -35,6 +34,7 @@
     "lodash": "^4.17.4",
     "node-sass": "^4.3.0",
     "radiokit-api": "^0.1.20",
+    "radiokit-toolkit-playback": "^1.0.11",
     "react": "15.4.2",
     "react-custom-scrollbars": "^4.0.2",
     "react-dom": "15.4.2",
