@@ -2,6 +2,9 @@
   "name": "audioasyl",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "7.x"
+  },
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
