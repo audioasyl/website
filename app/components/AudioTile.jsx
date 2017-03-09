@@ -40,9 +40,7 @@ export default class AudioTile extends React.Component {
       'AudioTile',
       { 'AudioTile-big': isSpecial }
     );
-    if (audio.name === 'Andaloop') {
-      debugger;
-    }
+
     return (
       <Link to={`/${type}/details/${audio.id}`} className={audioTileClasses}>
         {this.renderLiveBadge()}

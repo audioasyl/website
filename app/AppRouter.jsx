@@ -12,14 +12,22 @@ const AppRouter = () => (
   <Router history={browserHistory}>
     <Route path="/" component={Audioasyl} />
     <Route path="/contact" component={Contact} />
-    {/* <Route path="/albums">
+    {/* <Route path="/series">
       <IndexRoute component={Albums} />
       <Router path="details/:id" component={AlbumDetails} />
     </Route>
-    <Route path="/artists">
+    <Route path="/authors">
       <IndexRoute component={Artists} />
       <Router path="details/:id" component={ArtistDetails} />
-    </Route>*/}
+    </Route>
+    <Route path="/genre">
+      <IndexRoute component={Artists} />
+      <Router path="details/:id" component={ArtistDetails} />
+    </Route>
+    <Route path="/filters">
+      <IndexRoute component={Artists} />
+      <Router path="details/:id" component={ArtistDetails} />
+    </Route> */}
   </Router>
 );
 

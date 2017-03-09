@@ -35,11 +35,11 @@ const renderTiles = (category, metaData, dataSchema) => {
         likes={likes}
         audio={tagItem}
         key={tagItem.id}
-        isSpecial={false}
         type={category.key}
         schema={dataSchema}
         isLive={!!itemProperties.live}
         isFresh={!!itemProperties.fresh}
+        isSpecial={!!itemProperties.special}
       />
     );
   });

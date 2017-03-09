@@ -9,7 +9,9 @@ import './Player.scss';
 class Player extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      offset: 0,
+    };
   }
 
   componentWillMount = () => {
@@ -25,17 +27,19 @@ class Player extends React.Component {
 
   fetchData = id =>
     recordFilesForTagItems([id])
+      .offset(this.state.offset).limit(LIMIT)
       .fetch()
-      .on('fetch', (_, __, data) => this.setState({ track: recordFileToMap(data.toJS()) }))
+      .on('fetch', (_, __, data) => this.setState({
+        track: recordFileToMap(data.toJS()),
+        offset: this.state.offset + LIMIT,
+      }))
       .on('error', (_, __, err) => console.log('error', err));
 
   render() {
     console.log(this.state);
     const { play: status, id } = this.context.location.query;
-    if (this.state.track && id && status) {
-      const artist = findPlayerItem(this.props.items, id);
-      const img = artist.images[0];
 
+    if (this.state.track && id && status) {
       return (
         <div className="Player">
           <div className="Player-buttons">
@@ -43,19 +47,19 @@ class Player extends React.Component {
               className="Player-button minimalize"
               onClick={this.props.minimalize}
             >
-              <Icon icon='' />
+              <Icon icon="" />
             </button>
             <button
               className="Player-button close"
               onClick={this.props.close}
             >
-              <Icon icon=''/>
+              <Icon icon="" />
             </button>
           </div>
           <div className="Player-cover">
             <img
               className="Player-cover-img"
-              src={img ? img.url : placeholder }
+              src=""
               alt={artist.name}
             />
             <div>{artist.name}</div>
@@ -93,6 +97,7 @@ class Player extends React.Component {
   }
 }
 
+const LIMIT = 3;
 const iconMap = {
   pause: 'play-1',
   play: 'pause',
