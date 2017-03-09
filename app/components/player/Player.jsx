@@ -25,7 +25,10 @@ class Player extends React.Component {
     const { id } = this.context.location.query;
     const { id: idNext, play: playStatus } = nextContext.location.query;
 
-    if (id !== idNext) { this.fetchData(idNext); }
+    if (id !== idNext) {
+      this.state.player.stop();
+      this.fetchData(idNext);
+    }
 
     this.state.player && setPlayerStatus(this.state.player, playStatus);
   }
@@ -35,7 +38,6 @@ class Player extends React.Component {
   }
 
   setVolume = (lvl = 1) => {
-    console.log(lvl);
     const vol = this.state.player.getVolume();
     if (lvl) {
       return this.state.player.setVolume(vol < 0.9 ? vol + 0.1 : 1);
@@ -54,7 +56,7 @@ class Player extends React.Component {
     const { channelId, accessToken } = this.state;
     const { play: playStatus } = this.context.location.query;
 
-    const player = new Channel.Player(channelId, accessToken);
+    const player = this.state.player || new Channel.Player(channelId, accessToken);
 
     player.setVolume(defaultVolume());
     setPlayerStatus(player, playStatus);
@@ -94,7 +96,7 @@ class Player extends React.Component {
     const position = moment.duration(this.state.position || 0);
     const duration = moment.duration(this.state.metaData.duration || 0);
 
-    if (this.state.track && id && status) {
+    if (id && status) {
       return (
         <div className="Player">
           <div className="Player-buttons">
@@ -168,7 +170,7 @@ const defaultVolume = () =>
   localStorage.getItem('playerVolume') || 0.5;
 
 const setPlayerStatus = (player, status) => (
-  status === 'play' ? player.start() : player.stop()
+  status === 'play' ? !player.isStarted() && player.start() : player.isStarted() && player.stop()
 );
 
 const LIMIT = 3;

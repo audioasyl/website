@@ -28,7 +28,7 @@ const renderTiles = (category, metaData, dataSchema) => {
 
   return map(category.tag_items, tagItem => {
     const itemProperties =
-    metaDataItemsToProperties(metaData[tagItem.id].metadata_items, dataSchema);
+      metaDataItemsToProperties(metaData[tagItem.id].metadata_items, dataSchema);
 
     return (
       <AudioTile
