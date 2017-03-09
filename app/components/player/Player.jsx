@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
+import { Channel } from 'radiokit-toolkit-playback';
 
 import { recordFilesForTagItems } from '../../queries/recordItem';
 import { recordFileToMap } from '../../parsers/recordFile';
 import { play } from '../../utils';
 import Icon from '../Icon';
+
+window.p = Channel;
 
 import './Player.scss';
 class Player extends React.Component {
@@ -32,11 +35,12 @@ class Player extends React.Component {
       .on('fetch', (_, __, data) => this.setState({
         track: recordFileToMap(data.toJS()),
         offset: this.state.offset + LIMIT,
+        channelId: 'fd9a7d1c-a387-40a0-b876-2799668d6f9d', // TODO replace with audioasyl id
+        accessToken: 'demo',
       }))
       .on('error', (_, __, err) => console.log('error', err));
 
   render() {
-    console.log(this.state);
     const { play: status, id } = this.context.location.query;
 
     if (this.state.track && id && status) {
