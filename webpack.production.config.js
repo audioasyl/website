@@ -13,12 +13,12 @@ loaders.push({
 
 module.exports = {
 	entry: [
-		'./src/index.jsx',
+		'./app/Index.jsx',
 	],
 	output: {
 		publicPath: '/',
 		path: path.join(__dirname, 'dist'),
-		filename: '[hashname].js',
+		filename: '[hash].js',
 		chunkFilename: '[name].[id].[ext]',
 	},
 	resolve: {
