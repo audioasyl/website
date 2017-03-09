@@ -8,7 +8,6 @@ export const metaDataItemToMap = metaDataItems =>
 
 export const metaDataItemsToProperties = (metaDataItems, schemas) =>
   reduce(metaDataItems, (result, metaDataItem) => {
-    debugger;
     const schema = schemas[metaDataItem.metadata_schema_id];
     return {
       ...result,

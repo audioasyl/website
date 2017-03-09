@@ -6,6 +6,7 @@ import { tagItemsWithMetaData } from '../queries/tagItem';
 import { tagCategoriesToMap } from '../parsers/category';
 import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
+import Player from './player/Player';
 import Category from './Category';
 
 import './Audioasyl.scss';
@@ -75,6 +76,7 @@ class Audioasyl extends React.Component {
           onFilterChange={this.buildSearchContext}
         />
         {this.renderCategories()}
+        <Player />
       </div>
     );
   }

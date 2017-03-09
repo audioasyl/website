@@ -5,6 +5,11 @@ import TileLabel from './TileLabel';
 import LikeButton from './LikeButton';
 import PlayButton from './PlayButton';
 import placeholder from '../../public/images/placeholder.png';
+import { recordFilesForTagItems, recordFiles } from '../queries/recordItem';
+
+
+window.ri = recordFilesForTagItems;
+window.rf = recordFiles;
 
 import './AudioTile.scss';
 export default class AudioTile extends React.Component {
@@ -35,7 +40,9 @@ export default class AudioTile extends React.Component {
       'AudioTile',
       { 'AudioTile-big': isSpecial }
     );
-
+    if (audio.name === 'Andaloop') {
+      debugger;
+    }
     return (
       <Link to={`/${type}/details/${audio.id}`} className={audioTileClasses}>
         {this.renderLiveBadge()}
