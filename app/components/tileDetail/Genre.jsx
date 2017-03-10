@@ -1,9 +1,14 @@
 import React, { PropTypes } from 'react';
 
+import Description from './Description';
+
+import './Genre.scss';
 class Genre extends React.Component {
   render() {
     return (
       <div className="Genre">
+        <Description />
+        <div className="Placeholder" />
       </div>
     );
   }
@@ -11,6 +16,6 @@ class Genre extends React.Component {
 
 Genre.propTypes = {
 
-}
+};
 
 export default Genre;

@@ -1,0 +1,12 @@
+@import "ui/variables";
+
+.Author {
+  justify-content: center;
+  position: relative;
+  display: flex;
+  width: 100%;
+  
+  .Placeholder {
+    flex: 1;
+  }
+}

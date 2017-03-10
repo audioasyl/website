@@ -3,6 +3,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import Icon from '../Icon';
 
+import './Description.scss';
 const Description = () => (
   <div className="Description">
     <Scrollbars style={{ height: '100%' }}>

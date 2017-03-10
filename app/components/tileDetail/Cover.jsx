@@ -5,16 +5,16 @@ import { map, take } from 'lodash';
 import PlayButton from '../PlayButton';
 
 import './Cover.scss';
-const Cover = () => {
-  const img = this.props.artist.images[0];
-  const styles = { backgroundImage: `url('${img ? img.url : placeholder}')` }
+const Cover = ({ artist, albums }) => {
+  const img = artist.images && artist.images[0];
+  const styles = { backgroundImage: `url('${img ? img.url : 'placeholder'}')` }
 
   return (
     <div className="Cover" style={styles}>
       <div className="Cover-header">
-        {this.props.artist.name}
+        {artist.name}
       </div>
-      <PlayButton audioID={this.props.artist.id} />
+      <PlayButton audioID={artist.id} />
       <div className="Cover-footer">
         <Scrollbars style={{ height: '100%' }}>
           <div className="Cover-footer-header">
@@ -30,7 +30,7 @@ const Cover = () => {
               tracklist:
             </div>
             <ul>
-              {map(take(this.props.albums, 3), album => <li key={album.id}>{album.name}</li>)}
+              {map(take(albums, 3), album => <li key={album.id}>{album.name}</li>)}
             </ul>
           </div>
         </Scrollbars>
@@ -39,9 +39,19 @@ const Cover = () => {
   );
 };
 
+Cover.propTypes = {
+  artist: PropTypes.object,
+  albums: PropTypes.array,
+};
+
 Cover.contextTypes = {
   router: PropTypes.object,
   location: PropTypes.object,
+};
+
+Cover.defaultProps = {
+  artist: {},
+  albums: [],
 };
 
 export default Cover;

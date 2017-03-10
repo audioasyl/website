@@ -5,6 +5,7 @@ import Type from './Type';
 import Icon from '../Icon';
 import Genre from './Genre';
 import Author from './Author';
+import Player from '../player/Player';
 import { Categories } from '../../enums';
 import Header from '../header/MainHeader';
 
@@ -45,7 +46,7 @@ class TileDetails extends React.Component {
         <div className="TileDetails-main">
           {this.renderContent()}
         </div>
-        <div />
+        <Player />
       </div>
     );
   }

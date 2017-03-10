@@ -32,61 +32,6 @@
     padding: 5rem;
     display: flex;
 
-    .TileDetails-main-description {
-      justify-content: space-between;
-      flex-direction: column;
-      background: $black;
-      font-size: 1.8rem;
-      display: flex;
-      padding: 2rem;
-      flex: 1;
-
-      .TileDetails-main-description-header {
-        margin-bottom: 6rem;
-        text-align: center;
-        font-size: 2.5rem;
-      }
-
-      .TileDetails-main-description-content {
-        .TileDetails-main-description-content-label {
-          margin-bottom: 3rem;
-        }
-
-        .TileDetails-main-description-content-text {
-          margin-bottom: 3rem;
-        }
-
-        ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-      }
-
-      .TileDetails-main-description-links {
-        margin-top: 3rem;
-        font-size: 4rem;
-        display: flex;
-
-        span {
-          border-radius: 1rem;
-          margin-right: 1rem;
-          background: white;
-          display: block;
-          height: 3.9rem;
-          width: 4rem;
-
-          &[icon="facebook"] {
-            color: $facebook;
-          }
-
-          &[icon="twitter"] {
-            color: $twitter;
-          }
-        }
-      }
-    }
-
     .TileDetails-main-cover {
       padding: 0 3rem;
       flex: 1.2;

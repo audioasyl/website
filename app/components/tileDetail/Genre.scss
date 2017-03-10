@@ -1,0 +1,12 @@
+@import "ui/variables";
+
+.Genre {
+  justify-content: center;
+  position: relative;
+  display: flex;
+  width: 100%;
+  
+  .Placeholder {
+    flex: 2;
+  }
+}

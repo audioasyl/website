@@ -30,6 +30,7 @@ export default class AudioTile extends React.Component {
   renderFreshBadge = () => (this.props.properties.isFresh && <TileLabel type="fresh" />)
 
   render() {
+    const { id, play } = this.context.location.query;
     const { audio, type, likes, properties } = this.props;
     const audioTileClasses = classNames(
       'AudioTile',
@@ -37,7 +38,13 @@ export default class AudioTile extends React.Component {
     );
 
     return (
-      <Link to={`/${type}/details/${audio.id}`} className={audioTileClasses}>
+      <Link
+        to={{
+          pathname: `/${type}/details/${audio.id}`,
+          query: { id, play },
+        }}
+        className={audioTileClasses}
+      >
         {this.renderLiveBadge()}
         {this.renderFreshBadge()}
         <PlayButton audioID={audio.id} />
