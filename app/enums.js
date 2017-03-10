@@ -1,6 +1,6 @@
 export const Categories = {
   AUTHOR: 'authors',
-  TYPE: 'series',
-  SHOW: 'filters',
+  TYPE: 'filters',
+  SHOW: 'series',
   GENRE: 'genre',
 };

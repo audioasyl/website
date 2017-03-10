@@ -9,16 +9,7 @@ const AppRouter = () => (
   <Router history={browserHistory}>
     <Route path="/" component={Audioasyl} />
     <Route path="/contact" component={Contact} />
-    <Route path="/series">
-      <Router path="details/:id" component={TileDetails} />
-    </Route>
-    <Route path="/authors">
-      <Router path="details/:id" component={TileDetails} />
-    </Route>
-    <Route path="/genre">
-      <Router path="details/:id" component={TileDetails} />
-    </Route>
-    <Route path="/filters">
+    <Route path="/:category">
       <Router path="details/:id" component={TileDetails} />
     </Route>
   </Router>

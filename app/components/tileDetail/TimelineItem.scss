@@ -1,0 +1,27 @@
+@import "ui/variables";
+
+.TimelineItem {
+  padding: 1rem;
+  visibility: hidden;
+  margin-top: 1.5rem;
+  border-radius: 1rem;
+  background: $blackGreen;
+
+  div {
+    line-height: 1.4;
+  }
+
+  &.TimelineItem--visible {
+    visibility: visible;
+    transition: visibility 0.5s linear;
+  }
+
+  &:first-child {
+    background: $botleGreen;
+    margin: 0;
+  }
+
+  &:nth-child(2) {
+    background: $lightBlue;
+  }
+}
