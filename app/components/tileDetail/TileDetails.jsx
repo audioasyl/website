@@ -46,6 +46,7 @@ class TileDetails extends React.Component {
         <div className="TileDetails-main">
           {this.renderContent()}
         </div>
+        <div />
         <Player />
       </div>
     );
