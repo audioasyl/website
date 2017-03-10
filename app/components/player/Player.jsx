@@ -1,6 +1,7 @@
 import { Channel } from 'radiokit-toolkit-playback';
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import { omit } from 'lodash';
 import moment from 'moment';
 
 import { recordFilesForTagItems } from '../../queries/recordItem';
@@ -16,7 +17,7 @@ class Player extends React.Component {
     this.state = {
       offset: 0,
       metaData: {},
-      minimalized: false,
+      minimalized: localStorage.getItem('playerSize') === 'true',
     };
   }
 
@@ -36,8 +37,18 @@ class Player extends React.Component {
     this.state.player && setPlayerStatus(this.state.player, playStatus);
   }
 
-  componentWillUnmount = () =>
-    this.state.player && this.state.player.stop()
+  componentWillUnmount = () => {
+    this.state.player && this.state.player.stop();
+    localStorage.setItem('playerSize', this.state.minimalized);
+  }
+
+  onCloseClick = () => {
+    localStorage.setItem('playerSize', this.state.minimalized);
+    this.context.router.replace({
+      pathname: this.context.location.pathname,
+      query: omit(this.context.location.query, ['play', 'id']),
+    });
+  }
 
   setTrackInfo = track => {
     track.getInfoAsync()
@@ -105,7 +116,7 @@ class Player extends React.Component {
             </button>
             <button
               className="Player-button close"
-              onClick={this.props.close}
+              onClick={this.onCloseClick}
             >
               <Icon icon="cross" />
             </button>
@@ -169,10 +180,6 @@ const LIMIT = 3;
 const iconMap = {
   pause: 'play-1',
   play: 'pause',
-};
-
-Player.propTypes = {
-  close: PropTypes.func,
 };
 
 Player.contextTypes = {
