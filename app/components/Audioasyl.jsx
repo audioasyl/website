@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 import { map, flattenDeep } from 'lodash';
 
 import { tagCategoriesWithTagItemsAndSchema } from '../queries/tagCategory';
+import { recordFiles, onlyFreshRecords } from '../queries/recordItem';
 import { tagItemsWithMetaData } from '../queries/tagItem';
 import { tagCategoriesToMap } from '../parsers/category';
+import { freshRecordsToMap } from '../parsers/recordFile';
 import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
 import Player from './player/Player';
@@ -29,11 +31,21 @@ class Audioasyl extends React.Component {
 
   componentWillMount = () => {
     this.loadData(this.props);
+    this.fetchRepositoryFiles();
   }
 
   buildSearchContext = () => {
 
   }
+
+  fetchRepositoryFiles = () =>
+    onlyFreshRecords(recordFiles([]))
+      .fetch()
+      .on('fetch', (_, __, data) => {
+        console.log(data.toJS());
+        this.setState({ freshRecordIds: freshRecordsToMap(data.toJS()) });
+      })
+      .on('error', (_, __, err) => console.log('error', err));
 
   loadData = () => {
     this.setState({ isLoading: true });
@@ -60,10 +72,16 @@ class Audioasyl extends React.Component {
 
   renderCategories = () =>
     map(this.state.categories, category => (
-      <Category key={category.id} category={category} metaData={this.state.metaData} />
+      <Category
+        key={category.id}
+        category={category}
+        metaData={this.state.metaData}
+        freshRecordIds={this.state.freshRecordIds}
+      />
     ))
 
   render() {
+    console.log(this.state);
     if (this.state.isLoading) {
       return (<div>LOADING !!!</div>);
     }

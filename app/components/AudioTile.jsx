@@ -25,15 +25,15 @@ export default class AudioTile extends React.Component {
     );
   }
 
-  renderLiveBadge = () => (this.props.isLive && <TileLabel type="live" />)
+  renderLiveBadge = () => (this.props.properties.isLive && <TileLabel type="live" />)
 
-  renderFreshBadge = () => (this.props.isFresh && <TileLabel type="fresh" />)
+  renderFreshBadge = () => (this.props.properties.isFresh && <TileLabel type="fresh" />)
 
   render() {
-    const { audio, type, isSpecial, likes } = this.props;
+    const { audio, type, likes, properties } = this.props;
     const audioTileClasses = classNames(
       'AudioTile',
-      { 'AudioTile-big': isSpecial }
+      { 'AudioTile-big': properties.isSpecial }
     );
 
     return (
@@ -60,9 +60,7 @@ export default class AudioTile extends React.Component {
 }
 
 AudioTile.propTypes = {
-  isLive: PropTypes.bool,
-  isFresh: PropTypes.bool,
-  isSpecial: PropTypes.bool,
+  properties: PropTypes.object,
   likes: PropTypes.array.isRequired,
   audio: PropTypes.object.isRequired,
   type: PropTypes.oneOf(['filters', 'genre', 'authors', 'series']).isRequired,
@@ -74,7 +72,5 @@ AudioTile.contextTypes = {
 };
 
 AudioTile.defaultProps = {
-  isLive: false,
-  isFresh: false,
-  isSpecial: false,
+  properties: {},
 };

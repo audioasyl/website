@@ -8,7 +8,7 @@ import AudioTile from './AudioTile';
 import { metaDataItemsToProperties } from '../parsers/metadataItems';
 
 import './Category.scss';
-const Category = ({ category, metaData }) => (
+const Category = ({ category, metaData, freshRecordIds }) => (
   <div className="Category">
     <div className="Category-section" id="artists-section">
       <Link to="#" className="Category-section-title">{category.name}</Link>
@@ -18,17 +18,19 @@ const Category = ({ category, metaData }) => (
       className="Category-tiles"
     >
       <div className="grid-sizer" />
-      {renderTiles(category, metaData, category.metadata_schemas)}
+      {renderTiles(category, metaData, category.metadata_schemas, freshRecordIds)}
     </Masonry>
   </div>
 );
 
-const renderTiles = (category, metaData, dataSchema) => {
+const renderTiles = (category, metaData, dataSchema, freshRecordIds) => {
   const likes = getLikes(`${category.key}_likes`);
 
   return map(category.tag_items, tagItem => {
     const itemProperties =
       metaDataItemsToProperties(metaData[tagItem.id].metadata_items, dataSchema);
+
+    itemProperties.isFresh = freshRecordIds.indexOf(tagItem.id) >= 0;
 
     return (
       <AudioTile
@@ -37,9 +39,7 @@ const renderTiles = (category, metaData, dataSchema) => {
         key={tagItem.id}
         type={category.key}
         schema={dataSchema}
-        isLive={!!itemProperties.live}
-        isFresh={!!itemProperties.fresh}
-        isSpecial={!!itemProperties.special}
+        properties={itemProperties}
       />
     );
   });
@@ -52,8 +52,13 @@ const masonryOptions = {
 };
 
 Category.propTypes = {
+  freshRecordIds: PropTypes.array,
   category: PropTypes.object.isRequired,
   metaData: PropTypes.object.isRequired,
+};
+
+Category.defaultProps = {
+  freshRecordIds: [],
 };
 
 export default Category;

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { values, map } from 'lodash';
 import { selectRepository, vaultData } from './repository';
 import {
@@ -8,6 +9,9 @@ import {
   MODEL_ATTRIBUTES as META_DATA_ITEMS_ATTRIBUTES,
   MODEL_NAME as META_DATA_ITEMS,
 } from './metaDataItem';
+import {
+  MODEL_NAME as MODEL_TAG_ITEMS,
+} from './tagItem';
 
 export const MODEL_NAME = 'record_files';
 export const MODEL = 'Data.Record.File';
@@ -27,6 +31,12 @@ export const recordFiles = (attrs = values(MODEL_ATTRIBUTES)) =>
       .select(...attrs)
   );
 
+export const onlyFreshRecords = query =>
+  query
+    .where('stage', 'eq', 'current')
+    .where('inserted_at', 'gte', moment().subtract(10, 'd').format())
+    .joins(MODEL_TAG_ITEMS).select(`${MODEL_TAG_ITEMS}.id`);
+
 export const recordFilesForTagItems = (tagIds, stage = 'current') =>
   recordFiles()
     .joins('tag_items')
@@ -35,6 +45,6 @@ export const recordFilesForTagItems = (tagIds, stage = 'current') =>
     .joins(MODEL_SCHEMAS)
     .joins(META_DATA_ITEMS)
     .select(
-      ...map(SCHEMA_ATTRIBUTES, value => `metadata_schemas.${value}`),
-      ...map(META_DATA_ITEMS_ATTRIBUTES, value => `metadata_items.${value}`)
+      ...map(SCHEMA_ATTRIBUTES, value => `${MODEL_SCHEMAS}.${value}`),
+      ...map(META_DATA_ITEMS_ATTRIBUTES, value => `${META_DATA_ITEMS}.${value}`)
     );

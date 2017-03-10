@@ -1,6 +1,5 @@
 import RadioKitApi from 'radiokit-api';
 
-// export const REPOSITORY_ID = 'f857896b-10a4-4dd8-b1ae-6d8e3cb9c6a0';
 export const REPOSITORY_ID = 'f857896b-10a4-4dd8-b1ae-6d8e3cb9c6a0';
 export const SOURCE_NAME = 'vault';
 
