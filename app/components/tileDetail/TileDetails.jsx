@@ -8,6 +8,10 @@ import Author from './Author';
 import Player from '../player/Player';
 import { Categories } from '../../enums';
 import Header from '../header/MainHeader';
+import djBg from '../../../public/images/dj-background.jpg';
+import genreBg from '../../../public/images/genre-background.jpg';
+import albumBg from '../../../public/images/album-background.jpg';
+import detailsBg from '../../../public/images/details-background.jpg';
 
 import './TileDetails.scss';
 class TileDetails extends React.Component {
@@ -54,16 +58,15 @@ class TileDetails extends React.Component {
 }
 
 const categoryToImg = category => {
-  const path = img => `../../../images/${img}.jpg`;
   switch (category) {
   case Categories.AUTHOR:
-    return path('dj-background');
+    return djBg;
   case Categories.GENRE:
-    return path('genre-background');
+    return genreBg;
   case Categories.TYPE:
-    return path('album-background');
+    return albumBg;
   default:
-    return path('details-background');
+    return detailsBg;
   }
 };
 
