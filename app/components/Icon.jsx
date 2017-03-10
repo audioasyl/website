@@ -26,9 +26,11 @@ const Icon = props => {
 
 const glyphsmap = {
   facebook: 'facebook',
+  mute: 'volume-mute2',
   speaker: 'speaker',
   twitter: 'twitter',
   search: 'search',
+  minus: 'minus',
   pause: 'pause',
   heart: 'heart',
   cross: 'cross',

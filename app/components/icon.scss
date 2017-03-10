@@ -60,9 +60,15 @@ $path: './../../public/fonts';
 .icon-search:before {
   content: "\e986";
 }
+.icon-minus:before {
+  content: "\ea0b";
+}
 .icon-cross:before {
   content: "\ea0f";
 }
 .icon-volume-medium:before {
   content: "\ea27";
+}
+.icon-volume-mute2:before {
+  content: "\ea2a";
 }

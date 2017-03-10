@@ -1,6 +1,7 @@
-import moment from 'moment';
-import React, { PropTypes } from 'react';
 import { Channel } from 'radiokit-toolkit-playback';
+import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import moment from 'moment';
 
 import { recordFilesForTagItems } from '../../queries/recordItem';
 import { recordFileToMap } from '../../parsers/recordFile';
@@ -15,6 +16,7 @@ class Player extends React.Component {
     this.state = {
       offset: 0,
       metaData: {},
+      minimalized: false,
     };
   }
 
@@ -33,6 +35,9 @@ class Player extends React.Component {
 
     this.state.player && setPlayerStatus(this.state.player, playStatus);
   }
+
+  componentWillUnmount = () =>
+    this.state.player && this.state.player.stop()
 
   setTrackInfo = track => {
     track.getInfoAsync()
@@ -83,22 +88,26 @@ class Player extends React.Component {
     const { play: status, id } = this.context.location.query;
     const position = moment.duration(this.state.position || 0);
     const duration = moment.duration(this.state.metaData.duration || 0);
+    const playerClasses = classNames(
+      'Player',
+      { 'Player--min': this.state.minimalized }
+    );
 
     if (id && status) {
       return (
-        <div className="Player">
+        <div className={playerClasses}>
           <div className="Player-buttons">
             <button
               className="Player-button minimalize"
-              onClick={this.props.minimalize}
+              onClick={() => this.setState({ minimalized: !this.state.minimalized })}
             >
-              <Icon icon="" />
+              <Icon icon="minus" />
             </button>
             <button
               className="Player-button close"
               onClick={this.props.close}
             >
-              <Icon icon="" />
+              <Icon icon="cross" />
             </button>
           </div>
           <div className="Player-cover">
@@ -164,7 +173,6 @@ const iconMap = {
 
 Player.propTypes = {
   close: PropTypes.func,
-  minimalize: PropTypes.func,
 };
 
 Player.contextTypes = {

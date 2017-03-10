@@ -57,7 +57,7 @@ class VolumeBar extends React.Component {
     const volume = this.state.volume || getVolume(this.props.player);
     return (
       <div className="VolumeBar" onWheel={this.setWheelVolume}>
-        <Icon icon="volume-medium" onClick={this.mute} />
+        <Icon icon={!volume ? 'mute' : 'volume-medium'} onClick={this.mute} />
         <div className="VolumeBar-bar-wrapper" onClick={this.setClickVolume}>
           <div className="VolumeBar-bar">
             <div
