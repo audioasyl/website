@@ -137,31 +137,25 @@
         }
       }
 
-      // .Player-console-buttons {
-      //   display: flex;
-      //   align-items: center;
-      //
-      //   .Player-console-button {
-      //     padding: 0 2rem;
-      //
-      //     span {
-      //       font-size: 2rem;
-      //       color: $playerProgressBarBg;
-      //     }
-      //
-      //     &.play {
-      //       span {
-      //         font-size: 3rem;
-      //       }
-      //     }
-      //
-      //     &:hover {
-      //       span {
-      //         color: $playerProgressBarBgFill;
-      //       }
-      //     }
-      //   }
-      // }
+      .Player-console-buttons {
+        // display: none;
+        // display: flex;
+        // align-items: center;
+
+        .Player-console-button {
+          padding: 0 1rem;
+
+          span {
+            font-size: 1.2rem;
+          }
+
+          &.play {
+            span {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
     }
   }
 }
