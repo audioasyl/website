@@ -32,7 +32,7 @@ export const tagCategories = (attrs = values(MODEL_ATTRIBUTES)) =>
 export const tagCategoriesSchemas = (metaData = values(SCHEMA_ATTRIBUTES)) =>
   tagCategories()
     .joins(MODEL_SCHEMAS)
-    .select(...map(metaData, value => `metadata_schemas.${value}`)
+    .select(...map(metaData, value => `${MODEL_SCHEMAS}.${value}`)
   );
 
 export const tagCategoriesWithTagItemsAndSchema = (metaData = values(TAG_ITEMS_ATTRIBUTES)) =>
@@ -40,12 +40,12 @@ export const tagCategoriesWithTagItemsAndSchema = (metaData = values(TAG_ITEMS_A
     .joins(MODEL_TAG_ITEMS)
     .joins(MODEL_SCHEMAS)
     .select(
-      ...map(SCHEMA_ATTRIBUTES, value => `metadata_schemas.${value}`),
-      ...map(metaData, value => `tag_items.${value}`)
+      ...map(SCHEMA_ATTRIBUTES, value => `${MODEL_SCHEMAS}.${value}`),
+      ...map(metaData, value => `${MODEL_TAG_ITEMS}.${value}`)
   );
 
 export const tagCategoriesWithMetaDataItems = (metaData = values(META_DATA_ITEMS_ATTRIBUTES)) =>
   tagCategories()
     .joins(META_DATA_ITEMS)
-    .select(...map(metaData, value => `metadata_items.${value}`)
+    .select(...map(metaData, value => `${META_DATA_ITEMS}.${value}`)
   );
