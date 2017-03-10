@@ -4,6 +4,7 @@ import { Channel } from 'radiokit-toolkit-playback';
 
 import { recordFilesForTagItems } from '../../queries/recordItem';
 import { recordFileToMap } from '../../parsers/recordFile';
+import VolumeBar from './VolumeBar';
 import { play } from '../../utils';
 import Icon from '../Icon';
 
@@ -31,19 +32,6 @@ class Player extends React.Component {
     }
 
     this.state.player && setPlayerStatus(this.state.player, playStatus);
-  }
-
-  componentWillUnmount = () => {
-    localStorage.setItem('playerVolume', this.state.player.getVolume());
-  }
-
-  setVolume = (lvl = 1) => {
-    const vol = this.state.player.getVolume();
-    if (lvl) {
-      return this.state.player.setVolume(vol < 0.9 ? vol + 0.1 : 1);
-    }
-
-    return this.state.player.setVolume(vol > 0.1 ? vol - 0.1 : 0);
   }
 
   setTrackInfo = track => {
@@ -150,14 +138,9 @@ class Player extends React.Component {
               <button className="Player-console-button next">
                 <Icon icon="next" />
               </button>
+              <VolumeBar player={this.state.player} />
             </div>
           </div>
-          {this.state.player && <div className="Player-volume" onWheel={this.setVolume}>
-            <Icon icon="volume-medium" />
-            <div className="Player-volume-bar">
-              <div className="Player-volume-bar--fill" style={{ width: `${this.state.player.getVolume() * 100}%` }} />
-            </div>
-          </div>}
         </div>
       );
     }

@@ -1,33 +1,26 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 import Contact from './components/Contact';
 import Audioasyl from './components/Audioasyl';
-// import Albums from './albums/Albums';
-// import Artists from './artists/Artists';
-// import AlbumDetails from './albums/AlbumDetails';
-// import ArtistDetails from './artists/ArtistDetails';
+import TileDetails from './components/tileDetail/TileDetails';
 
 const AppRouter = () => (
   <Router history={browserHistory}>
     <Route path="/" component={Audioasyl} />
     <Route path="/contact" component={Contact} />
-    {/* <Route path="/series">
-      <IndexRoute component={Albums} />
-      <Router path="details/:id" component={AlbumDetails} />
+    <Route path="/series">
+      <Router path="details/:id" component={TileDetails} />
     </Route>
     <Route path="/authors">
-      <IndexRoute component={Artists} />
-      <Router path="details/:id" component={ArtistDetails} />
+      <Router path="details/:id" component={TileDetails} />
     </Route>
     <Route path="/genre">
-      <IndexRoute component={Artists} />
-      <Router path="details/:id" component={ArtistDetails} />
+      <Router path="details/:id" component={TileDetails} />
     </Route>
     <Route path="/filters">
-      <IndexRoute component={Artists} />
-      <Router path="details/:id" component={ArtistDetails} />
-    </Route> */}
+      <Router path="details/:id" component={TileDetails} />
+    </Route>
   </Router>
 );
 

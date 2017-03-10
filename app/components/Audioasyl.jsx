@@ -68,7 +68,6 @@ class Audioasyl extends React.Component {
       return (<div>LOADING !!!</div>);
     }
 
-    console.log(this.state);
     return (
       <div className="Audioasyl">
         <MainHeader

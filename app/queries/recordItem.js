@@ -12,6 +12,7 @@ import {
 export const MODEL_NAME = 'record_files';
 export const MODEL = 'Data.Record.File';
 export const MODEL_ATTRIBUTES = {
+  insertedAt: 'inserted_at',
   references: 'references',
   fileSize: 'file_size',
   extra: 'extra',
