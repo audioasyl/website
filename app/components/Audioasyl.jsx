@@ -42,7 +42,6 @@ class Audioasyl extends React.Component {
     onlyFreshRecords(recordFiles([]))
       .fetch()
       .on('fetch', (_, __, data) => {
-        console.log(data.toJS());
         this.setState({ freshRecordIds: freshRecordsToMap(data.toJS()) });
       })
       .on('error', (_, __, err) => console.log('error', err));
@@ -81,7 +80,6 @@ class Audioasyl extends React.Component {
     ))
 
   render() {
-    console.log(this.state);
     if (this.state.isLoading) {
       return (<div>LOADING !!!</div>);
     }

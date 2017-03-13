@@ -47,11 +47,12 @@ class TimelineItem extends React.Component {
 
   render() {
     if (this.props.item) {
+      const item = this.props.item;
       return (
         <div className="TimelineItem TimelineItem--visible">
           {this.renderTimelineItem()}
-          <div className="TimelineItem-name">{this.props.item.name}</div>
-          <div className="TimelineItem-desc">Lorem ipsum dolor sit amet</div>
+          <div className="TimelineItem-name">{item.name}</div>
+          <div className="TimelineItem-desc">{item.metadata_items.podcast_lead}</div>
         </div>
       );
     }
@@ -64,7 +65,11 @@ class TimelineItem extends React.Component {
 
 TimelineItem.propTypes = {
   item: PropTypes.object.isRequired,
-  idx: PropTypes.isRequired,
+  idx: PropTypes.string,
+};
+
+TimelineItem.defaultProps = {
+  idx: '',
 };
 
 export default TimelineItem;

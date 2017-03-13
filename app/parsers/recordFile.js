@@ -8,12 +8,12 @@ export const recordFileToMap = recordFiles =>
     [recordFile.id]: {
       ...recordFile,
       metadata_items:
-        recordFile.metadata_items.lengt && metaDataItemsToProperties(
+        recordFile.metadata_items.length && metaDataItemsToProperties(
           recordFile.metadata_items,
           metaDataSchemaToMap(recordFile.metadata_schemas)
         ),
     },
-  }));
+  }), {});
 
 export const freshRecordsToMap = recordFiles => {
   const tagIds = map(recordFiles, recordFile =>
