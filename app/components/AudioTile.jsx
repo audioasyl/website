@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
+
+import { colors } from '../utils';
 import TileLabel from './TileLabel';
 import LikeButton from './LikeButton';
 import PlayButton from './PlayButton';
@@ -44,6 +46,7 @@ export default class AudioTile extends React.Component {
           query: { id, play },
         }}
         className={audioTileClasses}
+        style={{ background: getRandomColor() }}
       >
         {this.renderLiveBadge()}
         {this.renderFreshBadge()}
@@ -65,6 +68,9 @@ export default class AudioTile extends React.Component {
     );
   }
 }
+
+const getRandomColor = () =>
+  colors[parseInt(Math.random() * (colors.length - 1), 10)];
 
 AudioTile.propTypes = {
   properties: PropTypes.object,

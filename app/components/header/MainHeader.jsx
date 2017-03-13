@@ -69,7 +69,7 @@ const genresOptions = [
 
 Header.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
-  setSearchText: PropTypes.object.isRequired,
+  setSearchText: PropTypes.func.isRequired,
 };
 
 export default Header;
