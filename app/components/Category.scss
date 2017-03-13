@@ -1,9 +1,19 @@
 @import "ui/variables";
 
+.Category {
+  position: relative;
+
+  .Category-anchor {
+    position: absolute;
+    top: - 7.9rem;
+  }
+}
+
 .Category-section {
   height: 6.5rem;
   overflow: hidden;
   font-size: 2.2rem;
+  position: relative;
   text-transform: uppercase;
   font-family: 'RobotoRegular';
 

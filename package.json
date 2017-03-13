@@ -31,6 +31,7 @@
   "homepage": "https://github.com/audioasyl/website#readme",
   "dependencies": {
     "classnames": "^2.2.5",
+    "fast-levenshtein": "^2.0.6",
     "koa": "^2.1.0",
     "koa-convert": "^1.2.0",
     "koa-send": "^3.3.0",

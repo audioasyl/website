@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { map, flattenDeep } from 'lodash';
+import levenshtein from 'fast-levenshtein';
+import { map, flattenDeep, filter, reduce } from 'lodash';
 
 import { tagCategoriesWithTagItemsAndSchema } from '../queries/tagCategory';
 import { recordFiles, onlyFreshRecords } from '../queries/recordItem';
@@ -20,7 +21,9 @@ class Audioasyl extends React.Component {
         artist: artists => this.setState({ artists }),
         album: albums => this.setState({ albums }),
       },
+      searchText: '',
       categories: {},
+      distance: Infinity,
     };
   }
 
@@ -69,15 +72,38 @@ class Audioasyl extends React.Component {
       .on('error', (_, __, err) => console.log('error', err));
   }
 
+  filterMetaData = () => {
+    if (!this.state.searchText) {
+      return this.state.categories;
+    }
+
+    const searchText = this.state.searchText;
+
+    return reduce(this.state.categories, (result, category) => {
+      const filteredTags = filter(category.tag_items, tagItem => {
+        const distance = levenshtein.get(searchText, tagItem.name);
+        return distance - (tagItem.name.length - searchText.length) < 3;
+      });
+
+      return {
+        ...result,
+        [category.key]: {
+          ...category,
+          tag_items: filteredTags,
+        },
+      };
+    }, {});
+  }
+
   renderCategories = () =>
-    map(this.state.categories, category => (
+    map(this.filterMetaData(), category => (
       <Category
         key={category.id}
         category={category}
-        metaData={this.state.metaData}
         freshRecordIds={this.state.freshRecordIds}
+        metaData={this.state.metaData}
       />
-    ))
+  ))
 
   render() {
     if (this.state.isLoading) {
@@ -87,8 +113,8 @@ class Audioasyl extends React.Component {
     return (
       <div className="Audioasyl">
         <MainHeader
-          searchContext={this.state.searchContext}
           onFilterChange={this.buildSearchContext}
+          setSearchText={searchText => this.setState({ searchText })}
         />
         {this.renderCategories()}
         <Player />

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { join, keysIn } from 'lodash';
 
 import Icon from '../Icon';
 
@@ -12,6 +11,13 @@ class Search extends React.Component {
 
   onSearchClick = e => {
     e.preventDefault();
+    this.props.setSearchText(this.state.searchText);
+  }
+
+  onChange = e => {
+    e.preventDefault();
+    this.setState({ searchText: e.target.value });
+    this.props.setSearchText(e.target.value);
   }
 
   render() {
@@ -21,8 +27,8 @@ class Search extends React.Component {
           <input
             type="text"
             value={this.state.searchText}
-            placeholder={`Search ${join(keysIn(this.props.context), ', ')}...`}
-            onChange={e => this.setState({ searchText: e.target.value })}
+            placeholder="Search artists, shows, genres..."
+            onChange={e => this.onChange(e)}
           />
 
           <button className="Search-button" type="submit">
@@ -35,7 +41,7 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-  context: PropTypes.object.isRequired,
+  setSearchText: PropTypes.func.isRequired,
 };
 
 export default Search;

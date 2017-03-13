@@ -6,37 +6,38 @@ import HeaderDropdown from './HeaderDropdown';
 import logo from '../../../public/images/logo.png';
 
 import './MainHeader.scss';
-const Header = ({ onFilterChange, searchContext }) => (
+const Header = ({ onFilterChange, setSearchText }) => (
   <div className="Header">
     <div className="Header-fixed">
       <div className="Header-logo-wrapper">
         <img className="Header-logo" src={logo} alt="RadioKit" />
       </div>
       <div className="Header-left">
-        {searchContext && <Search context={searchContext} limit={25} />}
+        <Search setSearchText={setSearchText} />
         <div className="Header-nav">
           <HeaderDropdown
             onFilterChange={onFilterChange}
             className="Header-nav-item"
             options={artistsOptions}
-            href="#artists-section"
-            type="artists"
-            label="Artist"
-          />
-          <HeaderDropdown
-            onFilterChange={onFilterChange}
-            className="Header-nav-item"
-            options={albumsOptions}
-            href="#albums-section"
-            type="albums"
-            label="Album"
+            href="#series"
+            type="series"
+            label="Show"
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
             className="Header-nav-item"
             options={genresOptions}
-            type="genres"
             label="Genres"
+            href="#genre"
+            type="genre"
+          />
+          <HeaderDropdown
+            onFilterChange={onFilterChange}
+            className="Header-nav-item"
+            options={albumsOptions}
+            href="#authors"
+            label="Hosts"
+            type="hosts"
           />
           <Link to="/contact" className="Header-nav-item" activeClassName="Header-nav-item--active">
             Contact
@@ -68,7 +69,7 @@ const genresOptions = [
 
 Header.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
-  searchContext: PropTypes.object.isRequired,
+  setSearchText: PropTypes.object.isRequired,
 };
 
 export default Header;

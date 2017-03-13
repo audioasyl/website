@@ -10,7 +10,8 @@ import { metaDataItemsToProperties } from '../parsers/metadataItems';
 import './Category.scss';
 const Category = ({ category, metaData, freshRecordIds }) => (
   <div className="Category">
-    <div className="Category-section" id="artists-section">
+    <div className="Category-anchor" id={category.key} />
+    <div className="Category-section">
       <Link to="#" className="Category-section-title">{category.name}</Link>
     </div>
     <Masonry
