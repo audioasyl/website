@@ -1,4 +1,5 @@
 import { Scrollbars } from 'react-custom-scrollbars';
+import { Channel } from 'radiokit-toolkit-playback';
 import React, { PropTypes } from 'react';
 
 import './Timeline.scss';
@@ -9,6 +10,10 @@ class Timeline extends React.Component {
       scrollTop: 0,
       isLoading: false,
     };
+  }
+
+  componentWillMount = () => {
+    const player = new Channel.Player(this.props.channelId, 'demo');
   }
 
   handleScrollFrame = ({ scrollTop, scrollHeight, clientHeight }) => {
@@ -44,6 +49,7 @@ class Timeline extends React.Component {
 
 Timeline.propTypes = {
   renderTimelineItems: PropTypes.func.isRequired,
+  channelId: PropTypes.string.isRequired,
   dataLazyLoader: PropTypes.func,
 };
 

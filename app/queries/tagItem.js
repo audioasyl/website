@@ -20,8 +20,9 @@ vaultData(MODEL)
   .joins(META_DATA_ITEMS_NAME)
   .select(
     ...values(MODEL_ATTRIBUTES),
-    ...map(META_DATA_ITEMS_ATTRIBUTES, value => `metadata_items.${value}`)
+    ...map(META_DATA_ITEMS_ATTRIBUTES, value => `${META_DATA_ITEMS_NAME}.${value}`)
   );
+
 
 export const tagItemsMetaData = ids =>
   vaultData(META_DATA_ITEMS_NAME)

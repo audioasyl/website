@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { map } from 'lodash';
 
+import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import TimelineItem from './TimelineItem';
 import Description from './Description';
 import Timeline from './Timeline';
@@ -15,9 +16,17 @@ class Show extends React.Component {
 
 
   render() {
+    const { show, category } = this.props;
+    const showProperties =
+      metaDataItemsToProperties(show.metadata_items, category.metadata_schemas);
+
+    console.log(this.props);
     return (
       <div className="Show">
-        <Description />
+        <Description
+          header={show.name}
+          about={showProperties.about}
+        />
         <Cover />
         <Timeline renderTimelineItems={this.renderAlbums} />
       </div>
@@ -26,7 +35,13 @@ class Show extends React.Component {
 }
 
 Show.propTypes = {
+  category: PropTypes.object.isRequired,
+  show: PropTypes.object.isRequired,
+};
 
+Show.defaultProps = {
+  show: { metadata_items: [] },
+  category: { metadata_schemas: {} },
 };
 
 export default Show;
