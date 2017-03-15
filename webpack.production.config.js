@@ -11,7 +11,7 @@ loaders.push({
 	exclude: ['node_modules']
 });
 
-module.exports = {
+const frontendConfig = {
 	entry: [
 		'./app/Index.jsx',
 	],
@@ -57,3 +57,17 @@ module.exports = {
 		})
 	]
 };
+
+const backendConfig = {
+  name: 'server code, output to ./server',
+  entry: './server.js',
+  output: {
+    filename: './index.js',
+  },
+  target: 'node',
+};
+
+module.exports = [
+	frontendConfig,
+	backendConfig,
+];

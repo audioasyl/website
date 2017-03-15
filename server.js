@@ -1,15 +1,15 @@
-const Koa     = require('koa'),
-      http    = require('http'),
-      send    = require('koa-send'),
-      serve   = require('koa-static'),
-      convert = require('koa-convert');
-
+import Koa from 'koa';
+import http from 'http';
+import send from 'koa-send';
+import serve from 'koa-static';
+import convert from 'koa-convert';
 
 const port = process.env.PORT || 8000;
 const hostname = process.env.HOST || '127.0.0.1';
 
 const app = new Koa();
 const appUse = app.use;
+
 app.use = x => appUse.call(app, convert(x)); // convert old middleware
 
 app.use(serve('./dist'));
