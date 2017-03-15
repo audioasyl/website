@@ -49,11 +49,15 @@ class TimelineItem extends React.Component {
     if (this.props.item) {
       const item = this.props.item;
       return (
-        <div className="TimelineItem TimelineItem--visible">
+        <button
+          onClick={this.props.onClick}
+          disabled={!this.props.onClick}
+          className="TimelineItem TimelineItem--visible"
+        >
           {this.renderTimelineItem()}
           <div className="TimelineItem-name">{item.name}</div>
           <div className="TimelineItem-desc">{item.metadata_items.podcast_lead}</div>
-        </div>
+        </button>
       );
     }
 
@@ -65,10 +69,12 @@ class TimelineItem extends React.Component {
 
 TimelineItem.propTypes = {
   item: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
   idx: PropTypes.string,
 };
 
 TimelineItem.defaultProps = {
+  onClick: null,
   idx: '',
 };
 

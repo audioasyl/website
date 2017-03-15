@@ -1,22 +1,11 @@
 import React, { PropTypes } from 'react';
-import { map } from 'lodash';
 
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
-import TimelineItem from './TimelineItem';
 import Description from './Description';
 import Timeline from './Timeline';
 
 import './Author.scss';
 class Author extends React.Component {
-  renderAlbums = () =>
-    map(this.state.track, (item, idx) =>
-      <TimelineItem
-        key={item.id}
-        item={item}
-        idx={idx}
-      />
-    );
-
   render() {
     const { author, category } = this.props;
     const authorProperties =
@@ -29,11 +18,12 @@ class Author extends React.Component {
         <Description
           header={author.name}
           about={authorProperties.about}
+          twitterUrl={authorProperties.twitter_url}
+          facebookUrl={authorProperties.facebook_url}
         />
         <div className="Placeholder" />
         <Timeline
-          renderTimelineItems={this.renderAlbums}
-          channelId={authorProperties.channelId}
+          channelId={authorProperties.channelID}
         />
       </div>
     );

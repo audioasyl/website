@@ -1,11 +1,20 @@
 @import "ui/variables";
 
 .TimelineItem {
+  width: 100%;
   padding: 1rem;
+  color: $white;
+  text-align: left;
+  font-size: 1.6rem;
   visibility: hidden;
   margin-top: 1.5rem;
   border-radius: 1rem;
   background: $blackGreen;
+  text-transform: uppercase;
+
+  &:disabled {
+    cursor: initial;
+  }
 
   div {
     line-height: 1.4;

@@ -1,6 +1,9 @@
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Channel } from 'radiokit-toolkit-playback';
 import React, { PropTypes } from 'react';
+import { map } from 'lodash';
+
+import TimelineItem from './TimelineItem';
 
 import './Timeline.scss';
 class Timeline extends React.Component {
@@ -32,6 +35,18 @@ class Timeline extends React.Component {
     this.setState({ scrollTop });
   }
 
+  playTrack = id => {
+
+  }
+
+  renderTimelineItems = () =>
+    map([{ name: 'Name', metadata_items: {} }, { name: 'Name', metadata_items: {} }], t =>
+      <TimelineItem
+        onClick={this.playTrack}
+        item={t}
+      />
+    );
+
   render() {
     return (
       <div className="Timeline">
@@ -39,7 +54,7 @@ class Timeline extends React.Component {
           style={{ height: '100%' }}
           onScrollFrame={this.handleScrollFrame}
         >
-          {this.props.renderTimelineItems()}
+          {this.renderTimelineItems()}
           {this.state.isLoading && <div>LOADING ...</div>}
         </Scrollbars>
       </div>
@@ -48,7 +63,6 @@ class Timeline extends React.Component {
 }
 
 Timeline.propTypes = {
-  renderTimelineItems: PropTypes.func.isRequired,
   channelId: PropTypes.string.isRequired,
   dataLazyLoader: PropTypes.func,
 };

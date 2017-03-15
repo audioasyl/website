@@ -6,7 +6,6 @@ import { colors } from '../utils';
 import TileLabel from './TileLabel';
 import LikeButton from './LikeButton';
 import PlayButton from './PlayButton';
-import placeholder from '../../public/images/placeholder.png';
 
 import './AudioTile.scss';
 export default class AudioTile extends React.Component {
@@ -16,12 +15,12 @@ export default class AudioTile extends React.Component {
   }
 
   renderImage() {
-    const img = this.props.audio.images[0];
+    const cover = this.props.properties.cover;
 
-    return (
+    return cover && (
       <img
         className="AudioTile-cover"
-        src={img ? img.url : placeholder}
+        src={cover}
         alt={this.props.audio.name}
       />
     );
@@ -51,7 +50,7 @@ export default class AudioTile extends React.Component {
         {this.renderLiveBadge()}
         {this.renderFreshBadge()}
         <PlayButton audioID={audio.id} />
-        {/* this.renderImage() */}
+        {this.renderImage()}
         <div className="AudioTile-info">
           <div className="AudioTile-info-bold-wrapper">
             <div className="AudioTile-info-bold">

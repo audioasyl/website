@@ -6,16 +6,46 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import Icon from '../Icon';
 
 import './Description.scss';
-const Description = ({ header, about, genres, shows }) => {
-  const renderGenres = () => (
+const Description = ({
+  contributors,
+  facebookUrl,
+  twitterUrl,
+  genres,
+  header,
+  about,
+  shows,
+}) => {
+  const renderItems = items => (
     <ul>
-      {map(genres, genre => <li key={genre}>{genre}</li>)}
+      {map(items, item => <li key={item}>{item}</li>)}
     </ul>
   );
+
+  const renderGenres = () => (
+    <div>
+      <div className="Description-content-label">
+        Genres:
+      </div>
+      {renderItems(genres)}
+    </div>
+  );
+
   const renderShows = () => (
-    <ul>
-      {map(shows, show => <li key={show}>{show}</li>)}
-    </ul>
+    <div>
+      <div className="Description-content-label">
+        Show:
+      </div>
+      {renderItems(shows)}
+    </div>
+  );
+
+  const renderContributors = () => (
+    <div>
+      <div className="Description-content-label">
+        Contributors:
+      </div>
+      {renderItems(contributors)}
+    </div>
   );
 
   return (
@@ -25,21 +55,23 @@ const Description = ({ header, about, genres, shows }) => {
           {header}
         </div>
         <div className="Description-content">
-          <div className="Description-content-label">
-            About:
-          </div>
-          <div className="Description-content-text">
-            {about}
-          </div>
-          <div className="Description-content-label">
-            Genres:
-          </div>
+          {about && (
+            <div>
+              <div className="Description-content-label">
+                About:
+              </div>
+              <div className="Description-content-text">
+                {about}
+              </div>
+            </div>
+          )}
           {genres && renderGenres()}
           {shows && renderShows()}
+          {contributors && renderContributors()}
         </div>
         <div className="Description-links">
-          <Icon icon="facebook" />
-          <Icon icon="twitter" />
+          {facebookUrl && (<a href={facebookUrl}><Icon icon="facebook" /></a>)}
+          {twitterUrl && (<a href={twitterUrl}><Icon icon="twitter" /></a>)}
         </div>
       </Scrollbars>
     </div>
@@ -49,11 +81,17 @@ const Description = ({ header, about, genres, shows }) => {
 Description.propTypes = {
   header: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
+  contributors: PropTypes.array,
+  facebookUrl: PropTypes.string,
+  twitterUrl: PropTypes.string,
   genres: PropTypes.array,
   shows: PropTypes.array,
 };
 
 Description.defaultProps = {
+  contributors: null,
+  facebookUrl: '',
+  twitterUrl: '',
   genres: null,
   shows: null,
 };

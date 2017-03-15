@@ -36,9 +36,13 @@
     font-size: 4rem;
     display: flex;
 
+    a {
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
     span {
       border-radius: 1rem;
-      margin-right: 1rem;
       background: white;
       display: block;
       height: 3.9rem;
