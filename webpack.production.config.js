@@ -60,14 +60,17 @@ const frontendConfig = {
 
 const backendConfig = {
   name: 'server code, output to ./server',
-  entry: './server.js',
+  entry: './backend/server.js',
   output: {
-    filename: './index.js',
+    filename: './server.js',
+  },
+  module: {
+    loaders,
   },
   target: 'node',
 };
 
 module.exports = [
-	frontendConfig,
-	backendConfig,
+  frontendConfig,
+  backendConfig,
 ];

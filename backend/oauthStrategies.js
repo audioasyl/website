@@ -1,11 +1,12 @@
-const FacebookStartegy = require('passport-facebook');
-const config = require('./config/oauth');
-const passport = require('passport');
+import FacebookStartegy from 'passport-facebook';
+import config from './config/oauth';
 
-
-export const facebookStartegy = () =>
+export const facebookStartegy = passport =>
   passport.use(new FacebookStartegy({
     clientID: config.facebook.clientID,
     callbackURL: config.facebook.callbackURL,
     clientSecret: config.facebook.clientSecret,
-  }), (accessToken, refreshToken, profile, done) => {});
+  }), (accessToken, refreshToken, profile, done) => {
+    console.log(accessToken, profile);
+    return done(null, {});
+  });
