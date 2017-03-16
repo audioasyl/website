@@ -7,11 +7,17 @@ export default function (app, passport) {
 
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/', session: true }),
-    (req, res, next) => {
-      // req.login(req.user, err => {
-      //   if (err) { return next(err); }
-      // });
+    (req, res) => {
+      res.setHeader('Authorization', `Token=${req.user.token}`);
       return res.redirect('/');
     }
   );
+
+  app.delete('/logout', (req, res) => {
+    req.logOut();
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
+  });
 }

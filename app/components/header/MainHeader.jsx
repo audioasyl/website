@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import Login from './Login';
 import Search from './Search';
 import LogoButton from './LogoButton';
 import HeaderDropdown from './HeaderDropdown';
@@ -40,6 +41,7 @@ const Header = ({ onFilterChange, setSearchText }) => (
           <Link to="/contact" className="Header-nav-item" activeClassName="Header-nav-item--active">
             Contact
           </Link>
+          <Login />
         </div>
       </div>
     </div>
