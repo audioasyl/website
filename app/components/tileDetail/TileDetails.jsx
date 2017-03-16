@@ -5,7 +5,6 @@ import Type from './Type';
 import Icon from '../Icon';
 import Genre from './Genre';
 import Author from './Author';
-import Player from '../player/Player';
 import { Categories } from '../../enums';
 import Header from '../header/MainHeader';
 import { tagCategoriesToMap } from '../../parsers/category';
@@ -22,11 +21,6 @@ class TileDetails extends React.Component {
     super(props);
     this.state = {};
   }
-
-  getChildContext = () => ({
-    router: this.props.router,
-    location: this.props.location,
-  })
 
   componentWillMount = () => {
     this.fetchData();
@@ -85,7 +79,6 @@ class TileDetails extends React.Component {
           {this.renderContent()}
         </div>
         <div />
-        <Player />
       </div>
     );
   }
@@ -107,11 +100,6 @@ const categoryToImg = category => {
 TileDetails.propTypes = {
   router: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
-};
-
-TileDetails.childContextTypes = {
-  router: React.PropTypes.object,
-  location: React.PropTypes.object,
 };
 
 export default TileDetails;

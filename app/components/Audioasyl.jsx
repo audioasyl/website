@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import levenshtein from 'fast-levenshtein';
 import { map, flattenDeep, filter, reduce } from 'lodash';
 
@@ -9,7 +9,6 @@ import { tagCategoriesToMap } from '../parsers/category';
 import { freshRecordsToMap } from '../parsers/recordFile';
 import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
-import Player from './player/Player';
 import Category from './Category';
 
 import './Audioasyl.scss';
@@ -26,11 +25,6 @@ class Audioasyl extends React.Component {
       distance: Infinity,
     };
   }
-
-  getChildContext = () => ({
-    router: this.props.router,
-    location: this.props.location,
-  });
 
   componentWillMount = () => {
     this.loadData(this.props);
@@ -117,7 +111,6 @@ class Audioasyl extends React.Component {
           setSearchText={searchText => this.setState({ searchText })}
         />
         {this.renderCategories()}
-        <Player />
       </div>
     );
   }
@@ -127,15 +120,5 @@ const pickTegItemIds = categories =>
   flattenDeep(map(categories, category =>
     map(category.tag_items, tagItem => tagItem.id))
   );
-
-Audioasyl.childContextTypes = {
-  router: PropTypes.object,
-  location: PropTypes.object,
-};
-
-Audioasyl.propTypes = {
-  router: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-};
 
 export default Audioasyl;
