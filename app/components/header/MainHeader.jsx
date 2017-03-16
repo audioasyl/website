@@ -2,16 +2,14 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import Search from './Search';
+import LogoButton from './LogoButton';
 import HeaderDropdown from './HeaderDropdown';
-import logo from '../../../public/images/logo.png';
 
 import './MainHeader.scss';
 const Header = ({ onFilterChange, setSearchText }) => (
   <div className="Header">
     <div className="Header-fixed">
-      <div className="Header-logo-wrapper">
-        <img className="Header-logo" src={logo} alt="RadioKit" />
-      </div>
+      <LogoButton />
       <div className="Header-left">
         <Search setSearchText={setSearchText} />
         <div className="Header-nav">
