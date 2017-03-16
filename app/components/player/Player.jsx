@@ -53,10 +53,9 @@ class Player extends React.Component {
   setTrackInfo = track => {
     track.getInfoAsync()
       .then(response => {
-        debugger;
-        this.setState({ metaData: response.getMetadata() })
+        this.setState({ metaData: response.getMetadata() });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log('A-A', err));
   }
 
   buildPlayer = () => {
@@ -107,7 +106,6 @@ class Player extends React.Component {
       { 'Player--min': this.state.minimalized }
     );
 
-    console.log(this.state);
     if (id && status) {
       return (
         <div className={playerClasses}>

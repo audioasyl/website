@@ -16,7 +16,7 @@ class Timeline extends React.Component {
   }
 
   componentWillMount = () => {
-    const player = new Channel.Player(this.props.channelId, 'demo');
+    const player = new Channel.Player(this.props.channelID, 'demo');
   }
 
   handleScrollFrame = ({ scrollTop, scrollHeight, clientHeight }) => {
@@ -40,9 +40,10 @@ class Timeline extends React.Component {
   }
 
   renderTimelineItems = () =>
-    map([{ name: 'Name', metadata_items: {} }, { name: 'Name', metadata_items: {} }], t =>
+    map([{ name: 'Name', metadata_items: {} }, { name: 'Name1', metadata_items: {} }], t =>
       <TimelineItem
         onClick={this.playTrack}
+        key={t.name}
         item={t}
       />
     );
@@ -63,7 +64,7 @@ class Timeline extends React.Component {
 }
 
 Timeline.propTypes = {
-  channelId: PropTypes.string.isRequired,
+  channelID: PropTypes.string.isRequired,
   dataLazyLoader: PropTypes.func,
 };
 

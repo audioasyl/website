@@ -9,7 +9,7 @@ class PlayerTile extends React.Component {
   render() {
     return (
       <div className="PlayerTile">
-        
+
       </div>
     );
   }

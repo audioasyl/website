@@ -66,8 +66,14 @@ const genresOptions = [
 ];
 
 Header.propTypes = {
-  onFilterChange: PropTypes.func.isRequired,
-  setSearchText: PropTypes.func.isRequired,
+  onFilterChange: PropTypes.func,
+  setSearchText: PropTypes.func,
 };
+
+Header.defaultProps = {
+  onFilterChange: () => {},
+  setSearchText: () => {},
+};
+
 
 export default Header;

@@ -45,12 +45,14 @@ export default class AudioTile extends React.Component {
           query: { id, play },
         }}
         className={audioTileClasses}
-        style={{ background: getRandomColor() }}
+        style={{
+          background: getRandomColor(),
+          backgroundImage: `url("${this.props.properties.cover}")`,
+        }}
       >
         {this.renderLiveBadge()}
         {this.renderFreshBadge()}
         <PlayButton audioID={audio.id} />
-        {this.renderImage()}
         <div className="AudioTile-info">
           <div className="AudioTile-info-bold-wrapper">
             <div className="AudioTile-info-bold">

@@ -20,14 +20,18 @@ class Show extends React.Component {
     const showProperties =
       metaDataItemsToProperties(show.metadata_items, category.metadata_schemas);
 
-    showProperties.channelID = 'fd9a7d1c-a387-40a0-b876-2799668d6f9d';
     return (
       <div className="Show">
         <Description
           header={show.name}
           about={showProperties.about}
         />
-        <Cover />
+        <Cover
+          title={show.name}
+          audioID={show.id}
+          cover={showProperties.cover}
+          description={showProperties.series_lead}
+        />
         <Timeline
           renderTimelineItems={this.renderAlbums}
           channelID={showProperties.channelID}

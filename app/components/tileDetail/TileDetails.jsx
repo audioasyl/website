@@ -35,7 +35,9 @@ class TileDetails extends React.Component {
       .where('key', 'eq', this.props.router.params.category)
       .fetch()
       .on('fetch', (_, __, data) => {
-        this.setState({ category: tagCategoriesToMap(data.toJS()).authors });
+        this.setState({
+          category: tagCategoriesToMap(data.toJS())[this.props.router.params.category],
+        });
       })
       .on('error', (_, __, err) => {
         console.log('error', err);
@@ -99,7 +101,6 @@ const categoryToImg = category => {
 
 TileDetails.propTypes = {
   router: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
 };
 
 export default TileDetails;

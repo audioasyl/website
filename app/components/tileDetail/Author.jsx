@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import Description from './Description';
 import Timeline from './Timeline';
+import Cover from './Cover';
 
 import './Author.scss';
 class Author extends React.Component {
@@ -21,7 +22,7 @@ class Author extends React.Component {
           twitterUrl={authorProperties.twitter_url}
           facebookUrl={authorProperties.facebook_url}
         />
-        <div className="Placeholder" />
+        <Cover />
         <Timeline
           channelId={authorProperties.channelID}
         />

@@ -32,7 +32,7 @@ class VolumeBar extends React.Component {
     e.stopPropagation();
     e.preventDefault();
 
-    const width = e.nativeEvent.srcElement.offsetWidth;
+    const width = e.nativeEvent.target.offsetWidth;
     const offset = e.nativeEvent.offsetX;
 
     if (this.props.player) {
