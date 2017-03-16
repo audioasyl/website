@@ -11,8 +11,9 @@ loaders.push({
 	exclude: ['node_modules']
 });
 
-const frontendConfig = {
+module.exports = {
 	entry: [
+		'babel-polyfill',
 		'./app/Index.jsx',
 	],
 	output: {
@@ -57,20 +58,3 @@ const frontendConfig = {
 		})
 	]
 };
-
-const backendConfig = {
-  name: 'server code, output to ./server',
-  entry: './backend/server.js',
-  output: {
-    filename: './server.js',
-  },
-  module: {
-    loaders,
-  },
-  target: 'node',
-};
-
-module.exports = [
-  frontendConfig,
-  backendConfig,
-];

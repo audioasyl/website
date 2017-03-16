@@ -1,0 +1,21 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "",
+    "host": "localhost",
+    "database": "audioasyl_dev",
+    "schema": "audioasyl_schema"
+  },
+
+  "prod": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "postgres",
+    "host": "localhost",
+    "database": "audioasyl_prod",
+    "schema": "audioasyl_schema"
+  },
+
+  "other": "postgres://postgres:5432@server.com/audioasyl"
+}

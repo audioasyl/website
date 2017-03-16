@@ -1,16 +1,30 @@
-"use strict";
-var webpack = require('webpack');
-var path = require('path');
-var loaders = require('./webpack.loaders');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var DashboardPlugin = require('webpack-dashboard/plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+'use strict';
 
-const HOST = process.env.HOST || "127.0.0.1";
-const PORT = process.env.PORT || "8888";
+const webpack = require('webpack');
+const path = require('path');
+const loaders = require('./webpack.loaders');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const frontendConfig = {
+const HOST = process.env.HOST || '127.0.0.1';
+const PORT = process.env.PORT || '8888';
+
+loaders.push({
+  test: /\.css$/,
+  loaders: ['style-loader', 'css-loader?importLoaders=1'],
+  exclude: ['node_modules'],
+});
+
+loaders.push({
+  test: /\.scss$/,
+  loaders: ['style-loader', 'css-loader?importLoaders=1', 'sass-loader'],
+  exclude: ['node_modules'],
+});
+
+module.exports = {
   entry: [
+    'babel-polyfill',
     'react-hot-loader/patch',
     './app/Index.jsx', // your app's entry point
   ],
@@ -24,7 +38,7 @@ const frontendConfig = {
     extensions: ['.js', '.jsx'],
   },
   module: {
-    loaders
+    loaders,
   },
   devServer: {
     contentBase: './public',
@@ -56,29 +70,3 @@ const frontendConfig = {
     }),
   ],
 };
-
-const backendConfig = {
-  name: 'server code, output to ./server',
-  entry: './backend/server.js',
-  output: {
-    filename: './server.js',
-  },
-  target: 'node',
-};
-
-loaders.push({
-  test: /\.css$/,
-  loaders: ['style-loader', 'css-loader?importLoaders=1'],
-  exclude: ['node_modules'],
-});
-
-loaders.push({
-  test: /\.scss$/,
-  loaders: ['style-loader', 'css-loader?importLoaders=1', 'sass-loader'],
-  exclude: ['node_modules'],
-});
-
-module.exports = [
-  frontendConfig,
-  backendConfig,
-];
