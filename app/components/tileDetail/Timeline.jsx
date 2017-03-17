@@ -4,12 +4,14 @@ import React, { PropTypes } from 'react';
 import { map } from 'lodash';
 
 import TimelineItem from './TimelineItem';
+import ContentLoader from '../ContentLoader';
 
 import './Timeline.scss';
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      track: [],
       scrollTop: 0,
       isLoading: false,
     };
@@ -17,38 +19,35 @@ class Timeline extends React.Component {
 
   componentWillMount = () => {
     const player = new Channel.Player(this.props.channelID, 'demo');
+    this.setState({ isLoading: true });
+    player.fetchPlaylist();
+    player.on('playlist-fetched', track =>
+      this.setState({ track: track.getTracks(), isLoading: false }));
+    this.setState({ player });
   }
 
-  handleScrollFrame = ({ scrollTop, scrollHeight, clientHeight }) => {
-    if (this.props.dataLazyLoader
-      && scrollTop + 50 > scrollHeight - clientHeight
-      && !this.state.isLoading
-      && this.state.scrollTop < scrollTop
-    ) {
-      this.setState({ isLoading: true });
-      this.props.dataLazyLoader()
-        .then(() => {
-          this.setState({ isLoading: false });
-        });
-    }
-
-    this.setState({ scrollTop });
-  }
-
-  playTrack = id => {
-
+  componentWillUnmount = () => {
+    this.state.player.stop();
+    this.state.player.stopFetching();
   }
 
   renderTimelineItems = () =>
-    map([{ name: 'Name', metadata_items: {} }, { name: 'Name1', metadata_items: {} }], t =>
+    map(this.state.track, (set, id) =>
       <TimelineItem
-        onClick={this.playTrack}
-        key={t.name}
-        item={t}
+        key={id}
+        item={set}
       />
     );
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <div className="Timeline Timeline-placeholder">
+          <ContentLoader />
+        </div>
+      );
+    }
+
     return (
       <div className="Timeline">
         <Scrollbars
@@ -56,7 +55,6 @@ class Timeline extends React.Component {
           onScrollFrame={this.handleScrollFrame}
         >
           {this.renderTimelineItems()}
-          {this.state.isLoading && <div>LOADING ...</div>}
         </Scrollbars>
       </div>
     );
@@ -65,7 +63,6 @@ class Timeline extends React.Component {
 
 Timeline.propTypes = {
   channelID: PropTypes.string.isRequired,
-  dataLazyLoader: PropTypes.func,
 };
 
 Timeline.defaultProps = {

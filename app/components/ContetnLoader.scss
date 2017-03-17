@@ -1,5 +1,11 @@
 @import "ui/variables";
 
 .ContentLoader {
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ContentLoader-spinner {
+    margin: 0 auto;
+  }
 }

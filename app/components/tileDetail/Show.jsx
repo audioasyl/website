@@ -20,7 +20,6 @@ class Show extends React.Component {
     const showProperties =
       metaDataItemsToProperties(show.metadata_items, category.metadata_schemas);
 
-    console.log(show);
     return (
       <div className="Show">
         <Description
@@ -35,7 +34,7 @@ class Show extends React.Component {
         />
         <Timeline
           renderTimelineItems={this.renderAlbums}
-          channelID={showProperties.channelID}
+          channelID={showProperties.broadcast_channel_id}
         />
       </div>
     );

@@ -3,4 +3,9 @@
 .Timeline {
   height: 100%;
   flex: 1;
+
+  &.Timeline-placeholder {
+    display: flex;
+    justify-content: center;
+  }
 }

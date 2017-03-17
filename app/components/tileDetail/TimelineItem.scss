@@ -33,4 +33,19 @@
   &:nth-child(2) {
     background: $lightBlue;
   }
+
+  &.TimelineItem-placeholder {
+    width: auto;
+    display: flex;
+    visibility: visible;
+    border-radius: 1rem;
+    justify-content: center;
+
+    .ContentLoader {
+      .ContentLoader-spinner {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+  }
 }

@@ -1,25 +1,29 @@
 import React, { PropTypes } from 'react';
 
+import ContentLoader from '../ContentLoader';
+
 import './TimelineItem.scss';
 class TimelineItem extends React.Component {
-  componentDidMount = () => {
-    window.addEventListener('resize', this.updateState);
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+    };
   }
 
-  componentWillUnmount = () => {
-    window.removeEventListener('resize', this.updateState);
-  }
+  componentWillMount = () => this.fetchTrackInfo(this.props.item);
 
-  updateState = () => {
-    this.setState({ offsetWidth: window.offsetWidth });
-  }
+  componentWillReceiveProps = nextProps => this.fetchTrackInfo(nextProps.item);
 
-  hideOverflowedItem = element => {
-    if ((element.offsetTop + element.offsetHeight) <= element.parentElement.offsetHeight) {
-      element.classList.add('TimelineItem--visible');
-    } else {
-      element.classList.remove('TimelineItem--visible');
-    }
+  fetchTrackInfo = item => {
+    this.setState({ isLoading: true });
+    item.getInfoAsync()
+      .then(trackInfo => {
+        this.setState({ track: trackInfo, isLoading: false });
+      })
+      .catch(() =>
+        this.setState({ track: this.props.item, isLoading: false })
+      );
   }
 
   renderArchiveItem = () => (
@@ -46,23 +50,25 @@ class TimelineItem extends React.Component {
   }
 
   render() {
-    if (this.props.item) {
-      const item = this.props.item;
+    if (this.state.isLoading && !this.state.track) {
       return (
-        <button
-          onClick={this.props.onClick}
-          disabled={!this.props.onClick}
-          className="TimelineItem TimelineItem--visible"
-        >
-          {this.renderTimelineItem()}
-          <div className="TimelineItem-name">{item.name}</div>
-          <div className="TimelineItem-desc">{item.metadata_items.podcast_lead}</div>
-        </button>
+        <div className="TimelineItem TimelineItem-placeholder">
+          <ContentLoader />
+        </div>
       );
     }
+    const trackData = this.state.track.getMetadata();
 
     return (
-      <div>LOADING ...</div>
+      <button
+        onClick={this.props.onClick}
+        disabled={!this.props.onClick}
+        className="TimelineItem TimelineItem--visible"
+      >
+        {this.renderTimelineItem()}
+        <div className="TimelineItem-name">{trackData.title}</div>
+        {/* <div className="TimelineItem-desc">{trackData.metadata_items}</div> */}
+      </button>
     );
   }
 }
