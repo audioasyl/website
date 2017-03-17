@@ -26,10 +26,10 @@
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-blend-mode: multiply;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
 
   @media #{$radiokit-768} {
     width: 33.333%;

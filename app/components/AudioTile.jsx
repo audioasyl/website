@@ -14,6 +14,11 @@ export default class AudioTile extends React.Component {
     this.state = {};
   }
 
+  shouldComponentUpdate = (nextProps, nextState, nextContext) => {
+    return this.props.audio.id === this.context.location.query.id
+      || this.props.audio.id === nextContext.location.query.id;
+  }
+
   renderImage() {
     const cover = this.props.properties.cover;
 
@@ -46,7 +51,7 @@ export default class AudioTile extends React.Component {
         }}
         className={audioTileClasses}
         style={{
-          background: getRandomColor(),
+          backgroundColor: getRandomColor(),
           backgroundImage: `url("${this.props.properties.cover}")`,
         }}
       >
