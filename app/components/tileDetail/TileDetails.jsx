@@ -7,6 +7,7 @@ import Genre from './Genre';
 import Author from './Author';
 import { Categories } from '../../enums';
 import Header from '../header/MainHeader';
+import ContentLoader from '../ContentLoader';
 import { tagCategoriesToMap } from '../../parsers/category';
 import djBg from '../../../public/images/dj-background.jpg';
 import { tagItemsWithMetaData } from '../../queries/tagItem';
@@ -19,7 +20,10 @@ import './TileDetails.scss';
 class TileDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isCategoryLoading: false,
+      isItemLoading: false,
+    };
   }
 
   componentWillMount = () => {
@@ -30,7 +34,8 @@ class TileDetails extends React.Component {
   onCloseClick = () =>
     this.props.router.goBack()
 
-  fetchSchema = () =>
+  fetchSchema = () => {
+    this.setState({ isCategoryLoading: true });
     tagCategoriesSchemas()
       .where('key', 'eq', this.props.router.params.category)
       .fetch()
@@ -38,21 +43,25 @@ class TileDetails extends React.Component {
         this.setState({
           category: tagCategoriesToMap(data.toJS())[this.props.router.params.category],
         });
+        this.setState({ isCategoryLoading: false });
       })
       .on('error', (_, __, err) => {
         console.log('error', err);
       });
+  }
 
-  fetchData = () =>
+  fetchData = () => {
+    this.setState({ isItemLoading: true });
     tagItemsWithMetaData([this.props.router.params.id])
       .fetch()
       .on('fetch', (_, __, data) => {
         this.setState({ item: data.toJS()[0] });
+        this.setState({ isItemLoading: false });
       })
       .on('error', (_, __, err) => {
         console.log('error', err);
       });
-
+  }
   renderContent = () => {
     const { category, item } = this.state;
     switch (this.props.router.params.category) {
@@ -71,6 +80,15 @@ class TileDetails extends React.Component {
 
   render() {
     const style = { backgroundImage: `url('${categoryToImg(this.props.router.params.category)}')` };
+    const { isCategoryLoading, isItemLoading } = this.state;
+    if (isCategoryLoading || isItemLoading) {
+      return (
+        <div className="TileDetails TileDetails-placeholder" style={style} >
+          <ContentLoader />
+        </div>
+      );
+    }
+
     return (
       <div className="TileDetails" style={style} >
         <Header />

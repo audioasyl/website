@@ -37,10 +37,14 @@
     background: rgba(0, 0, 0, 0.7);
     padding: 2rem;
     height: 25rem;
+    padding-top: 0;
 
     .Cover-footer-header {
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 2rem;
       font-size: 2rem;
+      display: flex;
     }
 
     .Cover-footer-text {

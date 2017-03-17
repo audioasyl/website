@@ -45,4 +45,9 @@
       flex: 1;
     }
   }
+
+  &.TileDetails-placeholder {
+    align-items: center;
+    justify-content: center;
+  }
 }
