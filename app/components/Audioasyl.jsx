@@ -9,6 +9,7 @@ import { tagCategoriesToMap } from '../parsers/category';
 import { freshRecordsToMap } from '../parsers/recordFile';
 import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
+import ContentLoader from './ContentLoader';
 import Category from './Category';
 
 import './Audioasyl.scss';
@@ -101,7 +102,11 @@ class Audioasyl extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return (<div>LOADING !!!</div>);
+      return (
+        <div className="Audioasyl-placeholder">
+          <ContentLoader />
+        </div>
+      );
     }
 
     return (
