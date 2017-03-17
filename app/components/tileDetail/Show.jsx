@@ -33,7 +33,6 @@ class Show extends React.Component {
           description={showProperties.series_lead}
         />
         <Timeline
-          renderTimelineItems={this.renderAlbums}
           channelID={showProperties.broadcast_channel_id}
         />
       </div>

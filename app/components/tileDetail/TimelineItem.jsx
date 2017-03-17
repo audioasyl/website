@@ -21,8 +21,8 @@ class TimelineItem extends React.Component {
       .then(trackInfo => {
         this.setState({ track: trackInfo, isLoading: false });
       })
-      .catch(() =>
-        this.setState({ track: this.props.item, isLoading: false })
+      .catch(err =>
+        console.log(err)
       );
   }
 
@@ -65,9 +65,9 @@ class TimelineItem extends React.Component {
         disabled={!this.props.onClick}
         className="TimelineItem TimelineItem--visible"
       >
-        {this.renderTimelineItem()}
+        {/* this.renderTimelineItem() */}
         <div className="TimelineItem-name">{trackData.title}</div>
-        {/* <div className="TimelineItem-desc">{trackData.metadata_items}</div> */}
+        <div className="TimelineItem-desc">{trackData.album}</div>
       </button>
     );
   }

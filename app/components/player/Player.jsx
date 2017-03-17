@@ -17,7 +17,7 @@ class Player extends React.Component {
     this.state = {
       offset: 0,
       metaData: {},
-      minimalized: localStorage.getItem('playerSize') === 'true',
+      minimalized: true,
     };
   }
 
