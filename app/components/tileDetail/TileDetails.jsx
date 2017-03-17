@@ -93,7 +93,7 @@ class TileDetails extends React.Component {
       <div className="TileDetails" style={style} >
         <Header />
         <button className="TileDetails-close" onClick={this.onCloseClick}>
-          <Icon icon="cross" />
+          Go back to home page
         </button>
         <div className="TileDetails-main">
           {this.renderContent()}

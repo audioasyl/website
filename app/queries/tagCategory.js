@@ -1,4 +1,5 @@
 import { values, map } from 'lodash';
+import { Categories } from '../enums';
 import { selectRepository, vaultData } from './repository';
 import {
   MODEL_ATTRIBUTES as META_DATA_ITEMS_ATTRIBUTES,
@@ -35,14 +36,16 @@ export const tagCategoriesSchemas = (metaData = values(SCHEMA_ATTRIBUTES)) =>
     .select(...map(metaData, value => `${MODEL_SCHEMAS}.${value}`)
   );
 
-export const tagCategoriesWithTagItemsAndSchema = (metaData = values(TAG_ITEMS_ATTRIBUTES)) =>
-  tagCategories()
-    .joins(MODEL_TAG_ITEMS)
-    .joins(MODEL_SCHEMAS)
-    .select(
-      ...map(SCHEMA_ATTRIBUTES, value => `${MODEL_SCHEMAS}.${value}`),
-      ...map(metaData, value => `${MODEL_TAG_ITEMS}.${value}`)
-  );
+export const tagCategoriesWithTagItemsAndSchema =
+  (categories = values(Categories), metaData = values(TAG_ITEMS_ATTRIBUTES)) =>
+    tagCategories()
+      .where('key', 'in', categories)
+      .joins(MODEL_TAG_ITEMS)
+      .joins(MODEL_SCHEMAS)
+      .select(
+        ...map(SCHEMA_ATTRIBUTES, value => `${MODEL_SCHEMAS}.${value}`),
+        ...map(metaData, value => `${MODEL_TAG_ITEMS}.${value}`)
+    );
 
 export const tagCategoriesWithMetaDataItems = (metaData = values(META_DATA_ITEMS_ATTRIBUTES)) =>
   tagCategories()

@@ -46,7 +46,7 @@ class Audioasyl extends React.Component {
 
   loadData = () => {
     this.setState({ isLoading: true });
-    tagCategoriesWithTagItemsAndSchema()
+    tagCategoriesWithTagItemsAndSchema(['authors', 'series', 'genre'])
       .fetch()
       .on('fetch', (_, __, data) => {
         this.setState({ categories: tagCategoriesToMap(data.toJS()) });
