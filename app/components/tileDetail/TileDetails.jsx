@@ -32,17 +32,17 @@ class TileDetails extends React.Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    // this.fetchData(nextProps);
-    // this.fetchSchema(nextProps);
+    this.fetchData(nextProps);
+    this.fetchSchema(nextProps);
   }
 
-  shouldComponentUpdate = (nextProps, nextState, nextContext) => {
-    if (this.context.router.params.id !== nextContext.router.params.id) {
-      return true;
-    }
-
-    return  !this.state.isCategoryLoading || !this.state.isItemLoading
-  }
+  // shouldComponentUpdate = (nextProps, nextState, nextContext) => {
+  //   if (this.context.router.params.id !== nextContext.router.params.id) {
+  //     return true;
+  //   }
+  //
+  //   return  !this.state.isCategoryLoading || !this.state.isItemLoading
+  // }
 
   onCloseClick = () =>
     this.props.router.goBack()
