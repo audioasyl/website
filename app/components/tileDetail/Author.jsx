@@ -13,6 +13,7 @@ const Author = ({ author, category }) => {
   return (
     <div className="Author">
       <Description
+        audioID={author.id}
         header={author.name}
         about={authorProperties.about}
       />

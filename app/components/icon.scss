@@ -24,6 +24,7 @@ $path: './../../public/fonts';
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .icon-check:before {
   content: "\e90a";
 }
@@ -35,6 +36,12 @@ $path: './../../public/fonts';
 }
 .icon-twitter:before {
   content: "\e908";
+}
+.icon-left2:before {
+  content: "\e90c";
+}
+.icon-right:before {
+  content: "\e90b";
 }
 .icon-next:before {
   content: "\e903";

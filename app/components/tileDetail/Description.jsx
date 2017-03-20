@@ -1,7 +1,9 @@
+import { Scrollbars } from 'react-custom-scrollbars';
 import React, { PropTypes } from 'react';
 import { map } from 'lodash';
 
-import { Scrollbars } from 'react-custom-scrollbars';
+import LikeButton from '../LikeButton';
+import { getLikes } from '../../utils';
 
 import Icon from '../Icon';
 
@@ -10,11 +12,12 @@ const Description = ({
   contributors,
   facebookUrl,
   twitterUrl,
+  audioID,
   genres,
   header,
   about,
   shows,
-}) => {
+}, { router }) => {
   const renderItems = items => (
     <ul>
       {map(items, item => <li key={item}>{item}</li>)}
@@ -53,6 +56,11 @@ const Description = ({
       <Scrollbars style={{ height: '100%' }}>
         <div className="Description-header">
           {header}
+          <LikeButton
+            itemID={audioID}
+            storageKey={`${router.params.category}_likes`}
+            likes={getLikes(`${router.params.category}_likes`)}
+          />
         </div>
         <div className="Description-content">
           {about && (
@@ -79,6 +87,7 @@ const Description = ({
 };
 
 Description.propTypes = {
+  audioID: PropTypes.string.isRequired,
   header: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
   contributors: PropTypes.array,
@@ -86,6 +95,10 @@ Description.propTypes = {
   twitterUrl: PropTypes.string,
   genres: PropTypes.array,
   shows: PropTypes.array,
+};
+
+Description.contextTypes = {
+  router : PropTypes.object.isRequired,
 };
 
 Description.defaultProps = {

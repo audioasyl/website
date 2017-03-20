@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
+import calssNamaes from 'classnames';
 
 import Show from './Show';
 import Type from './Type';
-import Icon from '../Icon';
 import Genre from './Genre';
 import Author from './Author';
 import { Categories } from '../../enums';
-import Header from '../header/MainHeader';
 import ContentLoader from '../ContentLoader';
 import { tagCategoriesToMap } from '../../parsers/category';
 import djBg from '../../../public/images/dj-background.jpg';
@@ -27,21 +26,26 @@ class TileDetails extends React.Component {
   }
 
   componentWillMount = () => {
-    this.fetchData();
-    this.fetchSchema();
+    this.fetchData(this.props);
+    this.fetchSchema(this.props);
+  }
+
+  componentWillReceiveProps = nextProps => {
+    this.fetchData(nextProps);
+    this.fetchSchema(nextProps);
   }
 
   onCloseClick = () =>
     this.props.router.goBack()
 
-  fetchSchema = () => {
+  fetchSchema = props => {
     this.setState({ isCategoryLoading: true });
     tagCategoriesSchemas()
-      .where('key', 'eq', this.props.router.params.category)
+      .where('key', 'eq', props.router.params.category)
       .fetch()
       .on('fetch', (_, __, data) => {
         this.setState({
-          category: tagCategoriesToMap(data.toJS())[this.props.router.params.category],
+          category: tagCategoriesToMap(data.toJS())[props.router.params.category],
         });
         this.setState({ isCategoryLoading: false });
       })
@@ -50,9 +54,9 @@ class TileDetails extends React.Component {
       });
   }
 
-  fetchData = () => {
+  fetchData = props => {
     this.setState({ isItemLoading: true });
-    tagItemsWithMetaData([this.props.router.params.id])
+    tagItemsWithMetaData([props.router.params.id])
       .fetch()
       .on('fetch', (_, __, data) => {
         this.setState({ item: data.toJS()[0] });
@@ -90,8 +94,8 @@ class TileDetails extends React.Component {
     }
 
     return (
-      <div className="TileDetails" style={style} >
-        <Header />
+      <div className="TileDetails TileDetails-fadeOut" style={style} >
+        <div />
         <button className="TileDetails-close" onClick={this.onCloseClick}>
           Go back to home page
         </button>

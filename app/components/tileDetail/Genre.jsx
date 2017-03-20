@@ -13,6 +13,7 @@ const Genre = ({ genre, category }) => {
   return (
     <div className="Genre">
       <Description
+        audioID={genre.id}
         header={genre.name}
         about={genreProperties.about}
         contributors={contributors(genreProperties.contributors)}

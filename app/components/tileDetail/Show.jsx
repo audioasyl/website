@@ -23,6 +23,7 @@ class Show extends React.Component {
     return (
       <div className="Show">
         <Description
+          audioID={show.id}
           header={show.name}
           about={showProperties.about}
         />

@@ -14,7 +14,7 @@ import {
   MODEL_NAME as MODEL_TAG_ITEMS,
 } from './tagItem';
 
-export const MODEL_NAME = 'tag_categories';
+export const MODEL_NAME = 'tag_category';
 export const MODEL = 'Data.Tag.Category';
 export const MODEL_ATTRIBUTES = {
   references: 'references',
@@ -51,4 +51,12 @@ export const tagCategoriesWithMetaDataItems = (metaData = values(META_DATA_ITEMS
   tagCategories()
     .joins(META_DATA_ITEMS)
     .select(...map(metaData, value => `${META_DATA_ITEMS}.${value}`)
+  );
+
+export const tagCategoryWithTagItems = (categories, attrs = values(TAG_ITEMS_ATTRIBUTES)) =>
+  tagCategories()
+    .where('key', 'in', categories)
+    .joins(MODEL_TAG_ITEMS)
+    .select(
+      ...map(attrs, value => `${MODEL_TAG_ITEMS}.${value}`)
   );
