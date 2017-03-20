@@ -51,7 +51,7 @@ export default class AudioTile extends React.Component {
         }}
         className={audioTileClasses}
         style={{
-          backgroundColor: getRandomColor(),
+          backgroundColor: '#5e701b',
           backgroundImage: `url("${this.props.properties.cover}")`,
         }}
       >

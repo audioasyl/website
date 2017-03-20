@@ -32,6 +32,10 @@ class Audioasyl extends React.Component {
     this.fetchRepositoryFiles();
   }
 
+  componentDidMount = () => {
+    
+  }
+
   buildSearchContext = () => {
 
   }

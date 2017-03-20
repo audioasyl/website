@@ -30,6 +30,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-blend-mode: multiply;
+  transition: background-color 0.2s ease-out;
+  box-shadow: 0 0 0 0.5rem $background inset;
 
   @media #{$radiokit-768} {
     width: 33.333%;
@@ -68,11 +70,11 @@
   }
 
   &:after {
-    top: 0;
-    left: 0;
     opacity: 0;
-    width: 100%;
-    height: 100%;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
     content: '\A';
     position: absolute;
     transition: all 0.5s;
@@ -87,6 +89,9 @@
   }
 
   &:hover {
+    background-color: transparent !important;
+    transition: background-color 0.2s ease-out 0.2s;
+
     &:after {
       opacity: 1;
     }
@@ -117,10 +122,10 @@
   .AudioTile-info {
     position: absolute;
     font-size: 1.4rem;
+    bottom: 0.5rem;
     color: $white;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    right: 0.5rem;
+    left: 0.5rem;
 
     .AudioTile-info-bold-wrapper {
       display: flex;

@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import calssNamaes from 'classnames';
-import { isEqual } from 'lodash';
 
 import Show from './Show';
 import Type from './Type';
@@ -31,18 +29,10 @@ class TileDetails extends React.Component {
     this.fetchSchema(this.props);
   }
 
-  componentWillReceiveProps = nextProps => {
+  componentWillReceiveProps = (nextProps) => {
     this.fetchData(nextProps);
     this.fetchSchema(nextProps);
   }
-
-  // shouldComponentUpdate = (nextProps, nextState, nextContext) => {
-  //   if (this.context.router.params.id !== nextContext.router.params.id) {
-  //     return true;
-  //   }
-  //
-  //   return  !this.state.isCategoryLoading || !this.state.isItemLoading
-  // }
 
   onCloseClick = () =>
     this.props.router.goBack()
