@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import calssNamaes from 'classnames';
+import { isEqual } from 'lodash';
 
 import Show from './Show';
 import Type from './Type';
@@ -31,8 +32,16 @@ class TileDetails extends React.Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    this.fetchData(nextProps);
-    this.fetchSchema(nextProps);
+    // this.fetchData(nextProps);
+    // this.fetchSchema(nextProps);
+  }
+
+  shouldComponentUpdate = (nextProps, nextState, nextContext) => {
+    if (this.context.router.params.id !== nextContext.router.params.id) {
+      return true;
+    }
+
+    return  !this.state.isCategoryLoading || !this.state.isItemLoading
   }
 
   onCloseClick = () =>
@@ -46,8 +55,8 @@ class TileDetails extends React.Component {
       .on('fetch', (_, __, data) => {
         this.setState({
           category: tagCategoriesToMap(data.toJS())[props.router.params.category],
+          isCategoryLoading: false,
         });
-        this.setState({ isCategoryLoading: false });
       })
       .on('error', (_, __, err) => {
         console.log('error', err);
@@ -122,6 +131,10 @@ const categoryToImg = category => {
 };
 
 TileDetails.propTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+TileDetails.contextTypes = {
   router: PropTypes.object.isRequired,
 };
 
