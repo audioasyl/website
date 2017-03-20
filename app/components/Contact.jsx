@@ -37,7 +37,7 @@ export default class Contact extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const errors = {};
+    const errors = this.state.errors;
 
     if (!this.state.email) {
       errors.email = 'Email is required!';
