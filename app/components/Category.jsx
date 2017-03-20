@@ -9,16 +9,6 @@ import { metaDataItemsToProperties } from '../parsers/metadataItems';
 
 import './Category.scss';
 class Category extends React.Component {
-  // scrollToElement = e => {
-  //   console.log(this.context.location.hash, `#${this.props.category.key}`, e.offsetTop, e.offsetHeight);
-  //   if (this.context.location && this.context.location.hash === `#${this.props.category.key}`) {
-  //     const a = e.parentElement.offsetTop;
-  //     const b = e.offsetHeight
-  //     console.log(a, b, a+b);
-  //     window.scroll(0, a+b);
-  //   }
-  // }
-
   renderTiles = () => {
     const {
       category,
