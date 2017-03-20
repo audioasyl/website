@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import levenshtein from 'fast-levenshtein';
 import { map, flattenDeep, filter, reduce } from 'lodash';
 
@@ -30,10 +30,6 @@ class Audioasyl extends React.Component {
   componentWillMount = () => {
     this.loadData(this.props);
     this.fetchRepositoryFiles();
-  }
-
-  componentDidMount = () => {
-    
   }
 
   buildSearchContext = () => {
@@ -94,13 +90,20 @@ class Audioasyl extends React.Component {
     }, {});
   }
 
+  scrollToElement = (e, category) => {
+    if (`#${category.key}` === this.context.location.hash) {
+      window.scrollTo(0, e.refs.anchor.parentElement.offsetTop + e.refs.anchor.offsetTop);
+    }
+  }
+
   renderCategories = () =>
     map(this.filterMetaData(), category => (
       <Category
         key={category.id}
         category={category}
-        freshRecordIds={this.state.freshRecordIds}
         metaData={this.state.metaData}
+        freshRecordIds={this.state.freshRecordIds}
+        ref={e => e && this.scrollToElement(e, category)}
       />
   ))
 
@@ -129,5 +132,9 @@ const pickTegItemIds = categories =>
   flattenDeep(map(categories, category =>
     map(category.tag_items, tagItem => tagItem.id))
   );
+
+Audioasyl.contextTypes = {
+  location: PropTypes.object.isRequired,
+};
 
 export default Audioasyl;

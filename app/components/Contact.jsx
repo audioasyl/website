@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { omit, size } from 'lodash';
 import classNames from 'classnames';
-// import Header from './header/Header';
+import Header from './header/Header';
 
 import './Contact.scss';
 export default class Contact extends React.Component {
@@ -14,6 +14,11 @@ export default class Contact extends React.Component {
       message: '',
     };
   }
+
+  getChildContext = () => ({
+    router: this.props.router,
+    location: this.props.location,
+  });
 
   onEmailChange = e => {
     e.preventDefault();
@@ -81,7 +86,7 @@ export default class Contact extends React.Component {
 
     return (
       <div className="Contact">
-        {/* <Header /> */}
+        <Header />
         <form onSubmit={this.onSubmit} className="Contact-form">
           <input
             type="text"
@@ -133,3 +138,13 @@ export default class Contact extends React.Component {
 }
 
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+Contact.propTypes = {
+  router: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+};
+
+Contact.childContextTypes = {
+  router: PropTypes.object,
+  location: PropTypes.object,
+};

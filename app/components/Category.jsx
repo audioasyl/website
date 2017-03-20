@@ -8,43 +8,65 @@ import AudioTile from './AudioTile';
 import { metaDataItemsToProperties } from '../parsers/metadataItems';
 
 import './Category.scss';
-const Category = ({ category, metaData, freshRecordIds }) => (
-  <div className="Category">
-    <div className="Category-anchor" id={category.key} />
-    <div className="Category-section">
-      <Link to="#" className="Category-section-title">{category.name}</Link>
-    </div>
-    <Masonry
-      options={masonryOptions}
-      className="Category-tiles"
-    >
-      <div className="grid-sizer" />
-      {renderTiles(category, metaData, category.metadata_schemas, freshRecordIds)}
-    </Masonry>
-  </div>
-);
+class Category extends React.Component {
+  // scrollToElement = e => {
+  //   console.log(this.context.location.hash, `#${this.props.category.key}`, e.offsetTop, e.offsetHeight);
+  //   if (this.context.location && this.context.location.hash === `#${this.props.category.key}`) {
+  //     const a = e.parentElement.offsetTop;
+  //     const b = e.offsetHeight
+  //     console.log(a, b, a+b);
+  //     window.scroll(0, a+b);
+  //   }
+  // }
 
-const renderTiles = (category, metaData, dataSchema, freshRecordIds) => {
-  const likes = getLikes(`${category.key}_likes`);
+  renderTiles = () => {
+    const {
+      category,
+      metaData,
+      freshRecordIds,
+    } = this.props;
 
-  return map(category.tag_items, tagItem => {
-    const itemProperties =
-      metaDataItemsToProperties(metaData[tagItem.id].metadata_items, dataSchema);
+    const likes = getLikes(`${category.key}_likes`);
 
-    itemProperties.isFresh = freshRecordIds.indexOf(tagItem.id) >= 0;
+    return map(category.tag_items, tagItem => {
+      const itemProperties =
+        metaDataItemsToProperties(metaData[tagItem.id].metadata_items, category.metadata_schemas);
 
+      itemProperties.isFresh = freshRecordIds.indexOf(tagItem.id) >= 0;
+
+      return (
+        <AudioTile
+          likes={likes}
+          audio={tagItem}
+          key={tagItem.id}
+          type={category.key}
+          properties={itemProperties}
+          schema={category.metadata_schemas}
+        />
+      );
+    });
+  };
+
+  render() {
+    const { category } = this.props;
     return (
-      <AudioTile
-        likes={likes}
-        audio={tagItem}
-        key={tagItem.id}
-        type={category.key}
-        schema={dataSchema}
-        properties={itemProperties}
-      />
+      <div className="Category">
+        <div className="Category-anchor" id={category.key} ref="anchor" />
+        <div className="Category-section">
+          <Link to="#" className="Category-section-title">{category.name}</Link>
+        </div>
+        <Masonry
+          options={masonryOptions}
+          className="Category-tiles"
+        >
+          <div className="grid-sizer" />
+          {this.renderTiles()}
+        </Masonry>
+      </div>
     );
-  });
-};
+  }
+}
+
 
 const masonryOptions = {
   percentPosition: true,

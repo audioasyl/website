@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { map } from 'lodash';
 
 import Icon from '../Icon';
-import Header from '../header/MainHeader';
+import Header from '../header/Header';
 import { tagCategoryWithTagItems } from '../../queries/tagCategory';
 
 
