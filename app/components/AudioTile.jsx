@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
 
-import { colors } from '../utils';
+import { tileColors } from '../utils';
 import TileLabel from './TileLabel';
 import LikeButton from './LikeButton';
 import PlayButton from './PlayButton';
@@ -14,10 +14,10 @@ export default class AudioTile extends React.Component {
     this.state = {};
   }
 
-  shouldComponentUpdate = (nextProps, nextState, nextContext) => {
-    return this.props.audio.id === this.context.location.query.id
-      || this.props.audio.id === nextContext.location.query.id;
-  }
+  shouldComponentUpdate = (nextProps, nextState, nextContext) => (
+    this.props.audio.id === this.context.location.query.id
+      || this.props.audio.id === nextContext.location.query.id
+  )
 
   renderImage() {
     const cover = this.props.properties.cover;
@@ -51,7 +51,7 @@ export default class AudioTile extends React.Component {
         }}
         className={audioTileClasses}
         style={{
-          backgroundColor: '#5e701b',
+          backgroundColor: tileColors[type],
           backgroundImage: `url("${this.props.properties.cover}")`,
         }}
       >
@@ -74,9 +74,6 @@ export default class AudioTile extends React.Component {
     );
   }
 }
-
-const getRandomColor = () =>
-  colors[parseInt(Math.random() * (colors.length - 1), 10)];
 
 AudioTile.propTypes = {
   properties: PropTypes.object,
