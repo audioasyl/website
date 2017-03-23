@@ -1,6 +1,10 @@
 @import "ui/variables";
 
 .TileCarousel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
     .TileCarousel-button {
       transition: background 0.5s ease;
       position: absolute;
