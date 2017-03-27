@@ -3,6 +3,7 @@ import { map } from 'lodash';
 
 import Icon from '../Icon';
 import Header from '../header/Header';
+import { getLikes } from '../../utils';
 import { tagCategoryWithTagItems } from '../../queries/tagCategory';
 import backgroundUrl1 from '../../../public/images/wallpapers/background1.jpg';
 import backgroundUrl2 from '../../../public/images/wallpapers/background2.JPG';
@@ -26,6 +27,7 @@ class TileCarousel extends React.Component {
     super(props);
     this.state = {
       activeIdx: 0,
+      likes: [],
     };
   }
 
@@ -36,6 +38,11 @@ class TileCarousel extends React.Component {
       isLoading: true,
       img: images[Math.floor(Math.random() * images.length)],
     });
+
+    getLikes()
+      .then(({ likes }) => this.setState({ likes }))
+      .catch(err => console.error(err));
+
     tagCategoryWithTagItems([category], ['id'])
       .fetch()
       .on('fetch', (_, __, data) => {
@@ -104,7 +111,7 @@ class TileCarousel extends React.Component {
         >
           <Icon icon="left" />
         </button>
-        {this.props.children}
+        {React.cloneElement(this.props.children, { likes: this.state.likes })}
         <button className="TileCarousel-button TileCarousel-right" onClick={() => this.moveCarousel(1)}>
           <Icon icon="right" />
         </button>

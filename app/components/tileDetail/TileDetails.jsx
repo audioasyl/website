@@ -73,13 +73,13 @@ class TileDetails extends React.Component {
     const { category, item } = this.state;
     switch (this.props.router.params.category) {
     case Categories.SHOW:
-      return (<Show category={category} show={item} />);
+      return (<Show category={category} show={item} likes={this.props.likes} />);
     case Categories.AUTHOR:
-      return (<Author category={category} author={item} />);
+      return (<Author category={category} author={item} likes={this.props.likes} />);
     case Categories.GENRE:
-      return (<Genre category={category} genre={item} />);
+      return (<Genre category={category} genre={item} likes={this.props.likes} />);
     case Categories.TYPE:
-      return (<Type category={category} type={item} />);
+      return (<Type category={category} type={item} likes={this.props.likes} />);
     default:
       return null;
     }
@@ -109,9 +109,11 @@ class TileDetails extends React.Component {
 
 TileDetails.propTypes = {
   router: PropTypes.object.isRequired,
+  likes: PropTypes.array,
 };
 
 TileDetails.contextTypes = {
+  likes: [],
   router: PropTypes.object.isRequired,
 };
 

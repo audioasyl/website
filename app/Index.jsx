@@ -4,6 +4,9 @@ import { AppContainer } from 'react-hot-loader'; // eslint-disable-line import/n
 
 import './index.scss';
 import AppRouter from './AppRouter';
+import { getAuthToken } from './utils';
+
+getAuthToken();
 
 render(
   <AppContainer>

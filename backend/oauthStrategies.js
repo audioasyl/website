@@ -1,5 +1,5 @@
 import { Strategy as FacebookStrategy } from 'passport-facebook';
-import { createUser, findByProviderId, findById } from './models/User';
+import { createUser, findByProviderId, updateOauthToken } from './models/User';
 import config from './config/oauth';
 
 export const facebookStartegy = passport =>
@@ -9,11 +9,13 @@ export const facebookStartegy = passport =>
     clientSecret: config.facebook.clientSecret,
     profileFields: ['id', 'emails', 'name', 'photos'],
   }, async (accessToken, refreshToken, profile, done) => {
-    let user = await findByProviderId(profile.id);
+    const result = await findByProviderId(profile.id);
+    let user = result[0];
 
     if (!user) {
-      const result = await createUser({ ...profile, accessToken });
-      user = result && await findById(result.id);
+      user = await createUser({ ...profile, accessToken })[0];
+    } else {
+      updateOauthToken(user.id, accessToken);
     }
 
     if (user) {

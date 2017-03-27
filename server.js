@@ -6,7 +6,8 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { findById } from './backend/models/User';
 import { facebookStartegy } from './backend/oauthStrategies';
-import registerAuthRoutes from './backend/routes/authRoutes';
+import registerAuthRoutes from './backend/controllers/authController';
+import registerFavouriteTagsRoutes from './backend/controllers/likedTagItemsController';
 
 const port = process.env.PORT || 8000;
 const hostname = process.env.HOST || 'localhost';
@@ -14,23 +15,22 @@ const hostname = process.env.HOST || 'localhost';
 passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser(async (id, done) => {
-  const user = await findById(id);
-  console.log(user);
-  done(null, { user });
+  const result = await findById(id);
+  done(null, result[0]);
 });
 
 const app = express();
 
 app.use(express.static('dist'));
-app.use(cookieParser());
+app.use(cookieParser('audioasyl_session'));
 app.use(morgan('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(session({
-  secret: 'audioasyl_session',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 2419200000, httpOnly: false },
+  secret: 'audioasyl_session',
+  cookie: { maxAge: 2419200000, httpOnly: true },
 }));
 
 facebookStartegy(passport);
@@ -39,12 +39,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 registerAuthRoutes(app, passport);
-
-app.use((req, res, next) => {
-  console.log(req.user);
-  // console.log(res);
-  next();
-});
+registerFavouriteTagsRoutes(app);
 
 app.use((req, res) => res.sendFile(`${__dirname}/index.html`));
 

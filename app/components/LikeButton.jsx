@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { remove } from 'lodash';
 import Icon from './Icon';
 
 import './LikeButton.scss';
@@ -17,31 +16,66 @@ class LikeButton extends React.Component {
 
   onLikeClick = e => {
     e.preventDefault();
-    const likes = this.props.likes;
-
-    if (likes.indexOf(this.props.itemID) < 0) {
-      likes.push(this.props.itemID);
+    if (this.state.isLiked) {
+      fetch(`/dislike/${this.props.itemID}`, { method: 'DELETE', credentials: 'same-origin' })
+        .then(res => {
+          if (res.ok) {
+            this.setState({ isLiked: false });
+          } else {
+            this.setState({ error: res });
+            this.hideErrorMesg();
+          }
+        })
+        .catch(err => console.error(err));
     } else {
-      remove(likes, id => id === this.props.itemID);
+      fetch('/like', {
+        body: JSON.stringify({ tagId: this.props.itemID }),
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then(res => {
+        if (res.ok) {
+          this.setState({ isLiked: true });
+        } else {
+          this.setState({ error: res });
+          this.hideErrorMesg();
+        }
+      })
+      .catch(err => {
+        this.setState({ error: err });
+        this.hideErrorMesg();
+      });
     }
-
-    this.setState({ isLiked: !this.state.isLiked });
-    localStorage.setItem(this.props.storageKey, likes);
   }
+
+  hideErrorMesg = () =>
+    setTimeout(() => this.setState({ error: null }), 4500);
+
+  renderToolTip = () => (
+    <div className="LikeButton-error">
+      <div className="LikeButton-error-mesg">Please Log In to use this feature.</div>
+      <a href="/auth/facebook">LOG IN</a>
+    </div>
+  );
 
   render() {
     const icon = this.state.isLiked ? 'heart' : 'heart-empty';
 
     return (
-      <button className="LikeButton" onClick={e => this.onLikeClick(e)}>
-        <Icon icon={icon} />
-      </button>
+      <div>
+        {this.state.error && this.renderToolTip()}
+        <button className="LikeButton" onClick={e => this.onLikeClick(e)}>
+          {this.state.errors}
+          <Icon icon={icon} />
+        </button>
+      </div>
     );
   }
 }
 
 LikeButton.propTypes = {
-  storageKey: PropTypes.string.isRequired,
   itemID: PropTypes.string.isRequired,
   likes: PropTypes.array.isRequired,
 };

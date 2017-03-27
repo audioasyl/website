@@ -3,8 +3,6 @@ import React, { PropTypes } from 'react';
 import { map } from 'lodash';
 
 import LikeButton from '../LikeButton';
-import { getLikes } from '../../utils';
-
 import Icon from '../Icon';
 
 import './Description.scss';
@@ -14,6 +12,7 @@ const Description = ({
   twitterUrl,
   audioID,
   genres,
+  likes,
   header,
   about,
   shows,
@@ -59,7 +58,7 @@ const Description = ({
           <LikeButton
             itemID={audioID}
             storageKey={`${router.params.category}_likes`}
-            likes={getLikes(`${router.params.category}_likes`)}
+            likes={likes}
           />
         </div>
         <div className="Description-content">
@@ -95,6 +94,7 @@ Description.propTypes = {
   twitterUrl: PropTypes.string,
   genres: PropTypes.array,
   shows: PropTypes.array,
+  likes: PropTypes.array,
 };
 
 Description.contextTypes = {
@@ -107,6 +107,7 @@ Description.defaultProps = {
   twitterUrl: '',
   genres: null,
   shows: null,
+  likes: [],
 };
 
 export default Description;

@@ -11,6 +11,7 @@ import { tagItemsToMap } from '../parsers/tagItem';
 import { restoreScrollPosition } from '../utils';
 import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
+import { getLikes } from '../utils';
 import Category from './Category';
 
 import './Audioasyl.scss';
@@ -22,6 +23,7 @@ class Audioasyl extends React.Component {
         artist: artists => this.setState({ artists }),
         album: albums => this.setState({ albums }),
       },
+      likes: [],
       searchText: '',
       categories: {},
       distance: Infinity,
@@ -31,6 +33,9 @@ class Audioasyl extends React.Component {
   componentWillMount = () => {
     this.loadData(this.props);
     this.fetchRepositoryFiles();
+    getLikes()
+      .then(({ likes }) => this.setState({ likes }))
+      .catch(err => console.error(err));
   }
 
   fetchRepositoryFiles = () =>
@@ -105,6 +110,7 @@ class Audioasyl extends React.Component {
       <Category
         key={category.id}
         category={category}
+        likes={this.state.likes}
         metaData={this.state.metaData}
         freshRecordIds={this.state.freshRecordIds}
         ref={e => e && this.scrollToElement(e, category)}
@@ -112,6 +118,7 @@ class Audioasyl extends React.Component {
   ))
 
   render() {
+    console.log(this.state.likes);
     if (this.state.isLoading) {
       return (
         <div className="Audioasyl-placeholder">

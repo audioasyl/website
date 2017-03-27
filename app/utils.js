@@ -1,7 +1,7 @@
-import { split } from 'lodash';
 
-export const getLikes = key =>
-  split((localStorage.getItem(key) || ''), ',');
+export const getLikes = () =>
+  fetch('/likes', { credentials: 'same-origin' })
+    .then(response => response.json());
 
 export const play = (e, artistID, context) => {
   e.preventDefault();
@@ -40,3 +40,10 @@ export const saveScrollPosition = () => {
 
 export const restoreScrollPosition = () =>
   localStorage.getItem('scrollTop');
+
+export const getAuthToken = () => {
+  fetch('/auth_token', { credentials: 'same-origin' })
+    .then(response => response.json())
+    .then(({ token }) => (token && localStorage.setItem('token', token)))
+    .catch(localStorage.removeItem('token'));
+};

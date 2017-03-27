@@ -3,7 +3,6 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { map, size } from 'lodash';
 
-import { getLikes } from '../utils';
 import AudioTile from './AudioTile';
 import TilePlaceholder from './TilePlaceholder';
 import { metaDataItemsToProperties } from '../parsers/metadataItems';
@@ -12,12 +11,11 @@ import './Category.scss';
 class Category extends React.Component {
   renderTiles = () => {
     const {
+      likes,
       category,
       metaData,
       freshRecordIds,
     } = this.props;
-
-    const likes = getLikes(`${category.key}_likes`);
 
     return map(category.tag_items, tagItem => {
       const itemProperties =
@@ -72,6 +70,7 @@ const masonryOptions = {
 };
 
 Category.propTypes = {
+  likes: PropTypes.array,
   freshRecordIds: PropTypes.array,
   category: PropTypes.object.isRequired,
   metaData: PropTypes.object.isRequired,
@@ -79,6 +78,7 @@ Category.propTypes = {
 
 Category.defaultProps = {
   freshRecordIds: [],
+  likes: [],
 };
 
 export default Category;

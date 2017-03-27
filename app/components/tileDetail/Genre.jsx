@@ -6,13 +6,14 @@ import Timeline from './Timeline';
 import Cover from './Cover';
 
 import './Genre.scss';
-const Genre = ({ genre, category }) => {
+const Genre = ({ genre, category, likes }) => {
   const genreProperties =
     metaDataItemsToProperties(genre.metadata_items, category.metadata_schemas);
 
   return (
     <div className="Genre">
       <Description
+        likes={likes}
         audioID={genre.id}
         header={genre.name}
         about={genreProperties.about}
@@ -34,8 +35,13 @@ const Genre = ({ genre, category }) => {
 const contributors = contributorsStr => (contributorsStr ? contributorsStr.split(',') : []);
 
 Genre.propTypes = {
+  likes: PropTypes.array,
   genre: PropTypes.object.isRequired,
   category: PropTypes.object.isRequired,
+};
+
+Genre.defaultProps = {
+  likes: [],
 };
 
 export default Genre;

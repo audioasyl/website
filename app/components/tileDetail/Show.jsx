@@ -16,13 +16,14 @@ class Show extends React.Component {
 
 
   render() {
-    const { show, category } = this.props;
+    const { show, category, likes } = this.props;
     const showProperties =
       metaDataItemsToProperties(show.metadata_items, category.metadata_schemas);
 
     return (
       <div className="Show">
         <Description
+          likes={likes}
           audioID={show.id}
           header={show.name}
           about={showProperties.about}
@@ -44,9 +45,11 @@ class Show extends React.Component {
 Show.propTypes = {
   category: PropTypes.object.isRequired,
   show: PropTypes.object.isRequired,
+  likes: PropTypes.array,
 };
 
 Show.defaultProps = {
+  likes: [],
   show: { metadata_items: [] },
   category: { metadata_schemas: {} },
 };

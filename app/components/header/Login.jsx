@@ -1,17 +1,22 @@
 import React from 'react';
-import { getCookies } from '../../utils';
 
 export default class Login extends React.Component {
-  logOut = () =>
-    fetch('/logout', { method: 'DELETE' })
+  logOut = () => {
+    fetch('/logout', { method: 'DELETE', credentials: 'same-origin' })
+      .then(() => {
+        localStorage.removeItem('token');
+        window.location.reload();
+      });
+  }
 
   render() {
-    const cookies = getCookies();
+    const isLoggedIn = !!localStorage.getItem('token');
+
     return (
-      <div>
-        {cookies['connect.sid']
-          ? <button onClick={this.logOut}>Log Out</button>
-          : <a href="/auth/facebook">LOG IN</a>
+      <div className="Login">
+        {isLoggedIn
+          ? <button className="Header-nav-item" onClick={this.logOut}>Log Out</button>
+          : <a className="Header-nav-item" href="/auth/facebook">LOG IN</a>
         }
       </div>
     );

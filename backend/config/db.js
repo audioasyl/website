@@ -13,3 +13,21 @@ const config = {
 };
 
 export const pgPool = new pg.Pool(config);
+
+export async function buildQuery(text, values) {
+  try {
+    const client = await pgPool.connect();
+    try {
+      const result = await client.query({ text, values });
+      client.release();
+      return result.rows;
+    } catch (err) {
+      console.error('error running query', err);
+      client.release();
+      throw err;
+    }
+  } catch (err) {
+    console.error('error fetching client from pgPool', err);
+    throw err;
+  }
+}

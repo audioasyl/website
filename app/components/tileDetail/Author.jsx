@@ -6,13 +6,14 @@ import Timeline from './Timeline';
 import Cover from './Cover';
 
 import './Author.scss';
-const Author = ({ author, category }) => {
+const Author = ({ author, category, likes }) => {
   const authorProperties =
     metaDataItemsToProperties(author.metadata_items, category.metadata_schemas);
 
   return (
     <div className="Author">
       <Description
+        likes={likes}
         audioID={author.id}
         header={author.name}
         about={authorProperties.about}
@@ -31,8 +32,13 @@ const Author = ({ author, category }) => {
 };
 
 Author.propTypes = {
+  likes: PropTypes.array,
   author: PropTypes.object.isRequired,
   category: PropTypes.object.isRequired,
+};
+
+Author.defaultProps = {
+  likes: [],
 };
 
 export default Author;

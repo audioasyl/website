@@ -6,4 +6,16 @@
   margin: 2rem;
   color: $white;
   z-index: 100;
+
+}
+
+.LikeButton-error {
+  z-index: 9;
+  color: black;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background: white;
+  text-align: center;
+  position: absolute;
+  border-radius: 0.2rem;
 }

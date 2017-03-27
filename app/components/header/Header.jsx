@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import Login from './Login';
 import LogoButton from './LogoButton';
 
 import './MainHeader.scss';
@@ -38,6 +39,7 @@ const Header = () => (
           >
             Contact
           </Link>
+          <Login />
         </div>
       </div>
     </div>
