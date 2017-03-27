@@ -25,6 +25,9 @@ $path: './../../public/fonts';
 }
 
 
+.icon-placeholder:before {
+  content: "\e90d";
+}
 .icon-check:before {
   content: "\e90a";
 }

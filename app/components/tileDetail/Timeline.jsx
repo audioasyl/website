@@ -18,7 +18,8 @@ class Timeline extends React.Component {
   }
 
   componentWillMount = () => {
-    const player = new Channel.Player(this.props.channelID, 'demo');
+    const playerOptions = { from: 20 * 60, to: 10 * 60 }
+    const player = new Channel.Player(this.props.channelID, 'demo', playerOptions);
     this.setState({ isLoading: true });
     player.fetchPlaylist();
     player.on('playlist-fetched', track =>

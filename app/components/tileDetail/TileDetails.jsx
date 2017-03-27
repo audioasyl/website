@@ -7,12 +7,8 @@ import Author from './Author';
 import { Categories } from '../../enums';
 import ContentLoader from '../ContentLoader';
 import { tagCategoriesToMap } from '../../parsers/category';
-// import djBg from '../../../public/images/dj-background.jpg';
 import { tagItemsWithMetaData } from '../../queries/tagItem';
 import { tagCategoriesSchemas } from '../../queries/tagCategory';
-// import genreBg from '../../../public/images/genre-background.jpg';
-// import albumBg from '../../../public/images/album-background.jpg';
-// import detailsBg from '../../../public/images/details-background.jpg';
 
 import './TileDetails.scss';
 class TileDetails extends React.Component {
@@ -105,19 +101,6 @@ class TileDetails extends React.Component {
     );
   }
 }
-
-// const categoryToImg = category => {
-//   switch (category) {
-//   case Categories.AUTHOR:
-//     return djBg;
-//   case Categories.GENRE:
-//     return genreBg;
-//   case Categories.TYPE:
-//     return albumBg;
-//   default:
-//     return detailsBg;
-//   }
-// };
 
 TileDetails.propTypes = {
   router: PropTypes.object.isRequired,

@@ -1,0 +1,18 @@
+@import "ui/variables";
+
+.TilePlaceholder {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  span {
+    font-size: 3rem;
+  }
+
+  .TilePlaceholder-text {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 2rem;
+  }
+}

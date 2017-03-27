@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import levenshtein from 'fast-levenshtein';
-import { map, flattenDeep, filter, reduce } from 'lodash';
+// import levenshtein from 'fast-levenshtein';
+import { map, flattenDeep, filter, reduce, toLower } from 'lodash';
 
 import { tagCategoriesWithTagItemsAndSchema } from '../queries/tagCategory';
 import { recordFiles, onlyFreshRecords } from '../queries/recordItem';
@@ -73,12 +73,15 @@ class Audioasyl extends React.Component {
     }
 
     const searchText = this.state.searchText;
+    const REGEX = new RegExp(toLower(searchText));
 
     return reduce(this.state.categories, (result, category) => {
-      const filteredTags = filter(category.tag_items, tagItem => {
-        const distance = levenshtein.get(searchText, tagItem.name);
-        return distance - (tagItem.name.length - searchText.length) < 3;
-      });
+      const filteredTags = filter(category.tag_items, tagItem =>
+        toLower(tagItem.name).match(REGEX)
+      );
+        // if you want to use levenshtein
+        // const distance = levenshtein.get(searchText, tagItem.name);
+        // return distance - (tagItem.name.length - searchText.length) < 3;
 
       return {
         ...result,

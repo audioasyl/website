@@ -1,10 +1,11 @@
 import Masonry from 'react-masonry-component';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { map } from 'lodash';
+import { map, size } from 'lodash';
 
 import { getLikes } from '../utils';
 import AudioTile from './AudioTile';
+import TilePlaceholder from './TilePlaceholder';
 import { metaDataItemsToProperties } from '../parsers/metadataItems';
 
 import './Category.scss';
@@ -45,13 +46,19 @@ class Category extends React.Component {
         <div className="Category-section">
           <Link to="#" className="Category-section-title">{category.name}</Link>
         </div>
-        <Masonry
-          options={masonryOptions}
-          className="Category-tiles"
-        >
-          <div className="grid-sizer" />
-          {this.renderTiles()}
-        </Masonry>
+        {
+          size(category.tag_items)
+            ? (
+              <Masonry
+                options={masonryOptions}
+                className="Category-tiles"
+              >
+                <div className="grid-sizer" />
+                {this.renderTiles()}
+              </Masonry>
+            )
+            : <TilePlaceholder />
+        }
       </div>
     );
   }
