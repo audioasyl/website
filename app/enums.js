@@ -4,3 +4,10 @@ export const Categories = {
   SHOW: 'series',
   GENRE: 'genre',
 };
+
+export const Status = {
+  UNLOADED: 'UNLOADED',
+  LOADING: 'LOADING',
+  LOADED: 'LOADED',
+  ERROR: 'ERROR',
+};

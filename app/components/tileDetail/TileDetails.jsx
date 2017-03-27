@@ -4,7 +4,7 @@ import Show from './Show';
 import Type from './Type';
 import Genre from './Genre';
 import Author from './Author';
-import { Categories } from '../../enums';
+import { Categories, Status } from '../../enums';
 import ContentLoader from '../ContentLoader';
 import { tagCategoriesToMap } from '../../parsers/category';
 import { tagItemsWithMetaData } from '../../queries/tagItem';
@@ -15,52 +15,63 @@ class TileDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCategoryLoading: false,
-      isItemLoading: false,
+      isCategoryLoading: Status.UNLOADED,
+      isItemLoading: Status.UNLOADED,
     };
   }
 
   componentWillMount = () => {
     this.fetchData(this.props);
     this.fetchSchema(this.props);
+    !this.state.id && this.setState({ id: this.context.router.params.id });
   }
 
-  componentWillReceiveProps = nextProps => {
-    this.fetchData(nextProps);
-    this.fetchSchema(nextProps);
+  componentWillReceiveProps = (nextProps, nextContext) => {
+    this.setState({ id: this.context.router.params.id });
+    if (this.state.id !== nextContext.router.params.id) {
+      this.setState({
+        isCategoryLoading: Status.UNLOADED,
+        isItemLoading: Status.UNLOADED,
+      });
+
+      this.fetchData(nextProps);
+      this.fetchSchema(nextProps);
+    }
   }
 
   onCloseClick = () =>
     this.props.router.goBack()
 
   fetchSchema = props => {
-    this.setState({ isCategoryLoading: true });
+    this.setState({ isCategoryLoading: Status.LOADING });
     tagCategoriesSchemas()
       .where('key', 'eq', props.router.params.category)
       .fetch()
       .on('fetch', (_, __, data) => {
         this.setState({
           category: tagCategoriesToMap(data.toJS())[props.router.params.category],
-          isCategoryLoading: false,
+          isCategoryLoading: Status.LOADED,
         });
       })
       .on('error', (_, __, err) => {
+        this.setState({ isCategoryLoading: Status.ERROR });
         console.log('error', err);
       });
   }
 
   fetchData = props => {
-    this.setState({ isItemLoading: true });
+    this.setState({ isItemLoading: Status.LOADING });
     tagItemsWithMetaData([props.router.params.id])
       .fetch()
       .on('fetch', (_, __, data) => {
-        this.setState({ item: data.toJS()[0] });
-        this.setState({ isItemLoading: false });
+        this.setState({ item: data.toJS()[0], isItemLoading: Status.LOADED });
       })
       .on('error', (_, __, err) => {
+        this.setState({ isItemLoading: Status.ERROR });
         console.log('error', err);
       });
   }
+
   renderContent = () => {
     const { category, item } = this.state;
     switch (this.props.router.params.category) {
@@ -79,7 +90,7 @@ class TileDetails extends React.Component {
 
   render() {
     const { isCategoryLoading, isItemLoading } = this.state;
-    if (isCategoryLoading || isItemLoading) {
+    if (isCategoryLoading === Status.LOADING || isItemLoading === Status.LOADING) {
       return (
         <div className="TileDetails TileDetails-placeholder" >
           <ContentLoader />

@@ -1,9 +1,10 @@
 @import "ui/variables";
 
 .Player {
+  box-shadow: 0 -0.2rem 1rem $black;
   color: $playerProgressBarBg;
-  transition: all 0.1s;
   background: $playerBg;
+  transition: all 0.1s;
   align-items: center;
   position: fixed;
   transition: 2s;

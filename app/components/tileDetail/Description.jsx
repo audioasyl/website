@@ -98,7 +98,7 @@ Description.propTypes = {
 };
 
 Description.contextTypes = {
-  router : PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
 Description.defaultProps = {

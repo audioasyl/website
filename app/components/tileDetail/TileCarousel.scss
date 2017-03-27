@@ -7,13 +7,14 @@
 
     .TileCarousel-button {
       transition: background 0.5s ease;
+      transform: translateY(-25%);
       position: absolute;
       font-size: 3rem;
-      height: 100vh;
+      width: 4.5rem;
+      height: 30vh;
       color: white;
-      width: 5rem;
       z-index: 2;
-      top: 0;
+      top: 50%;
 
       &:hover {
         transition: background 0.5s ease;

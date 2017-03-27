@@ -51,6 +51,25 @@ class TileCarousel extends React.Component {
       .on('error', (_, __, err) => console.log('error', err));
   }
 
+  componentDidMount = () => {
+    document.body.addEventListener('keyup', this.detectKey);
+  }
+
+  componentWillUnmount = () => {
+    document.body.removeEventListener('keyup', this.detectKey);
+  }
+
+  detectKey = e => {
+    switch (e.keyCode) {
+    case 37:
+      this.moveCarousel(-1);
+      break;
+    case 39:
+      this.moveCarousel();
+      break;
+    }
+  }
+
   moveCarousel = (step = 1) => {
     let nextIdx = this.state.activeIdx + step;
     const tagItemsCount = this.state.tagItems.length;
