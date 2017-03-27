@@ -4,14 +4,13 @@ import { map, flattenDeep, filter, reduce, toLower } from 'lodash';
 
 import { tagCategoriesWithTagItemsAndSchema } from '../queries/tagCategory';
 import { recordFiles, onlyFreshRecords } from '../queries/recordItem';
+import { restoreScrollPosition, getLikes } from '../utils';
 import { tagItemsWithMetaData } from '../queries/tagItem';
-import { tagCategoriesToMap } from '../parsers/category';
 import { freshRecordsToMap } from '../parsers/recordFile';
+import { tagCategoriesToMap } from '../parsers/category';
 import { tagItemsToMap } from '../parsers/tagItem';
-import { restoreScrollPosition } from '../utils';
 import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
-import { getLikes } from '../utils';
 import Category from './Category';
 
 import './Audioasyl.scss';
@@ -118,7 +117,6 @@ class Audioasyl extends React.Component {
   ))
 
   render() {
-    console.log(this.state.likes);
     if (this.state.isLoading) {
       return (
         <div className="Audioasyl-placeholder">

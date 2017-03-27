@@ -9,11 +9,12 @@ export const facebookStartegy = passport =>
     clientSecret: config.facebook.clientSecret,
     profileFields: ['id', 'emails', 'name', 'photos'],
   }, async (accessToken, refreshToken, profile, done) => {
-    const result = await findByProviderId(profile.id);
+    let result = await findByProviderId(profile.id);
     let user = result[0];
 
     if (!user) {
-      user = await createUser({ ...profile, accessToken })[0];
+      result = await createUser({ ...profile, accessToken });
+      user = result[0];
     } else {
       updateOauthToken(user.id, accessToken);
     }

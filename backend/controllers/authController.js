@@ -5,15 +5,18 @@ export default function (app, passport) {
     })
   );
 
-  app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/', session: true }),
-    (req, res, next) => {
-      req.login(req.user, err => {
-        if (err) { return next(err); }
-        return res.redirect('/');
+  app.get('/auth/facebook/callback', (req, res, next) => {
+    passport.authenticate('facebook', (err, user) => {
+      if (err) { return next(err); }
+
+      if (!user) { return res.redirect('/'); }
+
+      req.logIn(user, erro => {
+        if (erro) { return next(erro); }
+        return req.session.save(() => res.redirect('/'));
       });
-    }
-  );
+    })(req, res, next);
+  });
 
   app.delete('/logout', isLoggedIn, (req, res) => {
     req.logOut();
