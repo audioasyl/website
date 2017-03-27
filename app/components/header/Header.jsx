@@ -17,7 +17,7 @@ const Header = () => (
             Genres
           </Link>
           <Link to="/#authors" className="Header-nav-item">
-            Authors
+            Hosts
           </Link>
           <Link to="/contact" className="Header-nav-item">
             Contact
