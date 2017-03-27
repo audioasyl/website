@@ -55,7 +55,7 @@ class Player extends React.Component {
       .then(response => {
         this.setState({ metaData: response.getMetadata() });
       })
-      .catch(err => console.log('A-A', err));
+      .catch(err => console.log(err));
   }
 
   buildPlayer = () => {

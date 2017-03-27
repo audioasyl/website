@@ -8,6 +8,7 @@ import { tagItemsWithMetaData } from '../queries/tagItem';
 import { tagCategoriesToMap } from '../parsers/category';
 import { freshRecordsToMap } from '../parsers/recordFile';
 import { tagItemsToMap } from '../parsers/tagItem';
+import { restoreScrollPosition } from '../utils';
 import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
 import Category from './Category';
@@ -30,10 +31,6 @@ class Audioasyl extends React.Component {
   componentWillMount = () => {
     this.loadData(this.props);
     this.fetchRepositoryFiles();
-  }
-
-  buildSearchContext = () => {
-
   }
 
   fetchRepositoryFiles = () =>
@@ -94,8 +91,12 @@ class Audioasyl extends React.Component {
   }
 
   scrollToElement = (e, category) => {
+    if (window.retainScroll) {
+      return window.scrollTo(0, restoreScrollPosition());
+    }
+
     if (`#${category.key}` === this.context.location.hash) {
-      window.scrollTo(0, e.refs.anchor.parentElement.offsetTop + e.refs.anchor.offsetTop);
+      return window.scrollTo(0, e.refs.anchor.parentElement.offsetTop + e.refs.anchor.offsetTop);
     }
   }
 

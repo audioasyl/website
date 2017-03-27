@@ -5,35 +5,47 @@
   background-position: center;
   background-repeat: no-repeat;
 
-    .TileCarousel-button {
+  .TileCarousel-button {
+    transition: background 0.5s ease;
+    transform: translateY(-25%);
+    position: absolute;
+    font-size: 3rem;
+    width: 4.5rem;
+    height: 30vh;
+    color: white;
+    z-index: 2;
+    top: 50%;
+
+    &:hover {
       transition: background 0.5s ease;
-      transform: translateY(-25%);
-      position: absolute;
-      font-size: 3rem;
-      width: 4.5rem;
-      height: 30vh;
-      color: white;
-      z-index: 2;
-      top: 50%;
-
-      &:hover {
-        transition: background 0.5s ease;
-        background: rgba(0, 0, 0, 0.5);
-      }
-
-      span {
-        z-index: 3;
-      }
-
-      &.TileCarousel-left {
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      &.TileCarousel-right {
-        right: 0;
-      }
+      background: rgba(0, 0, 0, 0.5);
     }
+
+    span {
+      z-index: 3;
+    }
+
+    &.TileCarousel-left {
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.TileCarousel-right {
+      right: 0;
+    }
+  }
+
+  .TileCarousel-close {
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    position: absolute;
+    background: black;
+    font-size: 1.7rem;
+    color: $white;
+    z-index: 4;
+    top: 8rem;
+    right: 0;
+  }
 }

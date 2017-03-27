@@ -32,3 +32,9 @@ export const tileColors = {
   genre: '#78a3ff',
   authors: '#ff7261',
 };
+
+export const saveScrollPosition = () =>
+  localStorage.setItem('scrollTop', window.scrollY);
+
+export const restoreScrollPosition = () =>
+  localStorage.getItem('scrollTop');

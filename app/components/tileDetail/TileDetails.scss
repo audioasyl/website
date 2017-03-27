@@ -16,19 +16,6 @@
   justify-content: space-between;
   // background-image: url('../../../public/images/details-background.jpg');
 
-  .TileDetails-close {
-    text-transform: uppercase;
-    padding: 1rem 3rem;
-    position: absolute;
-    background: black;
-    font-size: 1.7rem;
-    color: $white;
-    z-index: 4;
-    top: 8rem;
-    right: 0;
-
-  }
-
   .TileDetails-main {
     justify-content: center;
     position: relative;

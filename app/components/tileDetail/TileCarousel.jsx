@@ -59,6 +59,11 @@ class TileCarousel extends React.Component {
     document.body.removeEventListener('keyup', this.detectKey);
   }
 
+  onCloseClick = () => {
+    window.retainScroll = true;
+    this.props.router.goBack();
+  }
+
   detectKey = e => {
     switch (e.keyCode) {
     case 37:
@@ -90,6 +95,9 @@ class TileCarousel extends React.Component {
     return (
       <div className="TileCarousel" style={style}>
         <Header />
+        <button className="TileCarousel-close" onClick={this.onCloseClick}>
+          Go back to home page
+        </button>
         <button
           className="TileCarousel-button TileCarousel-left"
           onClick={() => this.moveCarousel(-1)}

@@ -39,9 +39,6 @@ class TileDetails extends React.Component {
     }
   }
 
-  onCloseClick = () =>
-    this.props.router.goBack()
-
   fetchSchema = props => {
     this.setState({ isCategoryLoading: Status.LOADING });
     tagCategoriesSchemas()
@@ -101,9 +98,6 @@ class TileDetails extends React.Component {
     return (
       <div className="TileDetails TileDetails-fadeOut" >
         <div />
-        <button className="TileDetails-close" onClick={this.onCloseClick}>
-          Go back to home page
-        </button>
         <div className="TileDetails-main">
           {this.renderContent()}
         </div>

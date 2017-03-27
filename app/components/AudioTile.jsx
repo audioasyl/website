@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
 
-import { tileColors } from '../utils';
 import TileLabel from './TileLabel';
 import LikeButton from './LikeButton';
 import PlayButton from './PlayButton';
+import { tileColors, saveScrollPosition } from '../utils';
 
 import './AudioTile.scss';
 export default class AudioTile extends React.Component {
@@ -50,6 +50,7 @@ export default class AudioTile extends React.Component {
           query: { id, play },
         }}
         className={audioTileClasses}
+        onClick={saveScrollPosition}
         style={{
           backgroundColor: tileColors[type],
           backgroundImage: `url("${this.props.properties.cover}")`,
