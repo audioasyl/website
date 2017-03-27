@@ -10,16 +10,32 @@ const Header = () => (
       <LogoButton />
       <div className="Header-left">
         <div className="Header-nav">
-          <Link to="/#series" className="Header-nav-item">
+          <Link
+            to="/#series"
+            onClick={() => { window.retainScroll = false; }}
+            className="Header-nav-item"
+          >
             Show
           </Link>
-          <Link to="/#genre" className="Header-nav-item">
+          <Link
+            to="/#genre"
+            onClick={() => { window.retainScroll = false; }}
+            className="Header-nav-item"
+          >
             Genres
           </Link>
-          <Link to="/#authors" className="Header-nav-item">
+          <Link
+            to="/#authors"
+            onClick={() => { window.retainScroll = false; }}
+            className="Header-nav-item"
+          >
             Hosts
           </Link>
-          <Link to="/contact" className="Header-nav-item">
+          <Link
+            to="/contact"
+            onClick={() => { window.retainScroll = false; }}
+            className="Header-nav-item"
+          >
             Contact
           </Link>
         </div>
