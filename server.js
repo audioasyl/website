@@ -12,6 +12,8 @@ import registerFavouriteTagsRoutes from './backend/controllers/likedTagItemsCont
 
 const port = process.env.PORT || 8000;
 const hostname = process.env.HOST || 'localhost';
+const logType = process.env.AUDIOASYL_LOG_TYPE || 'dev';
+const sessionSecret = process.env.AUDIOASYL_SESSION_SECRET || 'audioasyl_session';
 
 passport.serializeUser((user, done) => done(null, user.id));
 
@@ -23,15 +25,15 @@ passport.deserializeUser(async (id, done) => {
 const app = express();
 
 app.use(express.static('dist'));
-app.use(cookieParser('audioasyl_session'));
-app.use(morgan('dev'));
+app.use(cookieParser(sessionSecret));
+app.use(morgan(logType));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
   resave: true,
+  secret: sessionSecret,
   saveUninitialized: true,
   store: redisStore(session),
-  secret: 'audioasyl_session',
   cookie: { maxAge: 2419200000, httpOnly: true },
 }));
 
