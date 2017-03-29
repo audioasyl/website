@@ -11,7 +11,7 @@ import registerAuthRoutes from './backend/controllers/authController';
 import registerFavouriteTagsRoutes from './backend/controllers/likedTagItemsController';
 
 const port = process.env.PORT || 8000;
-const hostname = process.env.HOST || 'localhost';
+const hostname = process.env.HOST_NAME || 'localhost';
 const logType = process.env.AUDIOASYL_LOG_TYPE || 'dev';
 const sessionSecret = process.env.AUDIOASYL_SESSION_SECRET || 'audioasyl_session';
 
@@ -24,9 +24,9 @@ passport.deserializeUser(async (id, done) => {
 
 const app = express();
 
+app.use(morgan(logType));
 app.use(express.static('dist'));
 app.use(cookieParser(sessionSecret));
-app.use(morgan(logType));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
