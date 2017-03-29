@@ -13,7 +13,7 @@ export default function (app, passport) {
 
       req.logIn(user, erro => {
         if (erro) { return next(erro); }
-        return req.session.save(() => res.redirect('/'));
+        return res.redirect('/');
       });
     })(req, res, next);
   });

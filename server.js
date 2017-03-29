@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { findById } from './backend/models/User';
+import redisStore from './backend/config/redisStore';
 import { facebookStartegy } from './backend/oauthStrategies';
 import registerAuthRoutes from './backend/controllers/authController';
 import registerFavouriteTagsRoutes from './backend/controllers/likedTagItemsController';
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 app.use(session({
   resave: true,
   saveUninitialized: true,
+  store: redisStore(session),
   secret: 'audioasyl_session',
   cookie: { maxAge: 2419200000, httpOnly: true },
 }));
