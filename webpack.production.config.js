@@ -50,7 +50,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './app/template.html',
-			filename: path.join(__dirname, 'index.html'),
+			filename: path.join(__dirname, 'dist', 'index.html'),
 			files: {
 				css: ['style.css'],
 				js: [ "bundle.js"],

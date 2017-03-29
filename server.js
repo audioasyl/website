@@ -1,3 +1,4 @@
+import path from 'path';
 import morgan from 'morgan';
 import express from 'express';
 import passport from 'passport';
@@ -45,7 +46,7 @@ app.use(passport.session());
 registerAuthRoutes(app, passport);
 registerFavouriteTagsRoutes(app);
 
-app.use((req, res) => res.sendFile(`${__dirname}/index.html`));
+app.use((req, res) => res.sendFile(path.join('/index.html')));
 
 app.listen(port, hostname, () => {
   console.info('==> ✅  Server is listening');
