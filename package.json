@@ -7,6 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "postinstall-dev": "([ \"$NODE_ENV\" != production ] && (npm run build & npm run build-backend)) || echo $NODE_ENV",
     "build-backend": "webpack --config webpack.backend.config.js --progress --profile --colors",
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "start": "node server.build.js",
@@ -14,7 +15,7 @@
     "start-dev": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors",
-    "postinstall": "npm run build && npm run build-backend && db-migrate up"
+    "postinstall": "npm run postinstall-dev & db-migrate up"
   },
   "repository": {
     "type": "git",
