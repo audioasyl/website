@@ -30,6 +30,7 @@ git add database.json
 git add package.json
 git add server.build.js -f
 
+git clean -df
 git commit -m 'deploy-'`date +%s`
 
 git remote add radio_dokku_prod dokku@dokku-ovh1-003.radiokitsrv.org:audioasyl-prod
@@ -38,6 +39,5 @@ git remote remove radio_dokku_prod
 
 echo "---> cleaning"
 
-git clean -df
 git checkout -
-git branch -d deploy_production
+git branch -D deploy_production
