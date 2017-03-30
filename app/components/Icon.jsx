@@ -38,6 +38,7 @@ const glyphsmap = {
   right: 'right',
   play: 'play',
   prev: 'prev',
+  menu: 'menu',
   next: 'next',
   left: 'left2',
   'play-1': 'play-1',

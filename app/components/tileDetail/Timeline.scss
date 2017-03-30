@@ -1,8 +1,13 @@
 @import "ui/variables";
 
 .Timeline {
+  min-height: 25rem;
   height: 100%;
   flex: 1;
+
+  @media #{$audioasyl-768} {
+    min-height: auto;
+  }
 
   &.Timeline-placeholder {
     display: flex;

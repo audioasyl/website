@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import Login from './Login';
 import Search from './Search';
+import HeaderNav from './HeaderNav';
 import LogoButton from './LogoButton';
 import HeaderDropdown from './HeaderDropdown';
 
@@ -13,7 +14,7 @@ const Header = ({ onFilterChange, setSearchText }) => (
       <LogoButton />
       <div className="Header-left">
         <Search setSearchText={setSearchText} />
-        <div className="Header-nav">
+        <HeaderNav>
           <HeaderDropdown
             onFilterChange={onFilterChange}
             className="Header-nav-item"
@@ -42,7 +43,7 @@ const Header = ({ onFilterChange, setSearchText }) => (
             Contact
           </Link>
           <Login />
-        </div>
+        </HeaderNav>
       </div>
     </div>
   </div>

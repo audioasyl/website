@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import Login from './Login';
+import HeaderNav from './HeaderNav';
 import LogoButton from './LogoButton';
 
 import './MainHeader.scss';
@@ -10,7 +11,7 @@ const Header = () => (
     <div className="Header-fixed">
       <LogoButton />
       <div className="Header-left">
-        <div className="Header-nav">
+        <HeaderNav>
           <Link
             to="/#series"
             onClick={() => { window.retainScroll = false; }}
@@ -40,7 +41,7 @@ const Header = () => (
             Contact
           </Link>
           <Login />
-        </div>
+        </HeaderNav>
       </div>
     </div>
   </div>

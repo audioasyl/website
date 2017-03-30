@@ -521,6 +521,35 @@
     {
       "icon": {
         "paths": [
+          "M64 192h896v192h-896zM64 448h896v192h-896zM64 704h896v192h-896z"
+        ],
+        "tags": [
+          "menu",
+          "list",
+          "options",
+          "lines",
+          "hamburger"
+        ],
+        "defaultCode": 59837,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "menu, list3",
+        "name": "menu",
+        "order": 25,
+        "id": 190,
+        "prevSize": 32,
+        "code": 59837
+      },
+      "setIdx": 8,
+      "setId": 1,
+      "iconIdx": 189
+    },
+    {
+      "icon": {
+        "paths": [
           "M0 416v192c0 17.672 14.328 32 32 32h960c17.672 0 32-14.328 32-32v-192c0-17.672-14.328-32-32-32h-960c-17.672 0-32 14.328-32 32z"
         ],
         "tags": [

@@ -110,12 +110,12 @@ class Player extends React.Component {
       return (
         <div className={playerClasses}>
           <div className="Player-buttons">
-            <button
+            {/* <button
               className="Player-button minimalize"
               onClick={() => this.setState({ minimalized: !this.state.minimalized })}
             >
               <Icon icon="minus" />
-            </button>
+            </button> */}
             <button
               className="Player-button close"
               onClick={this.onCloseClick}
@@ -163,6 +163,7 @@ class Player extends React.Component {
               <VolumeBar player={this.state.player} />
             </div>
           </div>
+          <div className="Player-cover" />
         </div>
       );
     }

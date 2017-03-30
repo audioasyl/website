@@ -5,9 +5,14 @@
   flex-direction: column;
   background: $black;
   font-size: 1.8rem;
+  min-height: 25rem;
   display: flex;
   padding: 2rem;
   flex: 1;
+
+  @media #{$audioasyl-768} {
+    min-height: auto;
+  }
 
   .Description-header {
     justify-content: space-between;

@@ -2,11 +2,16 @@
 
 .Author {
   justify-content: center;
+  flex-direction: column;
   position: relative;
   display: flex;
   width: 100%;
-  
+
   .Placeholder {
     flex: 1;
+  }
+
+  @media #{$audioasyl-768} {
+    flex-direction: row;
   }
 }

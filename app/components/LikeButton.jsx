@@ -56,7 +56,7 @@ class LikeButton extends React.Component {
   renderToolTip = () => (
     <div className="LikeButton-error">
       <div className="LikeButton-error-mesg">Please Log In to use this feature.</div>
-      <a onClick={e => e.preventDefault()} href="/auth/facebook">LOG IN</a>
+      <a onClick={e => e.stopPropagation()} href="/auth/facebook">LOG IN</a>
     </div>
   );
 

@@ -5,6 +5,7 @@
   color: $playerProgressBarBg;
   background: $playerBg;
   transition: all 0.1s;
+  flex-direction: row;
   align-items: center;
   position: fixed;
   transition: 2s;
@@ -50,6 +51,7 @@
 
   .Player-console {
     transition: all 0.5s 0.1s;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     display: flex;
@@ -110,7 +112,7 @@
   }
 
   &.Player--min {
-    height: 5rem;
+    height: 6rem;
 
     .Player-cover {
       flex-direction: row;
@@ -125,7 +127,7 @@
     }
 
     .Player-console {
-      flex-direction: row;
+      flex-direction: column;
       transition: all 0.5s;
 
       .Player-console-progress {
@@ -139,6 +141,8 @@
       }
 
       .Player-console-buttons {
+        margin-left: -4.5rem;
+
         .Player-console-button {
           padding: 0 1rem;
 
@@ -151,6 +155,22 @@
               font-size: 1.4rem;
             }
           }
+        }
+      }
+    }
+  }
+
+  @media #{$audioasyl-810} {
+    flex-direction: row;
+
+    &.Player--min {
+      height: 5rem;
+
+      .Player-console {
+        flex-direction: row;
+
+        .Player-console-buttons {
+          margin-left: 0rem;
         }
       }
     }

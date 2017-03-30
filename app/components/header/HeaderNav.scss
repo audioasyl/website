@@ -1,0 +1,90 @@
+@import "ui/variables";
+
+.HeaderNav {
+  display: flex;
+
+  .HeaderNav-hamburger {
+    display: block;
+    font-size: 3rem;
+  }
+
+  .HeaderNav-items {
+    display: none;
+  }
+
+  .Header-nav-item {
+    border-bottom: 0.1rem solid transparent;
+    transition: border 0.5s ease-out;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: $linkColor;
+
+    &:hover {
+      border-bottom: 0.1rem solid $linkColor;
+      transition: border 0.5s ease-out;
+      color: $linkColorActive;
+    }
+
+    &.Header-nav-item--active {
+      border-bottom: 0.1rem solid $linkColor;
+      transition: border 0.5s ease-out;
+      color: $linkColorActive;
+    }
+
+    @media #{$audioasyl-655} {
+      width: auto;
+      font-size: 1.2rem;
+      padding: 1rem 1.5rem;
+    }
+
+    @media #{$audioasyl-810} {
+      font-size: 1.6rem;
+      padding: 1rem 1.7rem;
+    }
+
+    &.Header-nav--active {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &.HeaderNav--active {
+    .HeaderNav-items {
+      left: 0;
+      right: 0;
+      top: 8rem;
+      display: flex;
+      position: fixed;
+      align-items: center;
+      flex-direction: column;
+      background: $background;
+    }
+  }
+
+  @media #{$audioasyl-655} {
+    .HeaderNav-hamburger {
+      display: none;
+    }
+
+    .HeaderNav-items {
+      display: flex;
+      position: initial;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &.HeaderNav--active {
+      .HeaderNav-items {
+        display: flex;
+        position: initial;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}
