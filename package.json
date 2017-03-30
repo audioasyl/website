@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "postinstall-dev": "([ \"$NODE_ENV\" != production ] && (npm run build & npm run build-backend)) || echo $NODE_ENV",
+    "postinstall-dev": "([ \"$NODE_ENV\" != production ] && (npm run build && npm run build-backend)) || echo $NODE_ENV",
     "build-backend": "webpack --config webpack.backend.config.js --progress --profile --colors",
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "start": "node server.build.js",
@@ -54,7 +54,7 @@
     "pg": "^6.1.4",
     "pg-native": "^1.10.0",
     "radiokit-api": "^0.1.20",
-    "radiokit-toolkit-playback": "^1.2.0",
+    "radiokit-toolkit-playback": "^2.0.0",
     "react": "15.4.2",
     "react-custom-scrollbars": "^4.0.2",
     "react-dom": "15.4.2",
