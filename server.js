@@ -49,7 +49,6 @@ registerFavouriteTagsRoutes(app);
 app.use((req, res) => res.sendFile(path.join(process.cwd(), 'dist/index.html')));
 
 app.listen(port, hostname, () => {
-  console.log(process.cwd());
   console.info('==> ✅  Server is listening');
   console.info('==> 🌎  Go to http://%s:%s', hostname, port);
 });

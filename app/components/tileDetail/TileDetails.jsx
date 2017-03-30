@@ -96,7 +96,7 @@ class TileDetails extends React.Component {
     }
 
     return (
-      <div className="TileDetails TileDetails-fadeOut" >
+      <div className="TileDetails" >
         <div />
         <div className="TileDetails-main">
           {this.renderContent()}
