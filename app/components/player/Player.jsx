@@ -6,8 +6,8 @@ import moment from 'moment';
 
 import { recordFilesForTagItems } from '../../queries/recordItem';
 import { recordFileToMap } from '../../parsers/recordFile';
+import { play, getCurrentSet } from '../../utils';
 import VolumeBar from './VolumeBar';
-import { play } from '../../utils';
 import Icon from '../Icon';
 
 import './Player.scss';
@@ -47,7 +47,7 @@ class Player extends React.Component {
     localStorage.setItem('playerSize', this.state.minimalized);
     this.context.router.replace({
       pathname: this.context.location.pathname,
-      query: omit(this.context.location.query, ['play', 'id']),
+      query: omit(this.context.location.query, ['play', 'id', 'channel_id']),
     });
   }
 
@@ -68,9 +68,9 @@ class Player extends React.Component {
     player.setVolume(defaultVolume());
     setPlayerStatus(player, playStatus);
 
-    player.on('track-playback-started', track => this.setTrackInfo(track));
     player.on('track-position', (track, position, duration) =>
       this.renderTrackPosition(track, position, duration));
+    player.on('playlist-fetched', track => this.setTrackInfo(getCurrentSet(track)));
 
     this.setState({ player });
   }
@@ -83,7 +83,7 @@ class Player extends React.Component {
         this.setState({
           track: recordFileToMap(data.toJS()),
           offset: this.state.offset + LIMIT,
-          channelId: 'fd9a7d1c-a387-40a0-b876-2799668d6f9d', // TODO replace with audioasyl id
+          channelId: this.context.location.query.channel_id, // TODO replace with audioasyl id
           accessToken: 'demo',
         });
 
@@ -99,9 +99,9 @@ class Player extends React.Component {
   }
 
   render() {
-    const { play: status, id } = this.context.location.query;
-    const position = moment.duration(this.state.position || 0);
+    const { play: status, id, channel_id: channelID } = this.context.location.query;
     const duration = moment.duration(this.state.metaData.duration || 0);
+    const position = moment.duration(this.state.position || 0);
     const playerClasses = classNames(
       'Player',
       { 'Player--min': this.state.minimalized }
@@ -154,7 +154,7 @@ class Player extends React.Component {
               </button>}
               <button
                 className="Player-console-button play"
-                onClick={e => play(e, id, this.context)}
+                onClick={e => play(e, id, channelID, this.context)}
               >
                 <Icon icon={iconMap[status]} />
               </button>

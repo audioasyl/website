@@ -1,9 +1,11 @@
+import moment from 'moment';
+import { find } from 'lodash';
 
 export const getLikes = () =>
   fetch('/likes', { credentials: 'same-origin' })
     .then(response => response.json());
 
-export const play = (e, artistID, context) => {
+export const play = (e, artistID, channelID, context) => {
   e.preventDefault();
 
   const { router, location } = context;
@@ -21,6 +23,7 @@ export const play = (e, artistID, context) => {
     pathname: location.pathname,
     query: {
       ...location.query,
+      channel_id: channelID,
       play: playStatus,
       id: artistID,
     },
@@ -47,3 +50,9 @@ export const getAuthToken = () => {
     .then(({ token }) => (token && localStorage.setItem('token', token)))
     .catch(localStorage.removeItem('token'));
 };
+
+export const getCurrentSet = playlist =>
+  find(playlist.getTracks(), track =>
+     moment(track.getFadeInAt()).isSameOrBefore(moment())
+    && moment(track.getFadeOutAt()).isAfter(moment())
+);

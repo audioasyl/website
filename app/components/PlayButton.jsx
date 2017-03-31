@@ -4,7 +4,7 @@ import { play } from '../utils';
 import Icon from './Icon';
 
 import './PlayButton.scss';
-const PlayButton = ({ audioID }, context) => {
+const PlayButton = ({ audioID, channelID }, context) => {
   const { play: status, id } = context.location.query;
   const isPlaying = status === 'play' && audioID === id;
 
@@ -14,7 +14,7 @@ const PlayButton = ({ audioID }, context) => {
   );
 
   return (
-    <button className={buttonClasses} onClick={e => play(e, audioID, context)}>
+    <button className={buttonClasses} onClick={e => play(e, audioID, channelID, context)}>
       {isPlaying
         ? <span className="Hover-wrapper">
           <Icon icon="pause" />
@@ -28,6 +28,7 @@ const PlayButton = ({ audioID }, context) => {
 
 PlayButton.propTypes = {
   audioID: PropTypes.string.isRequired,
+  channelID: PropTypes.string.isRequired,
 };
 
 PlayButton.contextTypes = {

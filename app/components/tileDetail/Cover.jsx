@@ -5,12 +5,12 @@ import React, { PropTypes } from 'react';
 import PlayButton from '../PlayButton';
 
 import './Cover.scss';
-const Cover = ({ audioID, trackList, title, cover, description }) => (
+const Cover = ({ audioID, channelID, trackList, title, cover, description }) => (
   <div className="Cover" style={{ backgroundImage: cover }}>
     <div className="Cover-header">
       <div>{title}</div>
     </div>
-    <PlayButton audioID={audioID} />
+    <PlayButton audioID={audioID} channelID={channelID} />
     <div>
       {/* <div className="Cover-footer-header">
         <div>{description && 'podcast description'}</div>
@@ -33,6 +33,7 @@ const Cover = ({ audioID, trackList, title, cover, description }) => (
 );
 
 Cover.propTypes = {
+  channelID: PropTypes.string.isRequired,
   audioID: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,

@@ -8,7 +8,11 @@ const LogoButton = (props, { location }) => (
     <Link
       to={{
         pathname: '/',
-        query: { id: location.query.id, play: location.query.play },
+        query: {
+          id: location.query.id,
+          play: location.query.play,
+          channel_id: location.query.channel_id,
+        },
       }}
     >
       <img className="LogoButton-logo" src={logo} alt="RadioKit" />

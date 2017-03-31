@@ -36,7 +36,7 @@ export default class AudioTile extends React.Component {
   renderFreshBadge = () => (this.props.properties.isFresh && <TileLabel type="fresh" />)
 
   render() {
-    const { id, play } = this.context.location.query;
+    const { id, play, channel_id } = this.context.location.query;
     const { audio, type, likes, properties } = this.props;
     const audioTileClasses = classNames(
       'AudioTile',
@@ -47,7 +47,7 @@ export default class AudioTile extends React.Component {
       <Link
         to={{
           pathname: `/${type}/details/${audio.id}`,
-          query: { id, play },
+          query: { id, play, channel_id },
         }}
         className={audioTileClasses}
         onClick={saveScrollPosition}
@@ -58,7 +58,7 @@ export default class AudioTile extends React.Component {
       >
         {this.renderLiveBadge()}
         {this.renderFreshBadge()}
-        <PlayButton audioID={audio.id} />
+        <PlayButton audioID={audio.id} channelID={properties.broadcast_channel_id} />
         <div className="AudioTile-info">
           <div className="AudioTile-info-bold-wrapper">
             <div className="AudioTile-info-bold">

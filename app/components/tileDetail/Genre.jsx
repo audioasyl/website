@@ -24,6 +24,7 @@ const Genre = ({ genre, category, likes }) => {
         audioID={genre.id}
         cover={genreProperties.cover}
         description={genreProperties.series_lead}
+        channelID={genreProperties.broadcast_channel_id}
       />
       <Timeline
         channelID={genreProperties.broadcast_channel_id}

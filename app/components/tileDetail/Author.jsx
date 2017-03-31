@@ -23,6 +23,7 @@ const Author = ({ author, category, likes }) => {
         audioID={author.id}
         cover={authorProperties.cover}
         description={authorProperties.series_lead}
+        channelID={authorProperties.broadcast_channel_id}
       />
       <Timeline
         channelID={authorProperties.broadcast_channel_id}
