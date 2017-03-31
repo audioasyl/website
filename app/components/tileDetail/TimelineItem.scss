@@ -26,11 +26,14 @@
   }
 
   &:first-child {
-    background: $botleGreen;
     margin: 0;
   }
 
-  &:nth-child(2) {
+  &.TimelineItem--next {
+    background: $botleGreen;
+  }
+
+  &.TimelineItem--current {
     background: $lightBlue;
   }
 

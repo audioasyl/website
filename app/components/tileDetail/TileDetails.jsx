@@ -113,8 +113,11 @@ TileDetails.propTypes = {
 };
 
 TileDetails.contextTypes = {
-  likes: [],
   router: PropTypes.object.isRequired,
+};
+
+TileDetails.defaultProps = {
+  likes: [],
 };
 
 export default TileDetails;

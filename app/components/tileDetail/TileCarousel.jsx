@@ -68,7 +68,10 @@ class TileCarousel extends React.Component {
 
   onCloseClick = () => {
     window.retainScroll = true;
-    this.props.router.goBack();
+    this.props.router.replace({
+      pathname: '/',
+      query: this.props.location.query,
+    });
   }
 
   detectKey = e => {

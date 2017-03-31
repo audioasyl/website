@@ -1,12 +1,15 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 
 import ContentLoader from '../ContentLoader';
+import { isCurrentlyPlaying } from '../../utils';
 
 import './TimelineItem.scss';
 class TimelineItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isPlaying: false,
       isLoading: false,
     };
   }
@@ -16,7 +19,7 @@ class TimelineItem extends React.Component {
   componentWillReceiveProps = nextProps => this.fetchTrackInfo(nextProps.item);
 
   fetchTrackInfo = item => {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, isPlaying: isCurrentlyPlaying(item) });
     item.getInfoAsync()
       .then(trackInfo => {
         this.setState({ track: trackInfo, isLoading: false });
@@ -24,29 +27,6 @@ class TimelineItem extends React.Component {
       .catch(err =>
         console.log(err)
       );
-  }
-
-  renderArchiveItem = () => (
-    <div className="TimelineItem-header">archive</div>
-  )
-
-  renderCurrentItem = () => (
-    <div className="TimelineItem-header">Current show</div>
-  )
-
-  renderNextItem = () => (
-    <div className="TimelineItem-header">next show</div>
-  )
-
-  renderTimelineItem = () => {
-    switch (this.props.idx) {
-    case 0:
-      return this.renderNextItem();
-    case 1:
-      return this.renderCurrentItem();
-    default:
-      return this.renderArchiveItem();
-    }
   }
 
   render() {
@@ -58,14 +38,19 @@ class TimelineItem extends React.Component {
       );
     }
     const trackData = this.state.track.getMetadata();
+    const trackItemClasses = classNames(
+      'TimelineItem TimelineItem--visible', {
+        'TimelineItem--current': this.state.isPlaying,
+        'TimelineItem--next': this.props.item.getId() === this.props.nextSetId,
+      }
+    );
 
     return (
       <button
         onClick={this.props.onClick}
         disabled={!this.props.onClick}
-        className="TimelineItem TimelineItem--visible"
+        className={trackItemClasses}
       >
-        {/* this.renderTimelineItem() */}
         <div className="TimelineItem-name">{trackData.title}</div>
         <div className="TimelineItem-desc">{trackData.album}</div>
       </button>
@@ -75,13 +60,13 @@ class TimelineItem extends React.Component {
 
 TimelineItem.propTypes = {
   item: PropTypes.object.isRequired,
+  nextSetId: PropTypes.string,
   onClick: PropTypes.func,
-  idx: PropTypes.string,
 };
 
 TimelineItem.defaultProps = {
-  onClick: null,
-  idx: '',
+  onClick: () => {},
+  nextSetId: '',
 };
 
 export default TimelineItem;

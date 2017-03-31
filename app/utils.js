@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { find } from 'lodash';
+import { find, sortBy, filter } from 'lodash';
 
 export const getLikes = () =>
   fetch('/likes', { credentials: 'same-origin' })
@@ -52,7 +52,16 @@ export const getAuthToken = () => {
 };
 
 export const getCurrentSet = playlist =>
-  find(playlist.getTracks(), track =>
-     moment(track.getFadeInAt()).isSameOrBefore(moment())
-    && moment(track.getFadeOutAt()).isAfter(moment())
+  find(playlist.getTracks(), track => isCurrentlyPlaying(track)
 );
+
+export const isCurrentlyPlaying = track =>
+  moment(track.getFadeInAt()).isSameOrBefore(moment())
+    && moment(track.getFadeOutAt()).isAfter(moment());
+
+export const getNextSong = playlist => {
+  const now = moment();
+  return sortBy(filter(playlist, song => now.isBefore(moment(song.getFadeInAt()))), song =>
+    song.getFadeInAt()
+  )[0];
+};

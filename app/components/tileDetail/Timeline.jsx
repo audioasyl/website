@@ -3,6 +3,7 @@ import { Channel } from 'radiokit-toolkit-playback';
 import React, { PropTypes } from 'react';
 import { map } from 'lodash';
 
+import { getNextSong } from '../../utils';
 import TimelineItem from './TimelineItem';
 import ContentLoader from '../ContentLoader';
 
@@ -18,7 +19,7 @@ class Timeline extends React.Component {
   }
 
   componentWillMount = () => {
-    const playerOptions = { from: 20 * 60, to: 10 * 60 }
+    const playerOptions = { from: 10 * 60, to: 30 * 60 };
     const player = new Channel.Player(this.props.channelID, 'demo', playerOptions);
     this.setState({ isLoading: true });
     player.fetchPlaylist();
@@ -32,13 +33,16 @@ class Timeline extends React.Component {
     this.state.player.stopFetching();
   }
 
-  renderTimelineItems = () =>
-    map(this.state.track, (set, id) =>
+  renderTimelineItems = () => {
+    const nextSet = getNextSong(this.state.track);
+    return map(this.state.track, (set, id) =>
       <TimelineItem
         key={id}
         item={set}
+        nextSetId={nextSet && nextSet.getId()}
       />
     );
+  }
 
   render() {
     if (this.state.isLoading) {

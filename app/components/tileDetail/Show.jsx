@@ -20,7 +20,6 @@ class Show extends React.Component {
     const showProperties =
       metaDataItemsToProperties(show.metadata_items, category.metadata_schemas);
 
-    console.log(showProperties);
     return (
       <div className="Show">
         <Description
