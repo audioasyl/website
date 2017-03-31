@@ -17,6 +17,7 @@ export default class AudioTile extends React.Component {
   shouldComponentUpdate = (nextProps, nextState, nextContext) => (
     this.props.audio.id === this.context.location.query.id
       || this.props.audio.id === nextContext.location.query.id
+      || !this.context.location.query.id
   )
 
   renderImage() {
