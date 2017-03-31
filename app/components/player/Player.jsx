@@ -18,6 +18,7 @@ class Player extends React.Component {
       offset: 0,
       metaData: {},
       minimalized: true,
+      canSwitchSongs: false,
     };
   }
 
@@ -148,18 +149,18 @@ class Player extends React.Component {
               </div>
             </div>
             <div className="Player-console-buttons">
-              <button className="Player-console-button prev">
+              {this.state.canSwitchSongs && <button className="Player-console-button prev">
                 <Icon icon="prev" />
-              </button>
+              </button>}
               <button
                 className="Player-console-button play"
                 onClick={e => play(e, id, this.context)}
               >
                 <Icon icon={iconMap[status]} />
               </button>
-              <button className="Player-console-button next">
+              {this.state.canSwitchSongs && <button className="Player-console-button next">
                 <Icon icon="next" />
-              </button>
+              </button>}
               <VolumeBar player={this.state.player} />
             </div>
           </div>

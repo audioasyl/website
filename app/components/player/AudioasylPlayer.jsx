@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 import Player from './Player';
 
+import './AudioasylPlayer.scss';
 class AudioasylPlayer extends React.Component {
   getChildContext = () => ({
     router: this.props.router,
@@ -8,8 +10,13 @@ class AudioasylPlayer extends React.Component {
   });
 
   render() {
+    const audioasylPlayerClasses = classNames(
+      'AudioasylPlayer',
+      { 'AudioasylPlayer--opened': !!this.props.location.query.id && !this.props.router.params.id }
+    );
+
     return (
-      <div className="AudioasylPlayer">
+      <div className={audioasylPlayerClasses} >
         {this.props.children}
         <Player />
       </div>
