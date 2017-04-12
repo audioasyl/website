@@ -3,15 +3,14 @@
 .Category {
   position: relative;
   overflow: hidden;
-  
+
   .Category-anchor {
     position: absolute;
     top: - 7.9rem;
   }
 
   .Category-tiles {
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
+    margin: 1rem -0.5rem 0.5rem -0.5rem;
   }
 }
 
@@ -27,18 +26,18 @@
 
   .Category-section-title {
     height: 100%;
-    width: 30rem;
     color: $white;
     display: block;
     padding: 2rem 0;
     text-align: center;
     background: $black;
     text-decoration: none;
-    transition: font 0.3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
-      font-size: 2.6rem;
-      transition: font 0.3s ease;
+      margin-top: -0.4rem;
+      font-size: 2.7rem;
+      transition: all 0.3s ease;
     }
   }
 }

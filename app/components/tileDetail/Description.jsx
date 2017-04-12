@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { map } from 'lodash';
 
 import LikeButton from '../LikeButton';
+import ShareButton from '../ShareButton';
 import Icon from '../Icon';
 
 import './Description.scss';
@@ -60,13 +61,11 @@ const Description = ({
             storageKey={`${router.params.category}_likes`}
             likes={likes}
           />
+          <ShareButton />
         </div>
         <div className="Description-content">
           {about && (
             <div>
-              <div className="Description-content-label">
-                About:
-              </div>
               <div className="Description-content-text">
                 {about}
               </div>

@@ -1,7 +1,7 @@
 import Masonry from 'react-masonry-component';
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { map, size } from 'lodash';
+import { map, size, sortBy, lowerCase } from 'lodash';
 
 import AudioTile from './AudioTile';
 import TilePlaceholder from './TilePlaceholder';
@@ -17,7 +17,7 @@ class Category extends React.Component {
       freshRecordIds,
     } = this.props;
 
-    return map(category.tag_items, tagItem => {
+    return map(sortBy(category.tag_items, item => lowerCase(item.name)), tagItem => {
       const itemProperties =
         metaDataItemsToProperties(metaData[tagItem.id].metadata_items, category.metadata_schemas);
 

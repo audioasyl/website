@@ -106,7 +106,7 @@ class TileCarousel extends React.Component {
       <div className="TileCarousel" style={style}>
         <Header />
         <button className="TileCarousel-close" onClick={this.onCloseClick}>
-          Go back to home page
+          Back
         </button>
         <button
           className="TileCarousel-button TileCarousel-left"

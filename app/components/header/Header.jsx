@@ -12,6 +12,13 @@ const Header = () => (
       <LogoButton />
       <div className="Header-left">
         <HeaderNav>
+          {/* <Link
+            to="/#new"
+            onClick={() => { window.retainScroll = false; }}
+            className="Header-nav-item"
+          >
+            New
+          </Link> */}
           <Link
             to="/#series"
             onClick={() => { window.retainScroll = false; }}

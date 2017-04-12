@@ -13,8 +13,15 @@ const Header = ({ onFilterChange, setSearchText }) => (
     <div className="Header-fixed">
       <LogoButton />
       <div className="Header-left">
-        <Search setSearchText={setSearchText} />
         <HeaderNav>
+          {/* <HeaderDropdown
+            onFilterChange={onFilterChange}
+            className="Header-nav-item"
+            options={newOptions}
+            href="#new"
+            type="new"
+            label="New"
+          /> */}
           <HeaderDropdown
             onFilterChange={onFilterChange}
             className="Header-nav-item"
@@ -44,10 +51,15 @@ const Header = ({ onFilterChange, setSearchText }) => (
           </Link>
           <Login />
         </HeaderNav>
+        <Search setSearchText={setSearchText} />
       </div>
     </div>
   </div>
 );
+
+// const newOptions = [
+//
+// ];
 
 const artistsOptions = [
   { label: 'Live', value: 'live' },
