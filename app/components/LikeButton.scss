@@ -2,14 +2,17 @@
 
 .LikeButton {
   transform: scale(1);
-  font-size: 2rem;
+  font-size: 3rem;
   margin: 1rem;
   color: $white;
   z-index: 100;
 
-  @media #{$audioasyl-min-width} {
-    font-size: 3rem;
-    margin: 1.5rem;
+  @media #{$audioasyl-460} {
+    font-size: 2rem;
+  }
+
+  @media #{$audioasyl-655} {
+    font-size: 2.5rem;
   }
 }
 

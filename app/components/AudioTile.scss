@@ -1,10 +1,10 @@
 @import "ui/variables";
 
 .grid-sizer {
-  width: 50%;
-  height: 23rem;
+  width: 100%;
+  height: 30rem;
 
-  @media #{$audioasyl-min-width} {
+  @media #{$audioasyl-460} {
     width: 50%;
     height: 50vw;
   }
@@ -26,8 +26,8 @@
 }
 
 .AudioTile {
-  width: 50%;
-  height: 23rem;
+  width: 100%;
+  height: 30rem;
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -38,7 +38,7 @@
   transition: background-color 0.2s ease-out;
   box-shadow: 0 0 0 0.5rem $background inset;
 
-  @media #{$audioasyl-min-width} {
+  @media #{$audioasyl-460} {
     width: 50%;
     height: 50vw;
   }
@@ -115,7 +115,7 @@
 
   .AudioTile-info {
     position: absolute;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     bottom: 0.5rem;
     color: $white;
     right: 0.5rem;
@@ -130,11 +130,21 @@
         text-transform: uppercase;
         padding: 1rem 2rem;
         background: $black;
-        font-size: 1.4rem;
+        font-size: 2rem;
       }
     }
 
-    @media #{$audioasyl-min-width} {
+    @media #{$audioasyl-460} {
+      font-size: 1.1rem;
+
+      .AudioTile-info-bold-wrapper {
+        .AudioTile-info-bold {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    @media #{$audioasyl-655} {
       font-size: 1.4rem;
 
       .AudioTile-info-bold-wrapper {

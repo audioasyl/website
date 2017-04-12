@@ -13,6 +13,7 @@ loaders.push({
 
 module.exports = {
 	entry: [
+		'whatwg-fetch',
 		'babel-polyfill',
 		'./app/Index.jsx',
 	],

@@ -47,7 +47,7 @@ export default class HeaderDropdown extends React.Component {
 
     return (
       <div className="HeaderDropdown">
-        <a href={this.props.href} className={labelClasses}>
+        <a href={this.props.href} className={labelClasses} onClick={this.props.onClick}>
           {this.props.label}
         </a>
         <div
@@ -62,6 +62,7 @@ export default class HeaderDropdown extends React.Component {
 
 HeaderDropdown.propTypes = {
   href: PropTypes.string,
+  onClick: PropTypes.func,
   className: PropTypes.string,
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -70,6 +71,7 @@ HeaderDropdown.propTypes = {
 };
 
 HeaderDropdown.defaultProps = {
+  onClick: () => {},
   className: '',
   href: '#',
 };

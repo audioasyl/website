@@ -34,7 +34,7 @@ class Audioasyl extends React.Component {
     this.fetchRepositoryFiles();
     getLikes()
       .then(({ likes }) => this.setState({ likes }))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err)); // eslint-disable-line
   }
 
   fetchRepositoryFiles = () =>
@@ -43,7 +43,7 @@ class Audioasyl extends React.Component {
       .on('fetch', (_, __, data) => {
         this.setState({ freshRecordIds: freshRecordsToMap(data.toJS()) });
       })
-      .on('error', (_, __, err) => console.log('error', err));
+      .on('error', (_, __, err) => console.log('error', err)); //eslint-disable-line
 
   loadData = () => {
     this.setState({ isLoading: true });
@@ -53,7 +53,7 @@ class Audioasyl extends React.Component {
         this.setState({ categories: tagCategoriesToMap(data.toJS()) });
         this.loadMetaData(pickTegItemIds(data.toJS()));
       })
-      .on('error', (_, __, err) => console.log('error', err));
+      .on('error', (_, __, err) => console.log('error', err)); //eslint-disable-line
   }
 
   loadMetaData = ids => {
@@ -65,7 +65,7 @@ class Audioasyl extends React.Component {
           isLoading: false,
         })
       )
-      .on('error', (_, __, err) => console.log('error', err));
+      .on('error', (_, __, err) => console.log('error', err)); //eslint-disable-line
   }
 
   filterMetaData = () => {
@@ -94,7 +94,7 @@ class Audioasyl extends React.Component {
     }, {});
   }
 
-  scrollToElement = (e, category) => {
+  scrollToElement = (e, category) => { // eslint-disable-line
     if (window.retainScroll) {
       return window.scrollTo(0, restoreScrollPosition());
     }

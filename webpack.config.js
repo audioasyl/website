@@ -24,6 +24,7 @@ loaders.push({
 
 module.exports = {
   entry: [
+    'whatwg-fetch',
     'babel-polyfill',
     'react-hot-loader/patch',
     './app/Index.jsx', // your app's entry point

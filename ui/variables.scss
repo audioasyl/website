@@ -17,8 +17,9 @@ $black: #000000;
 $green: #18a455;
 $red: #eb212e;
 
-$min-width: 460px;
-$audioasyl-min-width: "screen and (min-width: $min-width)";
+$min-width: 300px;
+$audioasyl-min-width: "screen and (min-width: min-width)";
+$audioasyl-460: "screen and (min-width: 460px)";
 $audioasyl-655: "screen and (min-width: 655px)";
 $audioasyl-768: "screen and (min-width: 768px)";
 $audioasyl-810: "screen and (min-width: 810px)";

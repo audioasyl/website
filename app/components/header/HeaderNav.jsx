@@ -10,6 +10,13 @@ class HeaderNav extends React.Component {
     this.state = {};
   }
 
+  addCallbackToChildren = () =>
+    React.Children.map(this.props.children,
+     child => React.cloneElement(child, {
+       onClick: () => this.setState({ active: !this.state.active }),
+     })
+    );
+
   render() {
     const headerNavClasses = classNames(
       'HeaderNav',
@@ -25,7 +32,7 @@ class HeaderNav extends React.Component {
           <Icon icon="menu" />
         </button>
         <div className="HeaderNav-items">
-          {this.props.children}
+          {this.addCallbackToChildren()}
         </div>
       </div>
     );

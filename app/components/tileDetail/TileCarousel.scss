@@ -9,8 +9,8 @@
     transition: background 0.5s ease;
     transform: translateY(-25%);
     position: absolute;
-    font-size: 3rem;
     width: 4.5rem;
+    font-size: 0;
     height: 30vh;
     color: white;
     z-index: 2;
@@ -22,6 +22,9 @@
     }
 
     span {
+      display: inline-block;
+      font-size: 3rem;
+      margin: auto;
       z-index: 3;
     }
 

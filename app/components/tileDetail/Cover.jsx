@@ -7,12 +7,9 @@ import PlayButton from '../PlayButton';
 import './Cover.scss';
 const Cover = ({ audioID, channelID, trackList, title, cover, description }) => (
   <div className="Cover" style={{ backgroundImage: cover }}>
-    <div className="Cover-header">
-      <div>{title}</div>
-    </div>
     <PlayButton audioID={audioID} channelID={channelID} />
-    <div>
-      {/* <div className="Cover-footer-header">
+    {/* }<div>
+      <div className="Cover-footer-header">
         <div>{description && 'podcast description'}</div>
       </div>
       <Scrollbars style={{ height: '100%' }}>
@@ -27,8 +24,8 @@ const Cover = ({ audioID, channelID, trackList, title, cover, description }) => 
             {map(take(trackList, 3), album => <li key={album.id}>{album.name}</li>)}
           </ul>
         </div>}
-      </Scrollbars> */}
-    </div>
+      </Scrollbars>
+    </div> */}
   </div>
 );
 

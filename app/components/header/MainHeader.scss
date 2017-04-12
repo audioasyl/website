@@ -29,7 +29,12 @@
     display: flex;
     align-items: center;
     padding-right: 2rem;
+    flex-direction: row-reverse;
     justify-content: space-between;
+
+    @media #{$audioasyl-655} {
+      flex-direction: row;
+    }
   }
 }
 
