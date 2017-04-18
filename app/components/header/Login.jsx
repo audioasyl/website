@@ -1,8 +1,9 @@
 import React from 'react';
+import { url } from '../../config/api';
 
 export default class Login extends React.Component {
   logOut = () => {
-    fetch('/logout', { method: 'DELETE', credentials: 'same-origin' })
+    fetch(url('/logout'), { method: 'DELETE', credentials: 'same-origin' })
       .then(() => {
         localStorage.removeItem('token');
         window.location.reload();
@@ -10,7 +11,7 @@ export default class Login extends React.Component {
   }
 
   render() {
-    const isLoggedIn = !!localStorage.getItem('token');
+    const isLoggedIn = (typeof localStorage !== 'undefined') && !!localStorage.getItem('token');
 
     return (
       <div className="Login">

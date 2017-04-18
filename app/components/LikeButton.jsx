@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import Icon from './Icon';
 
+import { url } from '../config/api';
+
 import './LikeButton.scss';
 class LikeButton extends React.Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class LikeButton extends React.Component {
         })
         .catch(err => console.error(err));
     } else {
-      fetch('/like', {
+      fetch(url('/like'), {
         body: JSON.stringify({ tagId: this.props.itemID }),
         method: 'POST',
         credentials: 'same-origin',

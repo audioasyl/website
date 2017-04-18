@@ -1,4 +1,3 @@
-import path from 'path';
 import morgan from 'morgan';
 import express from 'express';
 import passport from 'passport';
@@ -7,12 +6,13 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { findById } from './backend/models/User';
 import redisStore from './backend/config/redisStore';
+import renderOnServer from './backend/serverSideRenderer';
 import { facebookStartegy } from './backend/oauthStrategies';
 import registerAuthRoutes from './backend/controllers/authController';
 import registerFavouriteTagsRoutes from './backend/controllers/likedTagItemsController';
 
-const port = process.env.PORT || 8000;
-const hostname = process.env.HOST_NAME || 'localhost';
+import { hostname, port } from './app/config/api';
+
 const logType = process.env.AUDIOASYL_LOG_TYPE || 'dev';
 const sessionSecret = process.env.AUDIOASYL_SESSION_SECRET || 'audioasyl_session';
 
@@ -46,9 +46,14 @@ app.use(passport.session());
 registerAuthRoutes(app, passport);
 registerFavouriteTagsRoutes(app);
 
-app.use((req, res) => res.sendFile(path.join(process.cwd(), 'dist/index.html')));
+app.use('*', (req, res) => {
+  console.log('qweeeeeeeeqewqeqeqeqe');
+  renderOnServer(req, res);
+});
+// app.use('/', (req, res) => res.sendFile(path.join(process.cwd(), 'index.html')));
 
 app.listen(port, hostname, () => {
+  /* eslint-disable */
   console.info('==> ✅  Server is listening');
   console.info('==> 🌎  Go to http://%s:%s', hostname, port);
 });

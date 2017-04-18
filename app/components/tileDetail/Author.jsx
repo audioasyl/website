@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import Description from './Description';
+import Headers from '../../Headers';
 import Timeline from './Timeline';
 import Cover from './Cover';
 
@@ -12,6 +13,11 @@ const Author = ({ author, category, likes }) => {
 
   return (
     <div className="Author">
+      <Headers
+        title={author.name}
+        ogTitle={author.name}
+        ogImage={authorProperties.cover}
+      />
       <Description
         likes={likes}
         audioID={author.id}

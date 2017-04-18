@@ -1,8 +1,10 @@
 import moment from 'moment';
 import { find, sortBy, filter } from 'lodash';
 
+import { url } from './config/api';
+
 export const getLikes = () =>
-  fetch('/likes', { credentials: 'same-origin' })
+  fetch(url('/likes'), { credentials: 'same-origin' })
     .then(response => response.json());
 
 export const play = (e, artistID, channelID, context) => {
@@ -45,7 +47,7 @@ export const restoreScrollPosition = () =>
   localStorage.getItem('scrollTop');
 
 export const getAuthToken = () => {
-  fetch('/auth_token', { credentials: 'same-origin' })
+  fetch(url('/auth_token'), { credentials: 'same-origin' })
     .then(response => response.json())
     .then(({ token }) => (token && localStorage.setItem('token', token)))
     .catch(localStorage.removeItem('token'));

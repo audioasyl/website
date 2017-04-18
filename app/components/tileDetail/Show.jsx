@@ -4,6 +4,7 @@ import { map } from 'lodash';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import TimelineItem from './TimelineItem';
 import Description from './Description';
+import Headers from '../../Headers';
 import Timeline from './Timeline';
 import Cover from './Cover';
 
@@ -22,6 +23,11 @@ class Show extends React.Component {
 
     return (
       <div className="Show">
+        <Headers
+          title={show.name}
+          ogTitle={show.name}
+          ogImage={showProperties.cover}
+        />
         <Description
           likes={likes}
           audioID={show.id}

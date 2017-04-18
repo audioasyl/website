@@ -53,7 +53,7 @@ export default class HeaderDropdown extends React.Component {
         <div
           className={contentClasses}
         >
-          {this.renderOptions()}
+          {/* this.renderOptions() */}
         </div>
       </div>
     );
