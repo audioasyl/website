@@ -18,7 +18,7 @@ class Timeline extends React.Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     const playerOptions = { from: 10 * 60, to: 30 * 60 };
     const player = new Channel.Player(this.props.channelID, 'demo', playerOptions);
     this.setState({ isLoading: true });

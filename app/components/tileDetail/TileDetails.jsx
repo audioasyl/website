@@ -4,8 +4,9 @@ import Show from './Show';
 import Type from './Type';
 import Genre from './Genre';
 import Author from './Author';
-import { Categories, Status } from '../../enums';
+import superFetch from '../../superFetch';
 import ContentLoader from '../ContentLoader';
+import { Categories, Status } from '../../enums';
 import { tagCategoriesToMap } from '../../parsers/category';
 import { tagItemsWithMetaData } from '../../queries/tagItem';
 import { tagCategoriesSchemas } from '../../queries/tagCategory';
@@ -41,31 +42,28 @@ class TileDetails extends React.Component {
 
   fetchSchema = props => {
     this.setState({ isCategoryLoading: Status.LOADING });
-    tagCategoriesSchemas()
-      .where('key', 'eq', props.router.params.category)
-      .fetch()
-      .on('fetch', (_, __, data) => {
+    superFetch(
+      tagCategoriesSchemas().where('key', 'eq', props.router.params.category),
+      data => {
         this.setState({
           category: tagCategoriesToMap(data.toJS())[props.router.params.category],
           isCategoryLoading: Status.LOADED,
         });
-      })
-      .on('error', (_, __, err) => {
+      },
+      err => {
         this.setState({ isCategoryLoading: Status.ERROR });
-        console.log('error', err);
+        console.log('error', err); // eslint-disable-line
       });
   }
 
   fetchData = props => {
     this.setState({ isItemLoading: Status.LOADING });
-    tagItemsWithMetaData([props.router.params.id])
-      .fetch()
-      .on('fetch', (_, __, data) => {
-        this.setState({ item: data.toJS()[0], isItemLoading: Status.LOADED });
-      })
-      .on('error', (_, __, err) => {
+    superFetch(
+      tagItemsWithMetaData([props.router.params.id]),
+      data => this.setState({ item: data.toJS()[0], isItemLoading: Status.LOADED }),
+      err => {
         this.setState({ isItemLoading: Status.ERROR });
-        console.log('error', err);
+        console.log('error', err); // eslint-disable-line
       });
   }
 

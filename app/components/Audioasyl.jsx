@@ -11,8 +11,8 @@ import { tagCategoriesToMap } from '../parsers/category';
 import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
+import superFetch from '../superFetch';
 import Category from './Category';
-
 import './Audioasyl.scss';
 class Audioasyl extends React.Component {
   constructor(props) {
@@ -38,34 +38,30 @@ class Audioasyl extends React.Component {
   }
 
   fetchRepositoryFiles = () =>
-    onlyFreshRecords(recordFiles([]))
-      .fetch()
-      .on('fetch', (_, __, data) => {
-        this.setState({ freshRecordIds: freshRecordsToMap(data.toJS()) });
-      })
-      .on('error', (_, __, err) => console.log('error', err)); //eslint-disable-line
+    superFetch(
+      onlyFreshRecords(recordFiles([])),
+      data => this.setState({ freshRecordIds: freshRecordsToMap(data.toJS()) }),
+    );
 
   loadData = () => {
     this.setState({ isLoading: true });
-    tagCategoriesWithTagItemsAndSchema(['authors', 'series', 'genre'])
-      .fetch()
-      .on('fetch', (_, __, data) => {
+    superFetch(
+      tagCategoriesWithTagItemsAndSchema(['authors', 'series', 'genre']),
+      data => {
         this.setState({ categories: tagCategoriesToMap(data.toJS()) });
         this.loadMetaData(pickTegItemIds(data.toJS()));
-      })
-      .on('error', (_, __, err) => console.log('error', err)); //eslint-disable-line
+      });
   }
 
   loadMetaData = ids => {
-    tagItemsWithMetaData(ids)
-      .fetch()
-      .on('fetch', (_, __, data) =>
+    superFetch(
+      tagItemsWithMetaData(ids),
+      data =>
         this.setState({
           metaData: tagItemsToMap(data.toJS()),
           isLoading: false,
         })
-      )
-      .on('error', (_, __, err) => console.log('error', err)); //eslint-disable-line
+      );
   }
 
   filterMetaData = () => {

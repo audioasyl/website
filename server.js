@@ -11,8 +11,8 @@ import { facebookStartegy } from './backend/oauthStrategies';
 import registerAuthRoutes from './backend/controllers/authController';
 import registerFavouriteTagsRoutes from './backend/controllers/likedTagItemsController';
 
-import { hostname, port } from './app/config/api';
-
+export const port = process.env.PORT || 8000;
+export const hostname = process.env.HOST || 'localhost';
 const logType = process.env.AUDIOASYL_LOG_TYPE || 'dev';
 const sessionSecret = process.env.AUDIOASYL_SESSION_SECRET || 'audioasyl_session';
 

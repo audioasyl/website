@@ -4,6 +4,7 @@ import { map } from 'lodash';
 import Icon from '../Icon';
 import Header from '../header/Header';
 import { getLikes } from '../../utils';
+import superFetch from '../../superFetch';
 import { tagCategoryWithTagItems } from '../../queries/tagCategory';
 import backgroundUrl1 from '../../../public/images/wallpapers/background1.jpg';
 import backgroundUrl2 from '../../../public/images/wallpapers/background2.JPG';
@@ -41,11 +42,11 @@ class TileCarousel extends React.Component {
 
     getLikes()
       .then(({ likes }) => this.setState({ likes }))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err)); // eslint-disable-line
 
-    tagCategoryWithTagItems([category], ['id'])
-      .fetch()
-      .on('fetch', (_, __, data) => {
+    superFetch(
+      tagCategoryWithTagItems([category], ['id']),
+      data => {
         const categories = data.toJS()[0];
         const tagItems = map(categories.tag_items, item => item.id);
 
@@ -54,8 +55,7 @@ class TileCarousel extends React.Component {
           categories,
           tagItems,
         });
-      })
-      .on('error', (_, __, err) => console.log('error', err));
+      });
   }
 
   componentDidMount = () => {
@@ -75,7 +75,7 @@ class TileCarousel extends React.Component {
   }
 
   detectKey = e => {
-    switch (e.keyCode) {
+    switch (e.keyCode) { // eslint-disable-line
     case 37:
       this.moveCarousel(-1);
       break;

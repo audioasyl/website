@@ -1,3 +1,3 @@
-import AppRouter from '../app/AppRouter';
+import { Routes } from '../app/AppRouter';
 
-export default AppRouter();
+export default Routes();

@@ -19,7 +19,7 @@ class LikeButton extends React.Component {
   onLikeClick = e => {
     e.preventDefault();
     if (this.state.isLiked) {
-      fetch(`/dislike/${this.props.itemID}`, { method: 'DELETE', credentials: 'same-origin' })
+      fetch(url(`/dislike/${this.props.itemID}`), { method: 'DELETE', credentials: 'same-origin' })
         .then(res => {
           if (res.ok) {
             this.setState({ isLiked: false });
@@ -28,7 +28,7 @@ class LikeButton extends React.Component {
             this.hideErrorMesg();
           }
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error(err)); // eslint-disable-line
     } else {
       fetch(url('/like'), {
         body: JSON.stringify({ tagId: this.props.itemID }),

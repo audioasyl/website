@@ -7,16 +7,18 @@ import TileDetails from './components/tileDetail/TileDetails';
 import TileCarousel from './components/tileDetail/TileCarousel';
 import AudioasylPlayer from './components/player/AudioasylPlayer';
 
-const AppRouter = () => (
-  <Router history={browserHistory}>
-    <Route path="/" component={AudioasylPlayer} >
-      <IndexRoute component={Audioasyl} />
-      <Route path=":category/details/:id" component={TileCarousel}>
-        <IndexRoute component={TileDetails} />
-      </Route>
+export const Routes = () => (
+  <Route path="/" component={AudioasylPlayer} >
+    <IndexRoute component={Audioasyl} />
+    <Route path=":category/details/:id" component={TileCarousel}>
+      <IndexRoute component={TileDetails} />
     </Route>
-    <Route path="/contact" component={Contact} />
-  </Router>
+    <Route path="contact" component={Contact} />
+  </Route>
+);
+
+const AppRouter = () => (
+  <Router history={browserHistory}>{Routes()}</Router>
 );
 
 export default AppRouter;

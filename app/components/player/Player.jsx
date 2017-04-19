@@ -7,6 +7,7 @@ import moment from 'moment';
 import { recordFilesForTagItems } from '../../queries/recordItem';
 import { recordFileToMap } from '../../parsers/recordFile';
 import { play, getCurrentSet } from '../../utils';
+import superFetch from '../../superFetch';
 import VolumeBar from './VolumeBar';
 import Icon from '../Icon';
 
@@ -22,7 +23,7 @@ class Player extends React.Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.context.location.query.id && this.fetchData(this.context.location.query.id);
   }
 
@@ -76,10 +77,9 @@ class Player extends React.Component {
   }
 
   fetchData = id =>
-    recordFilesForTagItems([id])
-      .offset(this.state.offset).limit(LIMIT)
-      .fetch()
-      .on('fetch', (_, __, data) => {
+    superFetch(
+      recordFilesForTagItems([id]).offset(this.state.offset).limit(LIMIT),
+      data => {
         this.setState({
           track: recordFileToMap(data.toJS()),
           offset: this.state.offset + LIMIT,
@@ -88,8 +88,7 @@ class Player extends React.Component {
         });
 
         this.buildPlayer();
-      })
-      .on('error', (_, __, err) => console.log('error', err));
+      });
 
   renderTrackPosition = (track, position, duration) => {
     this.setState({

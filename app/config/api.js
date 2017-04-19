@@ -1,6 +1,9 @@
 const ENV = process ? process.env : {};
 
-export const port = ENV.PORT || 8000;
-export const hostname = ENV.HOST_NAME || 'localhost';
+const hostname = ENV.HOST_NAME || 'localhost';
+const port = ENV.PORT || '8000';
 
-export const url = path => `http://${hostname}:${port}${path}`;
+export const url = path => {
+  console.log(hostname, port);
+  return `http://${hostname}:${port}${path}`
+};
