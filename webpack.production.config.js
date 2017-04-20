@@ -39,7 +39,7 @@ module.exports = {
 			'process.env': {
 				'NODE_ENV': '"production"',
         'HOST_NAME': JSON.stringify(process.env.HOST_NAME),
-			}
+			},
 		}),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {

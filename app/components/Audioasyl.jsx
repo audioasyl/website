@@ -40,7 +40,7 @@ class Audioasyl extends React.Component {
   fetchRepositoryFiles = () =>
     superFetch(
       onlyFreshRecords(recordFiles([])),
-      data => this.setState({ freshRecordIds: freshRecordsToMap(data.toJS()) }),
+      data => this.setState({ freshRecordIds: freshRecordsToMap(data) }),
     );
 
   loadData = () => {
@@ -48,8 +48,8 @@ class Audioasyl extends React.Component {
     superFetch(
       tagCategoriesWithTagItemsAndSchema(['authors', 'series', 'genre']),
       data => {
-        this.setState({ categories: tagCategoriesToMap(data.toJS()) });
-        this.loadMetaData(pickTegItemIds(data.toJS()));
+        this.setState({ categories: tagCategoriesToMap(data) });
+        this.loadMetaData(pickTegItemIds(data));
       });
   }
 
@@ -58,7 +58,7 @@ class Audioasyl extends React.Component {
       tagItemsWithMetaData(ids),
       data =>
         this.setState({
-          metaData: tagItemsToMap(data.toJS()),
+          metaData: tagItemsToMap(data),
           isLoading: false,
         })
       );

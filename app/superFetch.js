@@ -18,6 +18,10 @@ const checkState = key => state[key] && !state[key].err;
 const pending = () =>
   !!find(requests, req => req);
 
+export const getState = () => state;
+
+export const initState = data => (state = data);
+
 export const resolveAll = () =>
   new Promise(resolve => {
     if (pending()) {
@@ -28,6 +32,12 @@ export const resolveAll = () =>
   });
 
 export default (request, success, error = errHandler) => {
+  /* eslint-disable no-underscore-dangle */
+  if (typeof window !== 'undefined' && window.__PRELOADED_STATE__) {
+    state = window.__PRELOADED_STATE__;
+    delete window.__PRELOADED_STATE__;
+  }
+
   if (checkState(request.getCollectionUrl())) {
     return success(state[request.getCollectionUrl()].data);
   }
@@ -36,10 +46,10 @@ export default (request, success, error = errHandler) => {
 
   return request
     .on('fetch', (_, __, data) => {
-      setState({ [request.getCollectionUrl()]: { data, err: undefined } });
+      setState({ [request.getCollectionUrl()]: { data: data.toJS(), err: undefined } });
       requests[request.getCollectionUrl()] = undefined;
       !pending() && resolveCallback();
-      success(data);
+      success(data.toJS());
     })
     .on('error', (_, __, err) => {
       setState({ [request.getCollectionUrl()]: { err } });

@@ -24,6 +24,9 @@ class TileDetails extends React.Component {
   componentWillMount = () => {
     this.fetchData(this.props);
     this.fetchSchema(this.props);
+  }
+
+  componentDidMount = () => {
     !this.state.id && this.setState({ id: this.context.router.params.id });
   }
 
@@ -46,7 +49,7 @@ class TileDetails extends React.Component {
       tagCategoriesSchemas().where('key', 'eq', props.router.params.category),
       data => {
         this.setState({
-          category: tagCategoriesToMap(data.toJS())[props.router.params.category],
+          category: tagCategoriesToMap(data)[props.router.params.category],
           isCategoryLoading: Status.LOADED,
         });
       },
@@ -60,7 +63,7 @@ class TileDetails extends React.Component {
     this.setState({ isItemLoading: Status.LOADING });
     superFetch(
       tagItemsWithMetaData([props.router.params.id]),
-      data => this.setState({ item: data.toJS()[0], isItemLoading: Status.LOADED }),
+      data => this.setState({ item: data[0], isItemLoading: Status.LOADED }),
       err => {
         this.setState({ isItemLoading: Status.ERROR });
         console.log('error', err); // eslint-disable-line

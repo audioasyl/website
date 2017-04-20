@@ -40,14 +40,10 @@ class TileCarousel extends React.Component {
       img: images[Math.floor(Math.random() * images.length)],
     });
 
-    getLikes()
-      .then(({ likes }) => this.setState({ likes }))
-      .catch(err => console.error(err)); // eslint-disable-line
-
     superFetch(
       tagCategoryWithTagItems([category], ['id']),
       data => {
-        const categories = data.toJS()[0];
+        const categories = data[0];
         const tagItems = map(categories.tag_items, item => item.id);
 
         this.setState({
@@ -60,6 +56,10 @@ class TileCarousel extends React.Component {
 
   componentDidMount = () => {
     document.body.addEventListener('keyup', this.detectKey);
+
+    getLikes()
+      .then(({ likes }) => this.setState({ likes }))
+      .catch(err => console.error(err)); // eslint-disable-line
   }
 
   componentWillUnmount = () => {

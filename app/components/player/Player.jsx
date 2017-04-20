@@ -81,7 +81,7 @@ class Player extends React.Component {
       recordFilesForTagItems([id]).offset(this.state.offset).limit(LIMIT),
       data => {
         this.setState({
-          track: recordFileToMap(data.toJS()),
+          track: recordFileToMap(data),
           offset: this.state.offset + LIMIT,
           channelId: this.context.location.query.channel_id,
           accessToken: 'demo',

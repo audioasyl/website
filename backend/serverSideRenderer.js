@@ -4,7 +4,7 @@ import { XMLHttpRequest } from 'xmlhttprequest';
 import Helmet from 'react-helmet';
 import React from 'react';
 
-import { resolveAll } from '../app/superFetch';
+import { resolveAll, getState } from '../app/superFetch';
 import index from '../index.html';
 import routes from './routes';
 
@@ -14,7 +14,7 @@ export default function (req, res) {
   if (typeof window === 'undefined') {
     global.window = {
       location: {
-        href: `${protocol(req)}://${req.headers.host}${req.originalUrl}`,
+        href: `${protocol(req)}://${req.headers.host}${req.baseUrl}`,
       },
     };
   }
@@ -33,7 +33,7 @@ export default function (req, res) {
             '#audioasylRoot',
             renderToString(<RouterContext {...renderProps} />)
           );
-          res.status(200).send(replaceHeaders(html, Helmet.renderStatic()));
+          res.status(200).send(appendPreloadState(replaceHeaders(html, Helmet.renderStatic())));
         }
       );
     } else {
@@ -52,3 +52,6 @@ const replaceHeaders = (html, headers) => {
 };
 
 const protocol = req => (req.connection.encrypted ? 'https' : 'http');
+
+const appendPreloadState = html =>
+  html.replace('"<preloadedState>"', JSON.stringify(getState()).replace(/</g, '\\u003c'));

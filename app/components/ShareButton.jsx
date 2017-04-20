@@ -2,16 +2,13 @@ import React, { PropTypes } from 'react';
 
 // import './ShareButton.scss';
 class ShareButton extends React.Component {
-  componentWillMount() {
-    console.log('dupa');
-  }
 
   onClink = () => {
-    FB.ui({
+    FB.ui({ // eslint-disable-line no-undef
       method: 'share',
       // display: 'popup',
       href: 'http://audioasyl.dokkunew.swmansion.com',
-    }, function(response){});
+    }, response => {});
   }
 
   render() {
