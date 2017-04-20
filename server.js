@@ -46,11 +46,7 @@ app.use(passport.session());
 registerAuthRoutes(app, passport);
 registerFavouriteTagsRoutes(app);
 
-app.use('*', (req, res) => {
-  console.log('qweeeeeeeeqewqeqeqeqe');
-  renderOnServer(req, res);
-});
-// app.use('/', (req, res) => res.sendFile(path.join(process.cwd(), 'index.html')));
+app.use('*', (req, res) => renderOnServer(req, res));
 
 app.listen(port, hostname, () => {
   /* eslint-disable */

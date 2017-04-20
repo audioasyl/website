@@ -57,7 +57,7 @@ class Player extends React.Component {
       .then(response => {
         this.setState({ metaData: response.getMetadata() });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err)); // eslint-disable-line
   }
 
   buildPlayer = () => {
@@ -83,7 +83,7 @@ class Player extends React.Component {
         this.setState({
           track: recordFileToMap(data.toJS()),
           offset: this.state.offset + LIMIT,
-          channelId: this.context.location.query.channel_id, // TODO replace with audioasyl id
+          channelId: this.context.location.query.channel_id,
           accessToken: 'demo',
         });
 
@@ -127,7 +127,7 @@ class Player extends React.Component {
             <img
               className="Player-cover-img"
               src=""
-              alt={""}
+              alt=""
             />
             <div>{this.state.metaData.artist}</div>
           </div>
