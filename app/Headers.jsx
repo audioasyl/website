@@ -11,7 +11,7 @@ const Headers = ({ title, ogTitle, ogDescription, ogImage }) => (
     />
     <meta
       property="og:type"
-      content="article"
+      content="website"
     />
     <meta
       property="og:title"

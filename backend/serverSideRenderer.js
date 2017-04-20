@@ -14,7 +14,7 @@ export default function (req, res) {
   if (typeof window === 'undefined') {
     global.window = {
       location: {
-        href: req.url,
+        href: `${protocol(req)}://${req.headers.host}${req.originalUrl}`,
       },
     };
   }
@@ -50,3 +50,5 @@ const replaceHeaders = (html, headers) => {
 
   return html.replace('<meta property="audioasyl:headers" />', headersHtml);
 };
+
+const protocol = req => (req.connection.encrypted ? 'https' : 'http');

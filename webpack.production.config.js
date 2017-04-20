@@ -10,7 +10,7 @@ loaders.push({
 	test: /\.scss$/,
 	loader: ExtractTextPlugin.extract({
 		fallback: 'style-loader',
-		use : 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded',
+		use: 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded',
 	}),
 	exclude: ['node_modules'],
 });
@@ -28,7 +28,7 @@ module.exports = {
 		chunkFilename: '[name].[id].[ext]',
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.json'],
+		extensions: ['.js', '.jsx'],
 	},
 	module: {
 		loaders,
@@ -37,7 +37,8 @@ module.exports = {
 		new WebpackCleanupPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"production"',
+				'NODE_ENV': '"production"',
+        'HOST_NAME': JSON.stringify(process.env.HOST_NAME),
 			}
 		}),
 		new webpack.optimize.UglifyJsPlugin({

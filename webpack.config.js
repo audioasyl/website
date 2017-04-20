@@ -61,6 +61,13 @@ module.exports = {
       filename: 'style.css',
       allChunks: true,
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: process.env.NODE_ENV,
+        HOST_NAME: process.env.HOST_NAME,
+        PORT: process.env.PORT,
+      },
+    }),
     new DashboardPlugin(),
     new HtmlWebpackPlugin({
       template: './app/template.html',
