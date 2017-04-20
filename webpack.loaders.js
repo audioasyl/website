@@ -1,5 +1,5 @@
 module.exports = [
-	{
+  {
 		test: /\.jsx?$/,
 		exclude: /(node_modules|bower_components|public\/)/,
 		loader: "babel-loader",
@@ -26,11 +26,6 @@ module.exports = [
 		test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
 		exclude: /(node_modules|bower_components)/,
 		loader: "url-loader?limit=10000&mimetype=image/svg+xml"
-	},
-	{
-		test: /\.gif/,
-		exclude: /(node_modules|bower_components)/,
-		loader: "url-loader?limit=10000&mimetype=image/gif"
 	},
 	{
 		test: /\.(jpg|JPG|jpeg)/,

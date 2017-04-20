@@ -1,6 +1,7 @@
 import { match, RouterContext } from 'react-router';
 import { renderToString } from 'react-dom/server';
 import { XMLHttpRequest } from 'xmlhttprequest';
+import Helmet from 'react-helmet';
 import React from 'react';
 
 import { resolveAll } from '../app/superFetch';
@@ -25,12 +26,14 @@ export default function (req, res) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       renderToString(<RouterContext {...renderProps} />);
+      Helmet.renderStatic();
       resolveAll()
         .then(() => {
-          res.status(200).send(
-            index.replace('#audioasylRoot',
-            renderToString(<RouterContext {...renderProps} />))
+          const html = index.replace(
+            '#audioasylRoot',
+            renderToString(<RouterContext {...renderProps} />)
           );
+          res.status(200).send(replaceHeaders(html, Helmet.renderStatic()));
         }
       );
     } else {
@@ -38,3 +41,12 @@ export default function (req, res) {
     }
   });
 }
+
+const replaceHeaders = (html, headers) => {
+  const headersHtml = `
+    ${headers.title.toString()}
+    ${headers.meta.toString()}
+  `;
+
+  return html.replace('<meta property="audioasyl:headers" />', headersHtml);
+};

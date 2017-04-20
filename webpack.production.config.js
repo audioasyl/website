@@ -1,5 +1,6 @@
-var webpack = require('webpack');
+/* eslint-disable */
 var path = require('path');
+var webpack = require('webpack');
 var loaders = require('./webpack.loaders');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
@@ -7,8 +8,11 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 loaders.push({
 	test: /\.scss$/,
-	loader: ExtractTextPlugin.extract({fallback: 'style-loader', use : 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded'}),
-	exclude: ['node_modules']
+	loader: ExtractTextPlugin.extract({
+		fallback: 'style-loader',
+		use : 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded',
+	}),
+	exclude: ['node_modules'],
 });
 
 module.exports = {
@@ -24,16 +28,16 @@ module.exports = {
 		chunkFilename: '[name].[id].[ext]',
 	},
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.js', '.jsx', '.json'],
 	},
 	module: {
-		loaders
+		loaders,
 	},
 	plugins: [
 		new WebpackCleanupPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"production"'
+				NODE_ENV: '"production"',
 			}
 		}),
 		new webpack.optimize.UglifyJsPlugin({
@@ -41,13 +45,13 @@ module.exports = {
 				warnings: false,
 				screw_ie8: true,
 				drop_console: true,
-				drop_debugger: true
+				drop_debugger: true,
 			}
 		}),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new ExtractTextPlugin({
 				filename: 'style.css',
-				allChunks: true
+				allChunks: true,
 		}),
 		new HtmlWebpackPlugin({
 			template: './app/template.html',

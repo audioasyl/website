@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
+import Helmet from 'react-helmet';
+
 import Player from './Player';
 
 import './AudioasylPlayer.scss';
@@ -17,6 +19,14 @@ class AudioasylPlayer extends React.Component {
 
     return (
       <div className={audioasylPlayerClasses} >
+        <Helmet>
+          <title>Audioasyl</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+          />
+          <meta charSet="utf-8" />
+        </Helmet>
         {this.props.children}
         <Player />
       </div>

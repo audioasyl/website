@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 import logo from '../../../public/images/logo.png';
 
 import './LogoButton.scss';
-const LogoButton = (props, { location }) => (
+const LogoButton = (props, { location }) => {
+  console.log(logo);
+  return (
   <div className="LogoButton">
     <Link
       to={{
@@ -18,7 +20,7 @@ const LogoButton = (props, { location }) => (
       <img className="LogoButton-logo" src={logo} alt="RadioKit" />
     </Link>
   </div>
-);
+)};
 
 
 LogoButton.contextTypes = {

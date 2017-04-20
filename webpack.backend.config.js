@@ -22,8 +22,23 @@ module.exports = {
       },
       { test: /\.html$/, loader: 'html-loader' },
       {
-        test: /\.(css|scss|jpg|JPG|jpeg|png|gif|svg|ttf|woff|eot)$/,
+        test: /\.(css|scss|ttf|woff|eot)$/,
         loader: 'ignore-loader',
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'url-loader?limit=100000000&mimetype=image/svg+xml',
+      },
+      {
+        test: /\.(jpg|JPG|jpeg)/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'url-loader?limit=100000000&mimetype=image/jpg',
+      },
+      {
+        test: /\.png/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'url-loader?limit=100000000&mimetype=image/png',
       },
     ],
   },
