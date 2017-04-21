@@ -21,6 +21,11 @@
     text-align: center;
     font-size: 2.5rem;
     display: flex;
+
+    .Description-header-buttons {
+      align-items: center;
+      display: flex;
+    }
   }
 
   .Description-content {

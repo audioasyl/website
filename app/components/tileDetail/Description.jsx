@@ -56,12 +56,14 @@ const Description = ({
       <Scrollbars style={{ height: '100%' }}>
         <div className="Description-header">
           {header}
-          <LikeButton
-            itemID={audioID}
-            storageKey={`${router.params.category}_likes`}
-            likes={likes}
-          />
-          <ShareButton />
+          <div className="Description-header-buttons">
+            <ShareButton />
+            <LikeButton
+              itemID={audioID}
+              storageKey={`${router.params.category}_likes`}
+              likes={likes}
+            />
+          </div>
         </div>
         <div className="Description-content">
           {about && (
