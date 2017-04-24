@@ -37,6 +37,7 @@ module.exports = {
 		new WebpackCleanupPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
+				'BROWSER': 'true',
 				'NODE_ENV': '"production"',
         'HOST_NAME': JSON.stringify(process.env.HOST_NAME),
 			},

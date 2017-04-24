@@ -17,11 +17,11 @@ render(
 
 if (module && module.hot) {
   module.hot.accept('./AppRouter', () =>
-  render(
-    <AppContainer>
-      <AppRouter />
-    </AppContainer>,
-    document.querySelector('#audioasylRoot'),
-  ),
-);
+    render(
+      <AppContainer>
+        <AppRouter />
+      </AppContainer>,
+      document.querySelector('#audioasylRoot'),
+    ),
+  );
 }

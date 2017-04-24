@@ -11,15 +11,12 @@ import { tagCategoriesToMap } from '../parsers/category';
 import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
-import superFetch, { initState } from '../superFetch';
+import superFetch from '../superFetch';
 import Category from './Category';
 import './Audioasyl.scss';
 class Audioasyl extends React.Component {
-  /* eslint-disable no-underscore-dangle */
   constructor(props) {
     super(props);
-    initState(window.__PRELOADED_STATE__);
-    delete window.__PRELOADED_STATE__;
     this.state = {
       searchContext: {
         artist: artists => this.setState({ artists }),

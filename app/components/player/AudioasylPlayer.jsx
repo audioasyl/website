@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import Helmet from 'react-helmet';
 
+import ContentLoader from '../ContentLoader';
 import Player from './Player';
 
 import './AudioasylPlayer.scss';
@@ -27,6 +28,7 @@ class AudioasylPlayer extends React.Component {
           />
           <meta charSet="utf-8" />
         </Helmet>
+        {!process.env.BROWSER && <ContentLoader />}
         {this.props.children}
         <Player />
       </div>

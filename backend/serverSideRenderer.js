@@ -11,12 +11,10 @@ import routes from './routes';
 global.XMLHttpRequest = XMLHttpRequest;
 
 export default function (req, res) {
-  if (typeof window === 'undefined') {
-    global.window = {
-      location: {
-        href: `${protocol(req)}://${req.headers.host}${req.baseUrl}`,
-      },
-    };
+  const href = `${protocol(req)}://${req.headers.host}${req.baseUrl}`;
+
+  if (typeof window === 'undefined' || window.location.href !== href) {
+    global.window = { location: { href } };
   }
 
   match({ routes, location: req.originalUrl }, (error, redirectLocation, renderProps) => {

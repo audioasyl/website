@@ -20,7 +20,7 @@ const pending = () =>
 
 export const getState = () => state;
 
-export const initState = data => (state = data || state);
+export const initState = data => (state = data || state)
 
 export const resolveAll = () =>
   new Promise(resolve => {
@@ -32,12 +32,8 @@ export const resolveAll = () =>
   });
 
 export default (request, success, error = errHandler) => {
-  /* eslint-disable no-underscore-dangle */
-  if (typeof window !== 'undefined' && window.__PRELOADED_STATE__) {
-    state = window.__PRELOADED_STATE__;
-    delete window.__PRELOADED_STATE__;
-  }
-
+  initState(window.__PRELOADED_STATE__);
+  
   if (checkState(request.getCollectionUrl())) {
     return success(state[request.getCollectionUrl()].data);
   }
