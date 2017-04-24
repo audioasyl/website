@@ -20,7 +20,7 @@ const pending = () =>
 
 export const getState = () => state;
 
-export const initState = data => (state = data);
+export const initState = data => (state = data || {});
 
 export const resolveAll = () =>
   new Promise(resolve => {

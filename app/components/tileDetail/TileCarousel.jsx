@@ -4,7 +4,7 @@ import { map } from 'lodash';
 import Icon from '../Icon';
 import Header from '../header/Header';
 import { getLikes } from '../../utils';
-import superFetch from '../../superFetch';
+import superFetch, { initState } from '../../superFetch';
 import { tagCategoryWithTagItems } from '../../queries/tagCategory';
 import backgroundUrl1 from '../../../public/images/wallpapers/background1.jpg';
 import backgroundUrl2 from '../../../public/images/wallpapers/background2.JPG';
@@ -26,6 +26,9 @@ import './TileCarousel.scss';
 class TileCarousel extends React.Component {
   constructor(props) {
     super(props);
+    /* eslint-disable no-underscore-dangle */
+    initState(window.__PRELOADED_STATE__);
+    delete window.__PRELOADED_STATE__;
     this.state = {
       activeIdx: 0,
       likes: [],
