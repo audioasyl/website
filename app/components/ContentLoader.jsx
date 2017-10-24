@@ -16,20 +16,22 @@ const ContentLoader = () => {
       left: 0,
       top: 0,
     };
+    // FIXME!!! never ends loading in dev
+  return (<div />);
 
-  return (
-    <div
-      className="ContentLoader"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        ...serverStyles,
-      }}
-    >
-      <img className="ContentLoader-spinner" src={spiner} alt="spiner" />
-    </div>
-  );
+  // return (
+  //   <div
+  //     className="ContentLoader"
+  //     style={{
+  //       display: 'flex',
+  //       alignItems: 'center',
+  //       justifyContent: 'center',
+  //       ...serverStyles,
+  //     }}
+  //   >
+  //     <img className="ContentLoader-spinner" src={spiner} alt="spiner" />
+  //   </div>
+  // );
 };
 
 export default ContentLoader;

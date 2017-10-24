@@ -22,6 +22,7 @@ class Category extends React.Component {
         metaDataItemsToProperties(metaData[tagItem.id].metadata_items, category.metadata_schemas);
 
       itemProperties.isFresh = freshRecordIds.indexOf(tagItem.id) >= 0;
+      itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
 
       return (
         <AudioTile
