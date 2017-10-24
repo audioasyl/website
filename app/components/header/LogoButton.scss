@@ -1,9 +1,25 @@
 @import "ui/variables";
 
+a:-webkit-any-link{
+  text-decoration: none;
+}
 .LogoButton {
+  text-align: center;
   margin-left: 2rem;
+  color: $linkColor;
+  font-size: 2.7rem;
+  font-family: RobotoMedium;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  padding-left: 2.7rem;
 
-  .LogoButton-logo {
-    width: 6rem;
+  &:hover {
+    transition: border 0.5s ease-out;
+    color: $linkColorActive;
+    transition: all 0.3s ease;
+    font-size: 2.9rem;
   }
 }
+

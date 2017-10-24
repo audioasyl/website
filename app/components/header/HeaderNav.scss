@@ -13,18 +13,15 @@
   }
 
   .Header-nav-item {
-    border-bottom: 0.1rem solid transparent;
-    transition: border 0.5s ease-out;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 1rem 5rem;
+    padding: 1rem 6rem;
     text-align: center;
-    font-size: 1.8rem;
     color: $linkColor;
+    font-size: 2.7rem;
+    font-family: RobotoMedium;
 
     &:hover {
-      border-bottom: 0.1rem solid $linkColor;
-      transition: border 0.5s ease-out;
       color: $linkColorActive;
     }
 
@@ -36,13 +33,13 @@
 
     @media #{$audioasyl-655} {
       width: auto;
-      font-size: 1.2rem;
-      padding: 1rem 1.5rem;
+      font-size: 2.5rem;
+      padding: 1rem 4rem;
     }
 
     @media #{$audioasyl-810} {
-      font-size: 1.6rem;
-      padding: 1rem 1.7rem;
+      font-size: 2.7rem;
+      padding: 1rem 7rem;
     }
 
     &.Header-nav--active {

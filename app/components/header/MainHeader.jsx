@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 
-import Login from './Login';
-import Search from './Search';
+// import Login from './Login';
+// import Search from './Search';
 import HeaderNav from './HeaderNav';
 import LogoButton from './LogoButton';
 import HeaderDropdown from './HeaderDropdown';
@@ -28,13 +28,13 @@ const Header = ({ onFilterChange, setSearchText }) => (
             options={artistsOptions}
             href="#series"
             type="series"
-            label="Show"
+            label="News"
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
             className="Header-nav-item"
             options={genresOptions}
-            label="Genres"
+            label="Show"
             href="#genre"
             type="genre"
           />
@@ -46,12 +46,17 @@ const Header = ({ onFilterChange, setSearchText }) => (
             label="Hosts"
             type="hosts"
           />
-          <Link to="/contact" className="Header-nav-item" activeClassName="Header-nav-item--active">
-            Contact
-          </Link>
-          <Login />
+          <HeaderDropdown
+            onFilterChange={onFilterChange}
+            className="Header-nav-item"
+            options={albumsOptions}
+            href="#authors"
+            label="Style"
+            type="hosts"
+          />
+          {/* <Login /> */}
         </HeaderNav>
-        <Search setSearchText={setSearchText} />
+        {/* <Search setSearchText={setSearchText} /> */}
       </div>
     </div>
   </div>

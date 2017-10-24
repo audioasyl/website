@@ -13,6 +13,7 @@ import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
 import superFetch from '../superFetch';
 import Category from './Category';
+import Footer from './footer/Footer';
 import './Audioasyl.scss';
 class Audioasyl extends React.Component {
   constructor(props) {
@@ -128,6 +129,7 @@ class Audioasyl extends React.Component {
           setSearchText={searchText => this.setState({ searchText })}
         />
         {this.renderCategories()}
+        <Footer />
       </div>
     );
   }

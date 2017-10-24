@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import logo from '../../../public/images/logo.png';
 
 import './LogoButton.scss';
 const LogoButton = (props, { location }) => (
@@ -15,7 +14,7 @@ const LogoButton = (props, { location }) => (
         },
       }}
     >
-      <img className="LogoButton-logo" src={logo} alt="RadioKit" />
+      <div className="LogoButton">AUDIOASYL</div>
     </Link>
   </div>
 );

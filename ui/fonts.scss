@@ -6,6 +6,11 @@ $path: './../public/fonts';
 }
 
 @font-face {
+    font-family: 'RobotoMedium';
+    src: url($path + '/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'RobotoRegular';
     src: url($path + '/Roboto-Regular.ttf') format('truetype');
 }
