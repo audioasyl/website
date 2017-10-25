@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import './LogoButton.scss';
 const LogoButton = (props, { location }) => (
-  <div className="LogoButton">
+  <div>
     <Link
       to={{
         pathname: '/',

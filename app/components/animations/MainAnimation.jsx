@@ -21,7 +21,7 @@ export default class MainAnimation extends Component {
 
   render() {
     return (
-      <div style={{ fontSize: 1350, fontFamily: 'RobotoBold', top: -350, position: 'relative', height: 1000 }}>
+      <div style={{ fontSize: 1250, fontFamily: 'RobotoBold', top: -250, position: 'relative', height: 1000 }}>
         {/* <canvas id="animationCanvas" width="200" height="100">
           Your browser does not support the HTML5 canvas tag.
         </canvas>

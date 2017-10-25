@@ -16,28 +16,28 @@
 
 .Category-section {
   z-index: 2;
-  height: 6.5rem;
   overflow: hidden;
-  font-size: 2.2rem;
   position: relative;
-  margin-bottom: -0.5rem;
   text-transform: uppercase;
   font-family: 'RobotoRegular';
+  background: $black;
+  padding: 2rem 0;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
 
   .Category-section-title {
-    height: 100%;
     color: $white;
     display: block;
-    padding: 2rem 0;
-    text-align: center;
-    background: $black;
+    text-align: left;
     text-decoration: none;
     transition: all 0.3s ease;
-
+    padding-left: 9.4rem;
+    font-size: 7rem;
+    
     &:hover {
-      margin-top: -0.4rem;
-      font-size: 2.7rem;
-      transition: all 0.3s ease;
+      color: $red;
+      transition: all 0.2s ease;
     }
   }
 }

@@ -6,10 +6,49 @@ import { map, size, sortBy, lowerCase } from 'lodash';
 import AudioTile from './AudioTile';
 import TilePlaceholder from './TilePlaceholder';
 import { metaDataItemsToProperties } from '../parsers/metadataItems';
+import CategoryContent from './CategoryContent';
 
 import './Category.scss';
+
+const makeCategoryName = source => {
+  switch (source.toLowerCase()) {
+  case 'show': return 'NEXT SHOWS';
+  case 'author': return 'ARTISTS';
+  case 'genre': return 'GENRES';
+  default: return source;
+  }
+};
+
 class Category extends React.Component {
-  renderTiles = () => {
+  // renderTiles = () => {
+    // const {
+    //   likes,
+    //   category,
+    //   metaData,
+    //   freshRecordIds,
+    // } = this.props;
+
+    // return map(sortBy(category.tag_items, item => lowerCase(item.name)), tagItem => {
+    //   const itemProperties =
+    //     metaDataItemsToProperties(metaData[tagItem.id].metadata_items, category.metadata_schemas);
+
+    //   itemProperties.isFresh = freshRecordIds.indexOf(tagItem.id) >= 0;
+    //   itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
+
+    //   return (
+    //     <AudioTile
+    //       likes={likes}
+    //       audio={tagItem}
+    //       key={tagItem.id}
+    //       type={category.key}
+    //       properties={itemProperties}
+    //       schema={category.metadata_schemas}
+    //     />
+    //   );
+    // });
+  // };
+
+  renderContent = () => {
     const {
       likes,
       category,
@@ -25,17 +64,17 @@ class Category extends React.Component {
       itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
 
       return (
-        <AudioTile
+        <CategoryContent
           likes={likes}
           audio={tagItem}
-          key={tagItem.id}
           type={category.key}
           properties={itemProperties}
+          key={tagItem.id}
           schema={category.metadata_schemas}
         />
       );
     });
-  };
+  }
 
   render() {
     const { category } = this.props;
@@ -43,18 +82,25 @@ class Category extends React.Component {
       <div className="Category">
         <div className="Category-anchor" id={category.key} ref="anchor" />
         <div className="Category-section">
-          <Link to="#" className="Category-section-title">{category.name}</Link>
+          <Link to="#" className="Category-section-title">{makeCategoryName(category.name)}</Link>
         </div>
+        {
+          // size(category.tag_items)
+          //   ? (
+          //     <Masonry
+          //       options={masonryOptions}
+          //       className="Category-tiles"
+          //     >
+          //       <div className="grid-sizer" />
+          //       {this.renderTiles()}
+          //     </Masonry>
+          //   )
+          //   : <TilePlaceholder />
+        }
         {
           size(category.tag_items)
             ? (
-              <Masonry
-                options={masonryOptions}
-                className="Category-tiles"
-              >
-                <div className="grid-sizer" />
-                {this.renderTiles()}
-              </Masonry>
+              <div>{this.renderContent()}</div>
             )
             : <TilePlaceholder />
         }
@@ -64,11 +110,11 @@ class Category extends React.Component {
 }
 
 
-const masonryOptions = {
-  percentPosition: true,
-  columnWidth: '.grid-sizer',
-  itemSelector: '.AudioTile',
-};
+// const masonryOptions = {
+//   percentPosition: true,
+//   columnWidth: '.grid-sizer',
+//   itemSelector: '.AudioTile',
+// };
 
 Category.propTypes = {
   likes: PropTypes.array,

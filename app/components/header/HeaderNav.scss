@@ -20,9 +20,14 @@
     color: $linkColor;
     font-size: 2.7rem;
     font-family: RobotoMedium;
+    transition: all 0.3s ease;
 
     &:hover {
       color: $linkColorActive;
+      transition: all 0.3s ease;
+      margin-bottom: -0.6rem;
+      margin-right: -0.6rem;
+      font-size: 2.9rem;
     }
 
     &.Header-nav-item--active {
@@ -33,7 +38,7 @@
 
     @media #{$audioasyl-655} {
       width: auto;
-      font-size: 2.5rem;
+      font-size: 2.7rem;
       padding: 1rem 4rem;
     }
 
