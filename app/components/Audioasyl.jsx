@@ -12,7 +12,9 @@ import { tagItemsToMap } from '../parsers/tagItem';
 import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
 import superFetch from '../superFetch';
-import Category from './Category';
+import News from './categories/News';
+import Artists from './categories/Artists';
+import Genres from './categories/Genres';
 import Footer from './footer/Footer';
 import MainAnimation from './animations/MainAnimation';
 import './Audioasyl.scss';
@@ -118,17 +120,38 @@ class Audioasyl extends React.Component {
     }
   }
 
-  renderCategories = () =>
-    map(this.filterMetaData(), category => (
-      <Category
-        key={category.id}
-        category={category}
-        likes={this.state.likes}
-        metaData={this.state.metaData}
-        freshRecordIds={this.state.freshRecordIds}
-        ref={e => e && this.scrollToElement(e, category)}
-      />
-  ))
+  renderCategories = () => {
+    const categories = this.filterMetaData();
+    console.log(categories);
+    return (
+      <div>
+        <News
+          key={categories.series.id}
+          category={categories.series}
+          likes={this.state.likes}
+          metaData={this.state.metaData}
+          freshRecordIds={this.state.freshRecordIds}
+          ref={e => e && this.scrollToElement(e, categories.series)}
+        />
+        <Artists
+          key={categories.authors.id}
+          category={categories.authors}
+          likes={this.state.likes}
+          metaData={this.state.metaData}
+          freshRecordIds={this.state.freshRecordIds}
+          ref={e => e && this.scrollToElement(e, categories.authors)}
+        />
+        <Genres
+          key={categories.genre.id}
+          category={categories.genre}
+          likes={this.state.likes}
+          metaData={this.state.metaData}
+          freshRecordIds={this.state.freshRecordIds}
+          ref={e => e && this.scrollToElement(e, categories.genre)}
+        />
+      </div>
+    );
+  }
 
   render() {
     if (this.state.isLoading) {

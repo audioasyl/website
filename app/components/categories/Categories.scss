@@ -1,0 +1,87 @@
+@import "ui/variables";
+
+.Category {
+    position: relative;
+    overflow: hidden;
+  
+    .Category-anchor {
+      position: absolute;
+      top: - 7.9rem;
+    }
+  
+    .Category-tiles {
+      margin: 1rem -0.5rem 0.5rem -0.5rem;
+    }
+  }
+  
+  .Category-section {
+    z-index: 2;
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+    font-family: 'RobotoRegular';
+    background: $black;
+    padding: 2rem 0;
+  
+    .Category-title-container {
+      flex-direction: column;
+      justify-content: center;
+      display: flex;
+      float: left;
+  
+      .Category-section-title {
+        color: $white;
+        display: block;
+        text-align: left;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding-left: 9.4rem;
+        font-size: 7rem;
+        
+        &:hover {
+          color: $red;
+          transition: all 0.2s ease;
+        }
+      }
+    }
+
+    .Category-sort-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+
+      .Category-section-title {
+        color: $white;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 7rem;
+        
+        &:hover {
+          color: $red;
+          transition: all 0.2s ease;
+        }
+      }
+    }  
+  }
+  
+.catergory-container {
+  padding: 2rem 0 2rem 9.4rem;
+  background: $white;
+  color: $black;
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding-left: 9.4rem;
+  font-size: 7rem;
+  text-transform: uppercase;
+
+  &:hover {
+      color: $red;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+}

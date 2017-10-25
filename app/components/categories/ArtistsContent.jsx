@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import './CategoryContent.scss';
+import './Categories.scss';
 
-export default class CategoryConent extends React.Component {
+export default class ArtistsConent extends React.Component {
   static propTypes = {
     properties: PropTypes.object,
     likes: PropTypes.array.isRequired,
