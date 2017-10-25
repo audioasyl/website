@@ -5,7 +5,7 @@ import React, { PropTypes } from 'react';
 import './Footer.scss';
 const Footer = ({ onFilterChange, setSearchText }) => (
   <div className="Footer">
-    &nbsp;Welcome my friends! Welcome my friends! Welcome my friends! Welcome my friends!
+    &nbsp;::: Welcome my friends! Welcome my friends! Welcome my friends! Welcome my friends!
   </div>
 );
 

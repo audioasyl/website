@@ -14,6 +14,7 @@ import ContentLoader from './ContentLoader';
 import superFetch from '../superFetch';
 import Category from './Category';
 import Footer from './footer/Footer';
+import MainAnimation from './animations/MainAnimation';
 import './Audioasyl.scss';
 class Audioasyl extends React.Component {
   constructor(props) {
@@ -27,7 +28,10 @@ class Audioasyl extends React.Component {
       searchText: '',
       categories: {},
       distance: Infinity,
+      width: '0',
+      height: '0',
     };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   componentWillMount = () => {
@@ -36,6 +40,19 @@ class Audioasyl extends React.Component {
     getLikes()
       .then(({ likes }) => this.setState({ likes }))
       .catch(err => console.error(err)); // eslint-disable-line
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   fetchRepositoryFiles = () =>
@@ -128,6 +145,7 @@ class Audioasyl extends React.Component {
           onFilterChange={this.buildSearchContext}
           setSearchText={searchText => this.setState({ searchText })}
         />
+        <MainAnimation windowWidth={this.state.width} windowHeight={this.state.height} />
         {this.renderCategories()}
         <Footer />
       </div>
