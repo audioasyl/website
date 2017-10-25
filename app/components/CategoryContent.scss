@@ -2,8 +2,8 @@
 
 .catergory-container {
     padding: 2rem 0 2rem 9.4rem;
-    background: $black;
-    color: $white;
+    background: $white;
+    color: $black;
     display: block;
     text-align: left;
     text-decoration: none;
@@ -11,4 +11,10 @@
     padding-left: 9.4rem;
     font-size: 7rem;
     text-transform: uppercase;
+
+    &:hover {
+        color: $red;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
 }
