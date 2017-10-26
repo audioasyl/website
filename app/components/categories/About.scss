@@ -1,0 +1,23 @@
+@import "ui/variables";
+
+.Category-about {
+  background: $white;
+  color: $black;
+  font-family: RobotoMedium;
+  font-size: 6.7rem;
+
+}
+
+.Category-about-text {
+  font-size: 4.8rem;
+}
+
+.Category-about-footer {
+  height: 9rem;
+}
+
+.Category-about:hover {
+  color: $black;
+  transition: all 0.2s ease;
+  cursor: auto;
+}

@@ -23,7 +23,7 @@ class Artists extends React.Component {
         metaDataItemsToProperties(metaData[tagItem.id].metadata_items, category.metadata_schemas);
 
       itemProperties.isFresh = freshRecordIds.indexOf(tagItem.id) >= 0;
-      itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
+      //itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
 
       return (
         <ArtistsContent
@@ -42,7 +42,7 @@ class Artists extends React.Component {
     const { category } = this.props;
     return (
       <div className="Category">
-        <div className="Category-anchor" id={category.key} ref="anchor" />
+        <div className="Category-anchor" id="hosts" ref="anchor" />
         <div className="Category-section">
           <div className="Category-title-container"><Link to="#" className="Category-section-title">HOSTS</Link></div>
           <div className="Category-sort-container"><Link to="#" className="Category-section-title">A-Z...</Link></div>

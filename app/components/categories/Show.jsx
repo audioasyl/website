@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 import { map, size, sortBy, lowerCase } from 'lodash';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
-import NewsContent from './NewsContent';
+import ShowContent from './ShowContent';
 
-import './News.scss';
+import './Show.scss';
 import './Categories.scss';
 
-class News extends React.Component {
+class Show extends React.Component {
 
   renderContent = () => {
     const {
@@ -26,7 +26,7 @@ class News extends React.Component {
       //itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
 
       return (
-        <NewsContent
+        <ShowContent
           likes={likes}
           audio={tagItem}
           type={category.key}
@@ -42,9 +42,9 @@ class News extends React.Component {
     const { category } = this.props;
     return (
       <div className="Category">
-        <div className="Category-anchor" id="news" ref="anchor" />
+        <div className="Category-anchor" id="show" ref="anchor" />
         <div className="Category-section">
-          <div className="Category-title-container"><Link to="#" className="Category-section-title">NEWS&nbsp;</Link></div>
+          <div className="Category-title-container"><Link to="#" className="Category-section-title">SHOW&nbsp;</Link></div>
           <div className="Category-sort-container"><Link to="#" className="Category-section-title">A-Z...</Link></div>
         </div>
         {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
@@ -53,16 +53,16 @@ class News extends React.Component {
   }
 }
 
-News.propTypes = {
+Show.propTypes = {
   likes: PropTypes.array,
   freshRecordIds: PropTypes.array,
   category: PropTypes.object.isRequired,
   metaData: PropTypes.object.isRequired,
 };
 
-News.defaultProps = {
+Show.defaultProps = {
   freshRecordIds: [],
   likes: [],
 };
 
-export default News;
+export default Show;

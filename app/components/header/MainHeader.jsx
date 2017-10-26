@@ -14,20 +14,12 @@ const Header = ({ onFilterChange, setSearchText }) => (
       <LogoButton />
       <div className="Header-left">
         <HeaderNav>
-          {/* <HeaderDropdown
-            onFilterChange={onFilterChange}
-            className="Header-nav-item"
-            options={newOptions}
-            href="#new"
-            type="new"
-            label="New"
-          /> */}
           <HeaderDropdown
             onFilterChange={onFilterChange}
             className="Header-nav-item"
             options={artistsOptions}
-            href="#series"
-            type="series"
+            href="#news"
+            type="news"
             label="News"
           />
           <HeaderDropdown
@@ -35,14 +27,14 @@ const Header = ({ onFilterChange, setSearchText }) => (
             className="Header-nav-item"
             options={genresOptions}
             label="Show"
-            href="#genre"
-            type="genre"
+            href="#show"
+            type="show"
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
             className="Header-nav-item"
             options={albumsOptions}
-            href="#authors"
+            href="#hosts"
             label="Hosts"
             type="hosts"
           />
@@ -50,9 +42,9 @@ const Header = ({ onFilterChange, setSearchText }) => (
             onFilterChange={onFilterChange}
             className="Header-nav-item"
             options={albumsOptions}
-            href="#authors"
+            href="#style"
             label="Style"
-            type="hosts"
+            type="style"
           />
           {/* <Login /> */}
         </HeaderNav>

@@ -13,8 +13,10 @@ import MainHeader from './header/MainHeader';
 import ContentLoader from './ContentLoader';
 import superFetch from '../superFetch';
 import News from './categories/News';
+import Show from './categories/Show';
 import Artists from './categories/Artists';
 import Genres from './categories/Genres';
+import About from './categories/About';
 import Footer from './footer/Footer';
 import MainAnimation from './animations/MainAnimation';
 import './Audioasyl.scss';
@@ -110,12 +112,12 @@ class Audioasyl extends React.Component {
     }, {});
   }
 
-  scrollToElement = (e, category) => { // eslint-disable-line
+  scrollToElement = (e, key) => { // eslint-disable-line
     if (window.retainScroll) {
       return window.scrollTo(0, restoreScrollPosition());
     }
 
-    if (`#${category.key}` === this.context.location.hash) {
+    if (key === this.context.location.hash) {
       return window.scrollTo(0, e.refs.anchor.parentElement.offsetTop + e.refs.anchor.offsetTop);
     }
   }
@@ -125,28 +127,39 @@ class Audioasyl extends React.Component {
     return (
       <div>
         <News
-          key={categories.series.id}
           category={categories.series}
           likes={this.state.likes}
           metaData={this.state.metaData}
           freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, categories.series)}
+          ref={e => e && this.scrollToElement(e, '#news')}
+        />
+        <Show
+          category={categories.series}
+          likes={this.state.likes}
+          metaData={this.state.metaData}
+          freshRecordIds={this.state.freshRecordIds}
+          ref={e => e && this.scrollToElement(e, '#show')}
         />
         <Artists
-          key={categories.authors.id}
           category={categories.authors}
           likes={this.state.likes}
           metaData={this.state.metaData}
           freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, categories.authors)}
+          ref={e => e && this.scrollToElement(e, '#hosts')}
         />
         <Genres
-          key={categories.genre.id}
           category={categories.genre}
           likes={this.state.likes}
           metaData={this.state.metaData}
           freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, categories.genre)}
+          ref={e => e && this.scrollToElement(e, '#style')}
+        />
+        <About
+          category={categories.genre}
+          likes={this.state.likes}
+          metaData={this.state.metaData}
+          freshRecordIds={this.state.freshRecordIds}
+          ref={e => e && this.scrollToElement(e, 'about')}
         />
       </div>
     );

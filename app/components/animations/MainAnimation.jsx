@@ -35,18 +35,19 @@ export default class MainAnimation extends Component {
   render() {
     return (
       <div className="MainAnimation">
-        {/* <marquee
-          ref={ref => { this.marquee = ref; }}
-          id="footerText"
-          behavior="scroll"
-          direction="left"
-          scrollamount={600}
-          scrolldelay={60}
-          onClick={this.toogleAnimation}
-        >
-          AUDIOASYL
-        </marquee> */}
-        AUDIOASYL
+        <div>
+          <marquee
+            ref={ref => { this.marquee = ref; }}
+            id="footerText"
+            behavior="scroll"
+            direction="left"
+            scrollamount={1600}
+            scrolldelay={60}
+            onClick={this.toogleAnimation}
+          >
+            AUDIOASYL
+          </marquee>
+        </div>
       </div>
     );
   }
