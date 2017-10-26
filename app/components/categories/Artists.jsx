@@ -44,7 +44,8 @@ class Artists extends React.Component {
       <div className="Category">
         <div className="Category-anchor" id={category.key} ref="anchor" />
         <div className="Category-section">
-          <Link to="#" className="Category-section-title">HOSTS</Link>
+          <div className="Category-title-container"><Link to="#" className="Category-section-title">HOSTS</Link></div>
+          <div className="Category-sort-container"><Link to="#" className="Category-section-title">A-Z...</Link></div>
         </div>
         {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
       </div>

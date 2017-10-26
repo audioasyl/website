@@ -44,8 +44,8 @@ class Genres extends React.Component {
       <div className="Category">
         <div className="Category-anchor" id={category.key} ref="anchor" />
         <div className="Category-section">
-          <div className="Category-title-container"><Link to="#" className="Category-section-title" style={{ float: 'left' }}>STYLE</Link></div>
-          <div style={{ width: '100%', height: 100, float: 'left' }} />
+          <div className="Category-title-container"><Link to="#" className="Category-section-title">STYLE</Link></div>
+          <div className="Category-sort-container"><Link to="#" className="Category-section-title">A-Z...</Link></div>
         </div>
         {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
       </div>

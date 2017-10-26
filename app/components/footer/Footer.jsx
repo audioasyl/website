@@ -1,46 +1,41 @@
-import React, { PropTypes } from 'react';
-// import { Link } from 'react-router';
-
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Footer.scss';
-const Footer = ({ onFilterChange, setSearchText }) => (
-  <div className="Footer">
-    &nbsp;::: Welcome my friends! Welcome my friends! Welcome my friends! Welcome my friends!
-  </div>
-);
 
-// const newOptions = [
-//
-// ];
-
-const artistsOptions = [
-  { label: 'Live', value: 'live' },
-  { label: 'Curated', value: 'curated' },
-  { label: 'Play Lists', value: 'playLists' },
-];
-
-const albumsOptions = [
-  { label: 'Live', value: 'live' },
-  { label: 'Curated', value: 'curated' },
-  { label: 'Play Lists', value: 'playLists' },
-];
-
-const genresOptions = [
-  { label: 'DJ`s', value: 'dj' },
-  { label: 'Channel Editors', value: 'editors' },
-  { label: 'Clubs', value: 'clubs' },
-  { label: 'Festivals', value: 'festivals' },
-];
-
-Footer.propTypes = {
-  onFilterChange: PropTypes.func,
-  setSearchText: PropTypes.func,
-};
-
-Footer.defaultProps = {
-  onFilterChange: () => {},
-  setSearchText: () => {},
-};
+export default class Footer extends Component {
 
 
-export default Footer;
+  state = { loop: true };
+  
+  toogleAnimation = () => {
+    if (this.state.loop) {
+      this.marquee.stop();
+      this.setState({ loop: false });
+    } else {
+      this.marquee.start();
+      this.setState({ loop: true });
+    }
+  }
+
+  render() {
+    return (
+      <div className="Footer">
+        <div className="PlayerIconContainer">
+          <div className="PlayerIcon" />
+        </div>
+        <div className="FooterContent">
+          <marquee
+            ref={ref => { this.marquee = ref; }}
+            id="footerText"
+            behavior="scroll"
+            direction="left"
+            scrollamount={36}
+            onClick={this.toogleAnimation}
+          >
+            ::: Welcome my friends! Welcome my friends! Welcome my friends! Welcome my friends!
+          </marquee>
+        </div>
+      </div>
+    );
+  }
+}

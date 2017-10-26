@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './MainAnimation.scss';
 
 export default class MainAnimation extends Component {
   static propTypes = {
     windowWidth: PropTypes.number.isRequired,
     windowHeight: PropTypes.number.isRequired,
   };
+
+  state = { loop: true };
 
   // draw() {
   //   const { windowWidth, windowHeight } = this.props.windowHeight;
@@ -19,13 +22,30 @@ export default class MainAnimation extends Component {
   //   }
   // }
 
+  toogleAnimation = () => {
+    if (this.state.loop) {
+      this.marquee.stop();
+      this.setState({ loop: false });
+    } else {
+      this.marquee.start();
+      this.setState({ loop: true });
+    }
+  }
+
   render() {
     return (
-      <div style={{ fontSize: 1250, fontFamily: 'RobotoBold', top: -250, position: 'relative', height: 1000 }}>
-        {/* <canvas id="animationCanvas" width="200" height="100">
-          Your browser does not support the HTML5 canvas tag.
-        </canvas>
-        {this.draw()} */}
+      <div className="MainAnimation">
+        {/* <marquee
+          ref={ref => { this.marquee = ref; }}
+          id="footerText"
+          behavior="scroll"
+          direction="left"
+          scrollamount={600}
+          scrolldelay={60}
+          onClick={this.toogleAnimation}
+        >
+          AUDIOASYL
+        </marquee> */}
         AUDIOASYL
       </div>
     );

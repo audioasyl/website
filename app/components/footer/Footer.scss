@@ -6,7 +6,7 @@
   display: flex;
   z-index: 99999;
   position: fixed;
-  min-height: 8rem;
+  height: 8rem;
   align-items: center;
   background: $background;
   justify-content: space-between;
@@ -24,5 +24,33 @@
   &.Footer--scrolled {
     box-shadow: 0 0.5rem 3rem $black;
   }
+
+.PlayerIconContainer {
+  background-color: white;
+  display: block;
+  width: 10rem;
+  height: 100%;
+  z-index: 9999999;
+
+  .PlayerIcon {
+    display: block;
+    width: 8rem;
+    min-width: 8rem;
+    height: 100%;
+    background: url(../../../public/images/play.svg) no-repeat;
+    margin: 0 1rem;
+    cursor: pointer;
+  }
+}
+
+.FooterContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+   
+}
 
 }

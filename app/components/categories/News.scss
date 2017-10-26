@@ -1,1 +1,22 @@
 @import "ui/variables";
+
+.Category-news {
+    background: $black;
+    color: $white;
+    font-family: RobotoMedium;
+    font-size: 6.7rem;
+
+  .News-author {
+    font-size: 3.0rem;
+  }
+  
+  .News-style {
+    font-size: 2.0rem;
+  }   
+}
+
+.Category-news:hover {
+  color: $white;
+  transition: all 0.2s ease;
+  cursor: auto;
+}

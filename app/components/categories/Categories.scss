@@ -2,7 +2,7 @@
 
 .Category {
     position: relative;
-    overflow: hidden;
+    display: block;
   
     .Category-anchor {
       position: absolute;
@@ -17,11 +17,18 @@
   .Category-section {
     z-index: 2;
     overflow: hidden;
-    position: relative;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -o-sticky;
+    position: -ms-sticky;
+    position: sticky;
+    top: 8rem;
     text-transform: uppercase;
-    font-family: 'RobotoRegular';
+    font-family: RobotoMedium;
+    font-size: 6.7rem;
     background: $black;
-    padding: 2rem 0;
+    padding: 2rem 0rem 2rem 9.4rem;
+    display: block;
   
     .Category-title-container {
       flex-direction: column;
@@ -35,8 +42,8 @@
         text-align: left;
         text-decoration: none;
         transition: all 0.3s ease;
-        padding-left: 9.4rem;
-        font-size: 7rem;
+        padding-left: 0rem;
+        white-space: nowrap;
         
         &:hover {
           color: $red;
@@ -49,7 +56,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      display: flex;
+      display: block;
+      width: 100%;
+      flex: 1;
 
       .Category-section-title {
         color: $white;
@@ -57,7 +66,8 @@
         text-align: center;
         text-decoration: none;
         transition: all 0.3s ease;
-        font-size: 7rem;
+        padding-left: 0rem;
+        white-space: nowrap;
         
         &:hover {
           color: $red;

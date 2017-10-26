@@ -122,7 +122,6 @@ class Audioasyl extends React.Component {
 
   renderCategories = () => {
     const categories = this.filterMetaData();
-    console.log(categories);
     return (
       <div>
         <News
