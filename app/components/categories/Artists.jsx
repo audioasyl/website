@@ -26,14 +26,16 @@ class Artists extends React.Component {
       //itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
 
       return (
-        <ArtistsContent
-          likes={likes}
-          audio={tagItem}
-          type={category.key}
-          properties={itemProperties}
-          key={tagItem.id}
-          schema={category.metadata_schemas}
-        />
+        <div style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word' }}>
+          <ArtistsContent
+            likes={likes}
+            audio={tagItem}
+            type={category.key}
+            properties={itemProperties}
+            key={tagItem.id}
+            schema={category.metadata_schemas}
+          />
+        </div>
       );
     });
   }
@@ -47,7 +49,9 @@ class Artists extends React.Component {
           <div className="Category-title-container"><Link to="#" className="Category-section-title">HOSTS</Link></div>
           <div className="Category-sort-container"><Link to="#" className="Category-section-title">A-Z...</Link></div>
         </div>
-        {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
+        {size(category.tag_items) ? <div className="Category-artist-container">
+          {this.renderContent()}
+        </div> : <TilePlaceholder />}
       </div>
     );
   }

@@ -20,13 +20,23 @@ export default class ArtistsConent extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { loop: true };
+  }
+
+  toogleAnimation = () => {
+    if (this.state.loop) {
+      this.marquee.stop();
+      this.setState({ loop: false });
+    } else {
+      this.marquee.start();
+      this.setState({ loop: true });
+    }
   }
 
   render() {
     return (
       <div className="catergory-container">
-        {this.props.audio.name}
+        <div className="resultMarquee">{this.props.audio.name}</div>
       </div>
     );
   }
