@@ -36,7 +36,7 @@ export default class NewsConent extends React.Component {
     return (
       <div className="catergory-container Category-news">
         <div>{date}</div>
-        <div>{name}</div>
+        <div className="News-red">{name}</div>
         <div className="News-author">&#9658;&#09;{author}</div>
         <div className="News-style">{this.renderStyles()}</div>
       </div>

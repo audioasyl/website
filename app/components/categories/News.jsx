@@ -11,6 +11,7 @@ import './Categories.scss';
 class News extends React.Component {
 
   renderContent = () => {
+    let counter = 1;
     const {
       likes,
       category,
@@ -24,17 +25,20 @@ class News extends React.Component {
 
       itemProperties.isFresh = freshRecordIds.indexOf(tagItem.id) >= 0;
       //itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
-
-      return (
-        <NewsContent
-          likes={likes}
-          audio={tagItem}
-          type={category.key}
-          properties={itemProperties}
-          key={tagItem.id}
-          schema={category.metadata_schemas}
-        />
-      );
+      if (counter <= 4) {
+        counter += 1;
+        return (
+          <NewsContent
+            likes={likes}
+            audio={tagItem}
+            type={category.key}
+            properties={itemProperties}
+            key={tagItem.id}
+            schema={category.metadata_schemas}
+          />
+        );
+      }
+      return false;
     });
   }
 

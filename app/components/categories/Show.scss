@@ -1,22 +1,46 @@
 @import "ui/variables";
 
 .Category-show {
-    background: $black;
-    color: $white;
-    font-family: RobotoMedium;
-    font-size: 6.7rem;
-
-  .News-author {
-    font-size: 3.0rem;
-  }
-  
-  .News-style {
-    font-size: 2.0rem;
-  }   
+  background: $black;
+  color: $white;
+  font-family: RobotoMedium;
+  font-size: 2.5rem;
+ 
 }
 
 .Category-show:hover {
-  color: $red;
+  background: $white !important;
+  color: $black !important;
+  transition: all 0.2s ease !important;
+}
+
+.Category-show-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.Category-show-details {
+  background: $white;
+  color: $black;
+  font-family: RobotoMedium;
+  font-size: 2.5rem;
+  flex: 1;
+  padding-left: 9.4rem;
   transition: all 0.2s ease;
-  cursor: pointer;
+  text-transform: uppercase;
+
+  .Category-show-details-red {
+    display: inline;
+    color: $red;
+  }
+
+  .Category-show-details-inner {
+    width: 100%;
+    padding: 2rem 0rem 2rem 0rem;
+    position: sticky;
+    top: 20rem;
+    height: 100%;
+  }
 }

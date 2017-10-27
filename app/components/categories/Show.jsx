@@ -10,6 +10,55 @@ import './Categories.scss';
 
 class Show extends React.Component {
 
+  static propTypes = {
+    likes: PropTypes.array,
+    freshRecordIds: PropTypes.array,
+    category: PropTypes.object.isRequired,
+    metaData: PropTypes.object.isRequired,
+    windowHeight: PropTypes.number.isRequired,
+  };
+
+  static defaultProps = {
+    freshRecordIds: [],
+    likes: [],
+  };
+
+  constructor(props) {
+    super(props);
+    this.audio = null;
+    this.state = { openDetails: false };
+  }
+
+
+  onItemClick = audio => {
+    if (this.state.openDetails === audio.id) {
+      this.setState({ openDetails: false });
+    } else if (!this.state.openDetails) {
+      this.setState({ openDetails: audio.id });
+      this.audio = audio;
+    } else {
+      this.setState({ openDetails: audio.id });
+      this.audio = audio;
+    }
+  }
+
+  renderDetails() {
+    const height = this.props.windowHeight - 240;
+    if (this.state.openDetails) {
+      return (
+        <div className="Category-show-details">
+          <div className="Category-show-details-inner" style={{ height }}>
+            ALL <div className="Category-show-details-red">{this.audio.name}</div> ORDER BY DATE<br /><br />
+            SOME CONTENT <br />
+            SOME CONTENT <br />
+            SOME CONTENT <br />
+          </div>
+        </div>
+      );
+    }
+    return null;
+  }
+
   renderContent = () => {
     const {
       likes,
@@ -33,6 +82,8 @@ class Show extends React.Component {
           properties={itemProperties}
           key={tagItem.id}
           schema={category.metadata_schemas}
+          onClick={this.onItemClick}
+          isClicked={this.state.openDetails}
         />
       );
     });
@@ -47,22 +98,19 @@ class Show extends React.Component {
           <div className="Category-title-container"><Link to="#" className="Category-section-title">SHOW&nbsp;</Link></div>
           <div className="Category-sort-container"><Link to="#" className="Category-section-title">A-Z...</Link></div>
         </div>
-        {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
+        {
+          size(category.tag_items) ?
+            <div className="Category-show-container">
+              <div style={{ flex: 1 }}>
+                {this.renderContent()}
+              </div>
+              {this.renderDetails()}
+            </div> :
+            <TilePlaceholder />
+        }
       </div>
     );
   }
 }
-
-Show.propTypes = {
-  likes: PropTypes.array,
-  freshRecordIds: PropTypes.array,
-  category: PropTypes.object.isRequired,
-  metaData: PropTypes.object.isRequired,
-};
-
-Show.defaultProps = {
-  freshRecordIds: [],
-  likes: [],
-};
 
 export default Show;

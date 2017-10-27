@@ -26,7 +26,7 @@
     text-transform: uppercase;
     font-family: RobotoMedium;
     font-size: 6.7rem;
-    background: $black;
+    background: $white;
     padding: 2rem 0rem 2rem 9.4rem;
     display: block;
   
@@ -37,7 +37,8 @@
       float: left;
   
       .Category-section-title {
-        color: $white;
+        min-width: 30rem;
+        color: $black;
         display: block;
         text-align: left;
         text-decoration: none;
@@ -61,7 +62,7 @@
       flex: 1;
 
       .Category-section-title {
-        color: $white;
+        color: $black;
         display: block;
         text-align: center;
         text-decoration: none;
@@ -79,8 +80,8 @@
   
 .catergory-container {
   padding: 2rem 0 2rem 9.4rem;
-  background: $white;
-  color: $black;
+  background: $black;
+  color: $white;
   display: block;
   text-align: left;
   text-decoration: none;
@@ -90,8 +91,9 @@
   text-transform: uppercase;
 
   &:hover {
-      color: $red;
-      transition: all 0.2s ease;
+      color: $black;
+      background: $white;
+      transition: all 0.5s ease;
       cursor: pointer;
     }
 }

@@ -139,6 +139,7 @@ class Audioasyl extends React.Component {
           metaData={this.state.metaData}
           freshRecordIds={this.state.freshRecordIds}
           ref={e => e && this.scrollToElement(e, '#show')}
+          windowHeight={this.state.height}
         />
         <Artists
           category={categories.authors}
