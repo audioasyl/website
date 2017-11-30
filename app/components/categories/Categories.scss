@@ -52,30 +52,6 @@
         }
       }
     }
-
-    .Category-sort-container {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      display: block;
-      width: 100%;
-      flex: 1;
-
-      .Category-section-title {
-        color: $black;
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        padding-left: 0rem;
-        white-space: nowrap;
-        
-        &:hover {
-          color: $red;
-          transition: all 0.2s ease;
-        }
-      }
-    }  
   }
   
 .catergory-container {
@@ -87,6 +63,26 @@
   text-decoration: none;
   transition: all 0.3s ease;
   padding-left: 9.4rem;
+  font-size: 7rem;
+  text-transform: uppercase;
+  overflow: hidden;
+
+  &:hover {
+      color: $black;
+      background: $white;
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
+}
+
+.Catergory-common {
+  padding: 1rem;
+  background: $black;
+  color: $white;
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.5s ease;
   font-size: 7rem;
   text-transform: uppercase;
   overflow: hidden;

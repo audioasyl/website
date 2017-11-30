@@ -30,15 +30,12 @@ export default class NewsConent extends React.Component {
   }
 
   render() {
+    const liveNow = 'LIVE NOW!';
     const name = this.props.audio.name || 'SOME NAME';
-    const date = this.props.audio.date || 'FRIDAY 19.01.2017';
-    const author = this.props.audio.author || 'DJ HORSE';
     return (
-      <div className="catergory-container Category-news">
-        <div>{date}</div>
-        <div className="News-red">{name}</div>
-        <div className="News-author">&#9658;&#09;{author}</div>
-        <div className="News-style">{this.renderStyles()}</div>
+      <div className="Catergory-common Category-news">
+        <div>{liveNow}</div>
+        <div>{name}</div>
       </div>
     );
   }

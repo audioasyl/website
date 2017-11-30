@@ -96,7 +96,6 @@ class Show extends React.Component {
         <div className="Category-anchor" id="show" ref="anchor" />
         <div className="Category-section">
           <div className="Category-title-container"><Link to="#" className="Category-section-title">SHOW&nbsp;</Link></div>
-          <div className="Category-sort-container"><Link to="#" className="Category-section-title">A-Z...</Link></div>
         </div>
         {
           size(category.tag_items) ?

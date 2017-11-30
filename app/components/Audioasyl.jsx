@@ -18,7 +18,6 @@ import Artists from './categories/Artists';
 import Genres from './categories/Genres';
 import About from './categories/About';
 import Footer from './footer/Footer';
-import MainAnimation from './animations/MainAnimation';
 import './Audioasyl.scss';
 class Audioasyl extends React.Component {
   constructor(props) {
@@ -167,6 +166,7 @@ class Audioasyl extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     if (this.state.isLoading) {
       return (
         <div className="Audioasyl-placeholder">
@@ -181,7 +181,7 @@ class Audioasyl extends React.Component {
           onFilterChange={this.buildSearchContext}
           setSearchText={searchText => this.setState({ searchText })}
         />
-        <MainAnimation windowWidth={this.state.width} windowHeight={this.state.height} />
+        {/* <MainAnimation windowWidth={this.state.width} windowHeight={this.state.height} /> */}
         {this.renderCategories()}
         <Footer />
       </div>

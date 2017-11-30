@@ -1,27 +1,15 @@
 @import "ui/variables";
 
-.Category-news {
-    background: $black;
-    color: $white;
-    font-family: RobotoMedium;
-    font-size: 6.7rem;
-
-  .News-author {
-    font-size: 3.0rem;
-  }
-  
-  .News-style {
-    font-size: 2.0rem;
-  }
-
-  .News-red {
-    color: $red;
-  }
-}
-
-.Category-news:hover {
+.Category-news{
+  margin: 3rem;
   background: $white;
   color: $black;
-  transition: all 0.5s ease;
-  cursor: default;
+  font-family: 'PxGroteskBold';
+  border: 15px solid #000000;
+  
+  &:hover {
+    background: $black;
+    color: $white;
+  }
 }
+

@@ -34,9 +34,9 @@ const Header = ({ onFilterChange, setSearchText }) => (
             onFilterChange={onFilterChange}
             className="Header-nav-item"
             options={albumsOptions}
-            href="#hosts"
-            label="Hosts"
-            type="hosts"
+            href="#type"
+            label="Type"
+            type="type"
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
