@@ -47,9 +47,6 @@ class News extends React.Component {
     return (
       <div className="Category">
         <div className="Category-anchor" id="news" ref="anchor" />
-        <div className="Category-section">
-          <div className="Category-title-container"><Link to="#" className="Category-section-title">NEWS&nbsp;</Link></div>
-        </div>
         {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
       </div>
     );

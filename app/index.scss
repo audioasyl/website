@@ -4,20 +4,24 @@
 html {
 	 font-size: 62.5%;
 
-	 body {
-		 margin: 0;
-		 padding: 0;
-		 position: relative;
-		 min-width: $min-width;
-		 background: $background;
-		 font-family: 'RobotoRegular', 'Arial';
+  body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-width: $min-width;
+    background: $background;
+    font-family: 'PxGroteskBold', 'RobotoRegular', 'Arial';
 
-		 button {
-			 background: none;
-			 cursor: pointer;
-			 outline: none;
-			 border: none;
-			 padding: 0;
-		 }
-	 }
+    button {
+      background: none;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      padding: 0;
+    }
+
+		a {  
+			text-decoration: none;
+		}
+	}
 }

@@ -1,9 +1,8 @@
 @import "ui/variables";
 
 .Header {
-  // width: 100vw;
+  width: 100%;
   display: flex;
-  z-index: 99999;
   min-height: 8rem;
   align-items: center;
   background: $background;
@@ -12,33 +11,64 @@
 }
 
 .Header-fixed {
+  z-index: 100;
   top: 0;
-  width: 100vw;
+  width: 100%;
   display: flex;
-  z-index: 99999;
   position: fixed;
   min-height: 8rem;
   align-items: center;
-  background: $background;
   justify-content: space-between;
-
-  &.Header-fixed--scrolled {
-    box-shadow: 0 0.5rem 3rem $black;
-  }
+  background: $background;
 
   .Header-left {
-    display: flex;
-    align-items: center;
-    padding-right: 13rem;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    flex: 0 0 17rem;
+    margin-left: 3rem;
+  }
 
-    @media #{$audioasyl-655} {
-      flex-direction: row;
+  .Header-right {
+    flex-direction: row;
+    justify-content: flex-end;
+    display: flex;
+    margin-right: 3rem;
+
+    .Header-text {
+      text-transform: uppercase;
+      display: block;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem 1rem;
+      text-align: center;
+      color: $linkColor;
+      font-size: 2.7rem;
+      font-family: 'PxGroteskBold';
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $black;
+        margin-bottom: -0.6rem;
+        transition: all 0.3s ease;
+        font-size: 2.9rem;
+        cursor: pointer;
+      }
     }
+    @media #{$audioasyl-768} {
+      .Header-text {
+        padding: 1rem 3rem;
+      }
+    }  
   }
 }
 
 .Login {
   display: flex;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
+  position: sticky;
+  top: 0rem;
 }

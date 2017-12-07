@@ -42,22 +42,22 @@ class Show extends React.Component {
     }
   }
 
-  renderDetails() {
-    const height = this.props.windowHeight - 240;
-    if (this.state.openDetails) {
-      return (
-        <div className="Category-show-details">
-          <div className="Category-show-details-inner" style={{ height }}>
-            ALL <div className="Category-show-details-red">{this.audio.name}</div> ORDER BY DATE<br /><br />
-            SOME CONTENT <br />
-            SOME CONTENT <br />
-            SOME CONTENT <br />
-          </div>
-        </div>
-      );
-    }
-    return null;
-  }
+  // renderDetails() {
+  //   const height = this.props.windowHeight - 240;
+  //   if (this.state.openDetails) {
+  //     return (
+  //       <div className="Category-show-details">
+  //         <div className="Category-show-details-inner" style={{ height }}>
+  //           ALL <div className="Category-show-details-red">{this.audio.name}</div> ORDER BY DATE<br /><br />
+  //           SOME CONTENT <br />
+  //           SOME CONTENT <br />
+  //           SOME CONTENT <br />
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  //   return null;
+  // }
 
   renderContent = () => {
     const {
@@ -75,16 +75,18 @@ class Show extends React.Component {
       //itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
 
       return (
-        <ShowContent
-          likes={likes}
-          audio={tagItem}
-          type={category.key}
-          properties={itemProperties}
-          key={tagItem.id}
-          schema={category.metadata_schemas}
-          onClick={this.onItemClick}
-          isClicked={this.state.openDetails}
-        />
+        <div className="Category-content-inner">
+          <ShowContent
+            likes={likes}
+            audio={tagItem}
+            type={category.key}
+            properties={itemProperties}
+            key={tagItem.id}
+            schema={category.metadata_schemas}
+            onClick={this.onItemClick}
+            isClicked={this.state.openDetails}
+          />
+        </div>
       );
     });
   }
@@ -95,9 +97,18 @@ class Show extends React.Component {
       <div className="Category">
         <div className="Category-anchor" id="show" ref="anchor" />
         <div className="Category-section">
-          <div className="Category-title-container"><Link to="#" className="Category-section-title">SHOW&nbsp;</Link></div>
+          <div className="Category-section-left" />
+          <div className="Category-section-right">
+            <div className="Category-section-title">SHOW</div>
+            <div className="Category-section-title Invisibility">STYLE</div>
+            <div className="Category-section-title Invisibility">TYPE</div>
+            <div className="Category-section-title Invisibility">ABOUT</div>
+          </div>
         </div>
-        {
+        {size(category.tag_items) ?
+          <div className="Category-content-container">{this.renderContent()}</div> :
+          <TilePlaceholder />}
+        {/*
           size(category.tag_items) ?
             <div className="Category-show-container">
               <div style={{ flex: 1 }}>
@@ -106,7 +117,7 @@ class Show extends React.Component {
               {this.renderDetails()}
             </div> :
             <TilePlaceholder />
-        }
+        */}
       </div>
     );
   }

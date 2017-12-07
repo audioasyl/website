@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 import { map, size, sortBy, lowerCase } from 'lodash';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
-import ArtistsContent from './ArtistsContent';
+import StyleContent from './StyleContent';
 
-import './Artists.scss';
+import './Style.scss';
 import './Categories.scss';
 
-class Artists extends React.Component {
+class Style extends React.Component {
 
   renderContent = () => {
     const {
@@ -26,8 +26,8 @@ class Artists extends React.Component {
       //itemProperties.broadcast_channel_id = '15ffeff6-d946-4087-bc5c-ce9912ef222c'; // FIXME!!!!
 
       return (
-        <div style={{ width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word' }}>
-          <ArtistsContent
+        <div className="Category-content-inner">
+          <StyleContent
             likes={likes}
             audio={tagItem}
             type={category.key}
@@ -44,28 +44,35 @@ class Artists extends React.Component {
     const { category } = this.props;
     return (
       <div className="Category">
-        <div className="Category-anchor" id="hosts" ref="anchor" />
+        <div className="Category-anchor" id="style" ref="anchor" />
         <div className="Category-section">
-          <div className="Category-title-container"><Link to="#" className="Category-section-title">HOSTS</Link></div>
+          <div className="Category-section-left" />
+          <div className="Category-section-right">
+            <div className="Category-section-title Invisibility">SHOW</div>
+            <div className="Category-section-title">STYLE</div>
+            <div className="Category-section-title Invisibility">TYPE</div>
+            <div className="Category-section-title Invisibility">ABOUT</div>
+          </div>
         </div>
-        {size(category.tag_items) ? <div className="Category-artist-container">
-          {this.renderContent()}
-        </div> : <TilePlaceholder />}
+        {size(category.tag_items) ?
+          <div className="Category-content-container">{this.renderContent()}</div> :
+          <TilePlaceholder />}
+        {/* size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder /> */}
       </div>
     );
   }
 }
 
-Artists.propTypes = {
+Style.propTypes = {
   likes: PropTypes.array,
   freshRecordIds: PropTypes.array,
   category: PropTypes.object.isRequired,
   metaData: PropTypes.object.isRequired,
 };
 
-Artists.defaultProps = {
+Style.defaultProps = {
   freshRecordIds: [],
   likes: [],
 };
 
-export default Artists;
+export default Style;

@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
-import Marquee from 'react-marquee';
 import './Categories.scss';
 
-export default class GenresContent extends React.Component {
+export default class StyleContent extends React.Component {
   static propTypes = {
     properties: PropTypes.object,
     likes: PropTypes.array.isRequired,
@@ -26,9 +25,7 @@ export default class GenresContent extends React.Component {
 
   render() {
     return (
-      <div className="catergory-container">
-        <Marquee text={this.props.audio.name} loop />
-      </div>
+      <div className="Catergory-common Category-style">{this.props.audio.name}</div>
     );
   }
 }

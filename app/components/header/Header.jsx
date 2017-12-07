@@ -41,7 +41,7 @@ const Header = () => (
             Hosts
           </Link>
           <Link
-            to="/contact"
+            to="/#contact"
             onClick={() => { window.retainScroll = false; }}
             className="Header-nav-item"
           >

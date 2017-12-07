@@ -26,18 +26,19 @@ export default class AboutConent extends React.Component {
 
   render() {
     return (
-      <div className="catergory-container Category-about">
-        <div>
-          Mission of Audioasyl:<br />
-          <div className="Category-about-text">
-            Live Streams Platform Audio only<br />
-            Easy Streaming for Artists / Hosts<br />
-            Connecting People and Artists trough their live Sets<br />
-            Live is Art enough<br />
-          </div>
-        </div>
-        <div className="Category-about-footer" />
-      </div>
+      <div className="Catergory-common Category-about">{this.props.audio.name}</div>
+      // <div className="Catergory-container Category-about">
+      //   <div>
+      //     Mission of Audioasyl:<br />
+      //     <div className="Category-about-text">
+      //       Live Streams Platform Audio only<br />
+      //       Easy Streaming for Artists / Hosts<br />
+      //       Connecting People and Artists trough their live Sets<br />
+      //       Live is Art enough<br />
+      //     </div>
+      //   </div>
+      //   <div className="Category-about-footer" />
+      // </div>
     );
   }
 }

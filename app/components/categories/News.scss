@@ -2,14 +2,20 @@
 
 .Category-news{
   margin: 3rem;
+  padding-left: 2rem;
   background: $white;
   color: $black;
   font-family: 'PxGroteskBold';
   border: 15px solid #000000;
+  line-height: 6.7rem;
   
   &:hover {
     background: $black;
     color: $white;
+  }
+
+  .Category-news-text{
+    padding-bottom: 1rem;
   }
 }
 

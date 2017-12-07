@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { map, remove } from 'lodash';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 import CheckBox from './CheckBox';
 
 import './HeaderDropdown.scss';
@@ -37,25 +37,22 @@ export default class HeaderDropdown extends React.Component {
     ))
 
   render() {
-    const contentClasses = classNames('HeaderDropdown-content');
+    // const contentClasses = classNames('HeaderDropdown-content');
 
-    const labelClasses = classNames(
-      'HeaderDropdown-label',
-      this.props.className,
-      { 'HeaderDropdown-label--filter-active': !!this.state.activeFilters.length }
-    );
+    // const labelClasses = classNames(
+    //   'HeaderDropdown-label',
+    //   this.props.className,
+    //   { 'HeaderDropdown-label--filter-active': !!this.state.activeFilters.length }
+    // );
 
     return (
-      <div className="HeaderDropdown">
-        <a href={this.props.href} className={labelClasses} onClick={this.props.onClick}>
+      <div>
+        <a href={this.props.href} className="Header-dropdown" onClick={this.props.onClick}>
           {this.props.label}
         </a>
-        <div
-          className={contentClasses}
-        >
-          {/* this.renderOptions() */}
-        </div>
+        {/* <div className={contentClasses}>{this.renderOptions()}</div> */}
       </div>
+        // <div className="Header-dropdown">{this.props.label}</div>
     );
   }
 }
@@ -63,7 +60,7 @@ export default class HeaderDropdown extends React.Component {
 HeaderDropdown.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
-  className: PropTypes.string,
+  // className: PropTypes.string,
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,

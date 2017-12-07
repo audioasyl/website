@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 
 // import Login from './Login';
 // import Search from './Search';
+
 import HeaderNav from './HeaderNav';
 import LogoButton from './LogoButton';
 import HeaderDropdown from './HeaderDropdown';
@@ -11,20 +12,13 @@ import './MainHeader.scss';
 const Header = ({ onFilterChange, setSearchText }) => (
   <div className="Header">
     <div className="Header-fixed">
-      <LogoButton />
       <div className="Header-left">
-        <HeaderNav>
+        <LogoButton />
+      </div>
+      <div className="Header-right">
+        {/* <HeaderNav> */}
           <HeaderDropdown
             onFilterChange={onFilterChange}
-            className="Header-nav-item"
-            options={artistsOptions}
-            href="#news"
-            type="news"
-            label="News"
-          />
-          <HeaderDropdown
-            onFilterChange={onFilterChange}
-            className="Header-nav-item"
             options={genresOptions}
             label="Show"
             href="#show"
@@ -32,7 +26,13 @@ const Header = ({ onFilterChange, setSearchText }) => (
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
-            className="Header-nav-item"
+            options={albumsOptions}
+            href="#style"
+            label="Style"
+            type="style"
+          />
+          <HeaderDropdown
+            onFilterChange={onFilterChange}
             options={albumsOptions}
             href="#type"
             label="Type"
@@ -40,14 +40,13 @@ const Header = ({ onFilterChange, setSearchText }) => (
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
-            className="Header-nav-item"
-            options={albumsOptions}
-            href="#style"
-            label="Style"
-            type="style"
+            options={artistsOptions}
+            href="#about"
+            type="about"
+            label="About"
           />
           {/* <Login /> */}
-        </HeaderNav>
+        {/* </HeaderNav> */}
         {/* <Search setSearchText={setSearchText} /> */}
       </div>
     </div>

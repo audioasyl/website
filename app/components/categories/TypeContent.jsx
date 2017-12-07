@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import './Categories.scss';
 
-export default class ArtistsConent extends React.Component {
+export default class TypeConent extends React.Component {
   static propTypes = {
     properties: PropTypes.object,
     likes: PropTypes.array.isRequired,
@@ -23,21 +23,9 @@ export default class ArtistsConent extends React.Component {
     this.state = { loop: true };
   }
 
-  toogleAnimation = () => {
-    if (this.state.loop) {
-      this.marquee.stop();
-      this.setState({ loop: false });
-    } else {
-      this.marquee.start();
-      this.setState({ loop: true });
-    }
-  }
-
   render() {
     return (
-      <div className="catergory-container">
-        <div className="resultMarquee">{this.props.audio.name}</div>
-      </div>
+      <div className="Catergory-common Category-type">{this.props.audio.name}</div>
     );
   }
 }

@@ -1,5 +1,32 @@
 @import "ui/variables";
 
+.Header-dropdown {
+  text-transform: uppercase;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 1rem;
+  text-align: center;
+  color: $linkColor;
+  font-size: 2.7rem;
+  font-family: 'PxGroteskBold';
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $black;
+    margin-bottom: -0.6rem;
+    margin-right: -0.6rem;
+    transition: all 0.3s ease;
+    font-size: 2.9rem;
+    cursor: pointer;
+  }
+}
+@media #{$audioasyl-768} {
+  .Header-dropdown {
+    padding: 1rem 3rem;
+  }
+}  
+
 .HeaderDropdown {
   display: flex;
   align-items: center;

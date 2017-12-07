@@ -19,7 +19,7 @@
     text-align: center;
     color: $linkColor;
     font-size: 2.7rem;
-    font-family: RobotoMedium;
+    font-family: 'PxGroteskBold';
     transition: all 0.3s ease;
 
     &:hover {
@@ -66,7 +66,7 @@
     }
   }
 
-  @media #{$audioasyl-655} {
+  @media #{$audioasyl-768} {
     .HeaderNav-hamburger {
       display: none;
     }

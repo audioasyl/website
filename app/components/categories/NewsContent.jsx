@@ -35,7 +35,7 @@ export default class NewsConent extends React.Component {
     return (
       <div className="Catergory-common Category-news">
         <div>{liveNow}</div>
-        <div>{name}</div>
+        <div className="Category-news-text">{name}</div>
       </div>
     );
   }

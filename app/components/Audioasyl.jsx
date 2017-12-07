@@ -14,8 +14,8 @@ import ContentLoader from './ContentLoader';
 import superFetch from '../superFetch';
 import News from './categories/News';
 import Show from './categories/Show';
-import Artists from './categories/Artists';
-import Genres from './categories/Genres';
+import Type from './categories/Type';
+import Style from './categories/Style';
 import About from './categories/About';
 import Footer from './footer/Footer';
 import './Audioasyl.scss';
@@ -140,26 +140,26 @@ class Audioasyl extends React.Component {
           ref={e => e && this.scrollToElement(e, '#show')}
           windowHeight={this.state.height}
         />
-        <Artists
-          category={categories.authors}
-          likes={this.state.likes}
-          metaData={this.state.metaData}
-          freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, '#hosts')}
-        />
-        <Genres
+        <Style
           category={categories.genre}
           likes={this.state.likes}
           metaData={this.state.metaData}
           freshRecordIds={this.state.freshRecordIds}
           ref={e => e && this.scrollToElement(e, '#style')}
         />
-        <About
-          category={categories.genre}
+        <Type
+          category={categories.authors}
           likes={this.state.likes}
           metaData={this.state.metaData}
           freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, 'about')}
+          ref={e => e && this.scrollToElement(e, '#type')}
+        />
+        <About
+          category={categories.authors}
+          likes={this.state.likes}
+          metaData={this.state.metaData}
+          freshRecordIds={this.state.freshRecordIds}
+          ref={e => e && this.scrollToElement(e, '#about')}
         />
       </div>
     );

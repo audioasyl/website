@@ -8,89 +8,136 @@
       position: absolute;
       top: - 7.9rem;
     }
-  
-    .Category-tiles {
-      margin: 1rem -0.5rem 0.5rem -0.5rem;
-    }
-  }
-  
-  .Category-section {
-    z-index: 2;
-    overflow: hidden;
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -o-sticky;
-    position: -ms-sticky;
-    position: sticky;
-    top: 8rem;
-    text-transform: uppercase;
-    font-family: RobotoMedium;
-    font-size: 6.7rem;
-    background: $white;
-    padding: 2rem 0rem 2rem 9.4rem;
-    display: block;
-  
-    .Category-title-container {
-      flex-direction: column;
-      justify-content: center;
+
+    .Category-section {
+      min-width: 50rem;
+      z-index: 50;
+      text-transform: uppercase;
+      font-family: 'PxGroteskBold';
+      font-size: 6.7rem;
+      background: $white;
+      padding: 0;
+      position: relative;
       display: flex;
-      float: left;
+      justify-content: space-between;
+      flex-direction: row;
   
-      .Category-section-title {
-        min-width: 30rem;
-        color: $black;
-        display: block;
-        text-align: left;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        padding-left: 0rem;
-        white-space: nowrap;
-        
-        &:hover {
-          color: $red;
-          transition: all 0.2s ease;
+      position: -webkit-sticky;
+      position: -moz-sticky;
+      position: -o-sticky;
+      position: -ms-sticky;
+      position: sticky;
+      top: 6.7rem;
+  
+      .Category-section-left {
+        visibility: hidden;
+        flex: 0 0 17rem;
+        margin-left: 3rem;
+      }
+    
+      .Category-section-right {
+        flex-direction: row;
+        justify-content: flex-end;
+        display: flex;
+        margin-right: 3rem;
+  
+        .Category-section-title {
+          text-transform: uppercase;
+          display: block;
+          flex-direction: column;
+          justify-content: center;
+          padding: 1rem 1rem;
+          text-align: center;
+          color: $linkColor;
+          font-size: 2.7rem;
+          font-family: 'PxGroteskBold';
+          transition: all 0.3s ease;
+  
+          &:hover {
+            color: $black;
+            margin-bottom: -0.6rem;
+            margin-right: -0.6rem;
+            transition: all 0.3s ease;
+            font-size: 2.9rem;
+            cursor: pointer;
+          }
         }
+        @media #{$audioasyl-768} {
+          .Category-section-title {
+            padding: 1rem 3rem;
+          }
+        } 
       }
     }
   }
-  
-.catergory-container {
-  padding: 2rem 0 2rem 9.4rem;
+
+  .Category-content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    background-color: $black;
+
+    .Category-content-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      word-wrap: 'break-word';
+      line-height: 6rem;
+    }
+    @media #{$audioasyl-1024} {
+      .Category-content-inner {
+        width: 50%;
+      }
+    } 
+  }
+
+.Catergory-common {
+  padding: 1rem 1rem 2rem 3rem;
   background: $black;
   color: $white;
-  display: block;
   text-align: left;
   text-decoration: none;
   transition: all 0.3s ease;
-  padding-left: 9.4rem;
-  font-size: 7rem;
+  font-size: 6.7rem;
   text-transform: uppercase;
   overflow: hidden;
+  word-wrap: break-word;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 
   &:hover {
       color: $black;
       background: $white;
-      transition: all 0.5s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
 }
 
-.Catergory-common {
-  padding: 1rem;
-  background: $black;
-  color: $white;
-  display: block;
-  text-align: left;
-  text-decoration: none;
-  transition: all 0.5s ease;
-  font-size: 7rem;
-  text-transform: uppercase;
-  overflow: hidden;
+.Sticky {
+  display: inline-block;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
+  position: sticky;
+  top: 0rem;
+}
 
-  &:hover {
-      color: $black;
-      background: $white;
-      transition: all 0.5s ease;
-      cursor: pointer;
-    }
+.Invisibility {
+  visibility: hidden;
+}
+
+.Underline {
+  text-decoration: underline;
+}
+
+.Normalcase {
+  text-transform: initial;
 }

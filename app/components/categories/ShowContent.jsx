@@ -40,22 +40,20 @@ export default class ShowConent extends React.Component {
   }
 
   renderStyles() {
-    const styles = this.props.audio.author || ['HOUSE', 'METAL'];
+    const styles = this.props.audio.author || ['STYLE', 'STYLE'];
     return styles.map(item => `#${item} `);
   }
 
   render() {
-    const name = this.props.audio.name || 'SOME NAME';
-    const author = this.props.audio.author || 'DJ HORSE';
+    const name = this.props.audio.name || 'NAME';
+    const author = this.props.audio.author || 'AUTHOR';
     return (
       <div
-        className="catergory-container Category-show"
+        className="Catergory-common Category-show"
         onClick={this.handleItemClick}
         style={{ color: this.setColor(), background: this.setBackground() }}
       >
         <div>{name}</div>
-        <div>&#9658;&#09;by {author}</div>
-        <div>{this.renderStyles()}</div>
       </div>
     );
   }
