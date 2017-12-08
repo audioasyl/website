@@ -55,22 +55,41 @@ class About extends React.Component {
           </div>
         </div>
 
-        <div className="Catergory-common Category-about Underline">CONTRIBUTORS</div>
-        <div style={{ height: 15 }} />
+        <div className="Category-about-text Underline">CONTRIBUTORS</div>
+        <div style={{ height: 25 }} />
 
         {size(category.tag_items) ? <div className="Category-about-container">
           {this.renderContent()}
         </div> : <TilePlaceholder />}
 
         <div style={{ height: 35 }} />
-        <div className="Catergory-common Category-about">ABOUT AUDIOASYL</div>
+        <div className="Category-about-text">ABOUT AUDIOASYL</div>
         <div style={{ height: 15 }} />
-        <div className="Category-content-container">
-          <div className="Category-content-inner">
-            <div className="Catergory-common Category-about Normalcase">Audioasyl.net is an independent music hub based in Zurich, Switzerland.<br />Broadcasting daily live shows on the web, audioasyl.net serves as a showcase for the Swiss scene.<br />In addition audioasyl.net aims to establish international ties in the world of electronic music. Jack into our special programmer.</div>
+        <div className="Category-content-container White">
+          <div className="Category-about-text-containter">
+            <div className="Category-about-text">Audioasyl.net is an independent music hub based in Zurich, Switzerland.<br />Broadcasting daily live shows on the web, audioasyl.net serves as a showcase for the Swiss scene.<br />In addition audioasyl.net aims to establish international ties in the world of electronic music. Jack into our special programmer.</div><br />
           </div>
-          <div className="Category-content-inner">
-            <div className="Catergory-common Category-about Normalcase">zxc</div>
+          <div className="Category-about-impressum">
+            <div className="Category-about-impressum-text">
+              <div>Impressum:</div><br />
+              <div>audiostreaming</div>
+              <div className="Link">nocloud.ch</div><br />
+              <div>graphic design</div>
+              <div className="Link">www.pulse.ch</div><br />
+              <div>coding</div>
+              <div className="Link">www.alainwolf.ch</div><br />
+              <div className="Link">www.marox.ch</div><br />
+              <div className="Link">nocloud.ch</div><br />
+              <div>software</div>
+              <div className="Link">www.icecast.org</div>
+              <div>Liquidsoap</div><br />
+              <div>licensed by SUISA</div><br /><br />
+              <div>audioasyl.net</div>
+              <div>Kochstrasse 18</div>
+              <div>8004 Zurich</div>
+              <div>Switzerland</div><br />
+              <div className="Link">Send Email</div><br />
+            </div>
           </div>
         </div>
         <div style={{ height: 125 }} />

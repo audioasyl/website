@@ -4,7 +4,7 @@
   background: $white;
   color: $black;
   font-family: 'PxGroteskBold';
-  font-size: 3rem !important;
+  font-size: 2.5rem !important;
 
   &:hover {
     background: $black !important;
@@ -28,7 +28,7 @@
     flex-direction: column;
     justify-content: center;
     word-wrap: 'break-word';
-    line-height: 2.7rem;
+    line-height: 2.3rem;
   }
   @media #{$audioasyl-768} {
     .Category-about-inner {
@@ -43,9 +43,47 @@
 }
 
 .Category-about-text {
-  font-size: 4.8rem;
+  background: $white;
+  color: $black;
+  font-size: 2.5rem !important;
+  line-height: 2.3rem;
+  text-transform: initial;
+  margin-left: 3rem;
 }
 
-.Category-about-footer {
-  height: 9rem;
+.Category-about-text-containter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 3rem;
 }
+@media #{$audioasyl-1024} {
+  .Category-about-text-containter {
+    width: 50%;
+  }
+} 
+
+
+.Category-about-impressum {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+
+  .Category-about-impressum-text {
+    background: $white;
+    color: $black;
+    font-size: 1.7rem !important;
+    line-height: 1.7rem;
+    text-transform: initial;
+  }
+}
+@media #{$audioasyl-1024} {
+  .Category-about-impressum {
+    width: 50%;
+  }
+} 
+
