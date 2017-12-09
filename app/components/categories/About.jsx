@@ -4,6 +4,7 @@ import { map, size, sortBy, lowerCase } from 'lodash';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import AboutContent from './AboutContent';
+import Search from '../header/Search';
 
 import './About.scss';
 import './Categories.scss';
@@ -52,6 +53,7 @@ class About extends React.Component {
             <div className="Category-section-title Invisibility">STYLE</div>
             <div className="Category-section-title Invisibility">TYPE</div>
             <div className="Category-section-title">ABOUT</div>
+            <Search setSearchText="Search on page..." hidden />
           </div>
         </div>
 
@@ -73,22 +75,36 @@ class About extends React.Component {
             <div className="Category-about-impressum-text">
               <div>Impressum:</div><br />
               <div>audiostreaming</div>
-              <div className="Link">nocloud.ch</div><br />
+              <a href="http://nocloud.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+                <div className="Link">nocloud.ch</div><br />
+              </a>
               <div>graphic design</div>
-              <div className="Link">www.pulse.ch</div><br />
+              <a href="http://www.pulse.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+                <div className="Link">www.pulse.ch</div><br />
+              </a>
               <div>coding</div>
-              <div className="Link">www.alainwolf.ch</div><br />
-              <div className="Link">www.marox.ch</div><br />
-              <div className="Link">nocloud.ch</div><br />
+              <a href="http://www.alainwolf.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+                <div className="Link">www.alainwolf.ch</div><br />
+              </a>
+              <a href="http://www.marox.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+                <div className="Link">www.marox.ch</div><br />
+              </a>
+              <a href="http://nocloud.ch" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+                <div className="Link">nocloud.ch</div><br />
+              </a>
               <div>software</div>
-              <div className="Link">www.icecast.org</div>
+              <a href="http://www.icecast.org" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>  
+                <div className="Link">www.icecast.org</div>
+              </a>
               <div>Liquidsoap</div><br />
               <div>licensed by SUISA</div><br /><br />
               <div>audioasyl.net</div>
               <div>Kochstrasse 18</div>
               <div>8004 Zurich</div>
               <div>Switzerland</div><br />
-              <div className="Link">Send Email</div><br />
+              <a href="mailto:mail@audioasyl.net"style={{ color: 'black' }}>
+                <div className="Link">Send Email</div><br />
+              </a>
             </div>
           </div>
         </div>

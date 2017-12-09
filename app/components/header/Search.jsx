@@ -21,13 +21,14 @@ class Search extends React.Component {
   }
 
   render() {
+    const visibility = this.props.hidden ? 'hidden' : 'visible';
     return (
-      <div className="Search">
+      <div className="Search" style={{ visibility }}>
         <form onSubmit={e => this.onSearchClick(e)}>
           <input
             type="text"
             value={this.state.searchText}
-            placeholder="Search artists, shows, genres..."
+            placeholder="Search on page..."
             onChange={e => this.onChange(e)}
           />
 
@@ -42,6 +43,11 @@ class Search extends React.Component {
 
 Search.propTypes = {
   setSearchText: PropTypes.func.isRequired,
+  hidden: PropTypes.bool,
+};
+
+Search.defaultProps = {
+  hidden: false,
 };
 
 export default Search;

@@ -45,7 +45,7 @@ class News extends React.Component {
   render() {
     const { category } = this.props;
     return (
-      <div className="Category">
+      <div className="Category" style={{ marginTop: '7rem' }}>
         <div className="Category-anchor" id="news" ref="anchor" />
         {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
       </div>

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 // import { Link } from 'react-router';
 
 // import Login from './Login';
-// import Search from './Search';
+import Search from './Search';
 
 import HeaderNav from './HeaderNav';
 import LogoButton from './LogoButton';
@@ -45,9 +45,9 @@ const Header = ({ onFilterChange, setSearchText }) => (
             type="about"
             label="About"
           />
+          <Search setSearchText={setSearchText} />
           {/* <Login /> */}
         {/* </HeaderNav> */}
-        {/* <Search setSearchText={setSearchText} /> */}
       </div>
     </div>
   </div>

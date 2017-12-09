@@ -21,21 +21,28 @@
       display: flex;
       justify-content: space-between;
       flex-direction: row;
+      flex-wrap: wrap;
+      max-height: 6.5rem;
   
       position: -webkit-sticky;
       position: -moz-sticky;
       position: -o-sticky;
       position: -ms-sticky;
       position: sticky;
-      top: 6.7rem;
+      top: 8.5rem;
+
+      @media #{$audioasyl-943} {
+        top: 4.4rem;
+      } 
   
       .Category-section-left {
-        visibility: hidden;
         flex: 0 0 17rem;
+        visibility: hidden;
         margin-left: 3rem;
       }
     
       .Category-section-right {
+        flex: 0 0 71rem;
         flex-direction: row;
         justify-content: flex-end;
         display: flex;
@@ -46,7 +53,7 @@
           display: block;
           flex-direction: column;
           justify-content: center;
-          padding: 1rem 1rem;
+          padding: 1.5rem 3rem;
           text-align: center;
           color: $linkColor;
           font-size: 2.7rem;
@@ -62,11 +69,6 @@
             cursor: pointer;
           }
         }
-        @media #{$audioasyl-768} {
-          .Category-section-title {
-            padding: 1rem 3rem;
-          }
-        } 
       }
     }
   }
@@ -96,6 +98,7 @@
   }
 
 .Catergory-common {
+  min-width: 61.5rem;
   padding: 1rem 1rem 2rem 3rem;
   background: $black;
   color: $white;

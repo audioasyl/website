@@ -3,7 +3,6 @@
 .Header {
   width: 100%;
   display: flex;
-  min-height: 8rem;
   align-items: center;
   background: $background;
   justify-content: space-between;
@@ -16,17 +15,20 @@
   width: 100%;
   display: flex;
   position: fixed;
-  min-height: 8rem;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   background: $background;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   .Header-left {
     flex: 0 0 17rem;
     margin-left: 3rem;
+    max-height: 8rem;
   }
 
   .Header-right {
+    flex: 0 0 71rem;
     flex-direction: row;
     justify-content: flex-end;
     display: flex;
@@ -37,7 +39,7 @@
       display: block;
       flex-direction: column;
       justify-content: center;
-      padding: 1rem 1rem;
+      padding: 1.5rem 3rem;
       text-align: center;
       color: $linkColor;
       font-size: 2.7rem;
@@ -52,11 +54,6 @@
         cursor: pointer;
       }
     }
-    @media #{$audioasyl-768} {
-      .Header-text {
-        padding: 1rem 3rem;
-      }
-    }  
   }
 }
 

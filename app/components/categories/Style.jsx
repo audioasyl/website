@@ -4,6 +4,7 @@ import { map, size, sortBy, lowerCase } from 'lodash';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import StyleContent from './StyleContent';
+import Search from '../header/Search';
 
 import './Style.scss';
 import './Categories.scss';
@@ -52,6 +53,7 @@ class Style extends React.Component {
             <div className="Category-section-title">STYLE</div>
             <div className="Category-section-title Invisibility">TYPE</div>
             <div className="Category-section-title Invisibility">ABOUT</div>
+            <Search setSearchText="Search on page..." hidden />
           </div>
         </div>
         {size(category.tag_items) ?
