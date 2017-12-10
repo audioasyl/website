@@ -76,7 +76,12 @@ export default class ShowConent extends React.Component {
           color: this.isClicked() ? 'black' : 'white',
           background: this.isClicked() ? 'white' : 'black' }}
       >
-        <div onClick={this.handleItemClick}>{name}</div>
+        <div>
+          <div onClick={this.handleItemClick}>{name}</div>
+          <div className="Player-icon-container">
+            <div className="Player-icon" />
+          </div>
+        </div>  
         {this.renderDetails()}
       </div>
     );

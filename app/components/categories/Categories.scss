@@ -111,12 +111,29 @@
   flex-direction: column;
   justify-content: center;
 
-
   &:hover {
     color: $black;
     background: $white;
     transition: all 0.3s ease;
     cursor: pointer;
+  }
+
+  .Player-icon-container {
+    background-color: white;
+    display: block;
+    width: 8rem;
+    height: 7rem;
+    z-index: 9999999;
+  
+    .Player-icon {
+      display: block;
+      width: 8rem;
+      min-width: 8rem;
+      height: 100%;
+      background: url(../../../public/images/play.svg) no-repeat;
+      margin: 0 1rem;
+      cursor: pointer;
+    }
   }
 }
 
