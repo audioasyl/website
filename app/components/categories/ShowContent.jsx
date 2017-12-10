@@ -49,18 +49,15 @@ export default class ShowConent extends React.Component {
           </div>
           <div className="Category-details-field">
             <div className="Category-details-field-right">
-              <div className="Category-details-field-item">Hosts</div>
-              <div className="Category-details-field-item Link">{name}</div>
+              <div className="Category-details-field-item">MORE INFO</div>
+              <div className="Category-details-field-item Link">link</div>
               <div style={{ height: 20, width: '100%' }} />
-              <div className="Category-details-field-item">Style</div>
-              <div className="Category-details-field-item">{this.renderStyles()}</div>
-              <div className="Category-details-field-item">Type</div>
-              <div className="Category-details-field-item">Music</div>
+              <div className="Category-details-field-item">HOUSE Shows</div>
+              <div className="Category-details-field-item">Audioasyl Special</div>
               <div style={{ height: 20, width: '100%' }} />
-              <div className="Category-details-field-item">Web</div>
-              <div className="Category-details-field-item Link">www.webpage.com</div>
+              <div className="Category-details-field-item">SHARE ON</div>
+              <div className="Category-details-field-item Link">facebook</div>
               <div style={{ height: 20, width: '100%' }} />
-              <div className="Category-details-field-item" style={{ cursor: 'pointer' }} >SHARE</div>
             </div>
           </div>
         </div>
