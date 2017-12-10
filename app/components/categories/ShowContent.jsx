@@ -21,18 +21,11 @@ export default class ShowConent extends React.Component {
     properties: {},
   };
 
-  setColor() {
+  isClicked() {
     if (this.props.isClicked === this.props.audio.id) {
-      return 'black';
+      return true;
     }
-    return 'white';
-  }
-
-  setBackground() {
-    if (this.props.isClicked === this.props.audio.id) {
-      return 'white';
-    }
-    return 'black';
+    return false;
   }
 
   handleItemClick = () => {
@@ -44,16 +37,50 @@ export default class ShowConent extends React.Component {
     return styles.map(item => `#${item} `);
   }
 
+  renderDetails() {
+    const name = this.props.audio.name || 'SOME NAME';
+    if (this.isClicked()) {
+      return (
+        <div className="Category-details-container">
+          <div className="Category-details-field">
+            <div className="Category-details-field-description">
+              Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies. Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor. Pellentesque facilisis. Nulla imperdiet sit amet magna. Vestibulum dapibus, mauris nec malesuada fames ac turpis velit, rhoncus eu, luctus et interdum adipiscing wisi. Aliquam erat ac ipsum. Integer aliquam purus. Quisque lorem tortor fringilla sed, vestibulum id, eleifend justo vel bibendum sapien massa ac turpis faucibus orci luctus non, consectetuer lobortis quis, varius in, purus. Integer ultrices posuere cubilia Curae, Nulla ipsum dolor lacus, suscipit adipiscing. Cum sociis natoque penatibus et ultrices volutpat.
+            </div>
+          </div>
+          <div className="Category-details-field">
+            <div className="Category-details-field-right">
+              <div className="Category-details-field-item">Hosts</div>
+              <div className="Category-details-field-item Link">{name}</div>
+              <div style={{ height: 20, width: '100%' }} />
+              <div className="Category-details-field-item">Style</div>
+              <div className="Category-details-field-item">{this.renderStyles()}</div>
+              <div className="Category-details-field-item">Type</div>
+              <div className="Category-details-field-item">Music</div>
+              <div style={{ height: 20, width: '100%' }} />
+              <div className="Category-details-field-item">Web</div>
+              <div className="Category-details-field-item Link">www.webpage.com</div>
+              <div style={{ height: 20, width: '100%' }} />
+              <div className="Category-details-field-item" style={{ cursor: 'pointer' }} >SHARE</div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  }
+
   render() {
     const name = this.props.audio.name || 'NAME';
     const author = this.props.audio.author || 'AUTHOR';
     return (
       <div
         className="Catergory-common Category-show"
-        onClick={this.handleItemClick}
-        style={{ color: this.setColor(), background: this.setBackground() }}
+        style={{
+          color: this.isClicked() ? 'black' : 'white',
+          background: this.isClicked() ? 'white' : 'black' }}
       >
-        <div>{name}</div>
+        <div onClick={this.handleItemClick}>{name}</div>
+        {this.renderDetails()}
       </div>
     );
   }

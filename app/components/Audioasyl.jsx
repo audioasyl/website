@@ -166,7 +166,6 @@ class Audioasyl extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     if (this.state.isLoading) {
       return (
         <div className="Audioasyl-placeholder">

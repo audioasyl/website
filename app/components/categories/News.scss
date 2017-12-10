@@ -1,13 +1,12 @@
 @import "ui/variables";
 
 .Category-news{
-  margin: 3rem;
-  padding-left: 2rem;
+  margin: 1.5rem 3rem;
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
   background: $white;
   color: $black;
-  font-family: 'PxGroteskBold';
-  border: 15px solid #000000;
-  line-height: 6.7rem;
+  border: 10px solid #000000;
+  line-height: 5.2rem;
   
   &:hover {
     background: $black;
