@@ -11,6 +11,24 @@ import './Categories.scss';
 
 class Style extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.audio = null;
+    this.state = { openDetails: false };
+  }
+
+  onItemClick = audio => {
+    if (this.state.openDetails === audio.id) {
+      this.setState({ openDetails: false });
+    } else if (!this.state.openDetails) {
+      this.setState({ openDetails: audio.id });
+      this.audio = audio;
+    } else {
+      this.setState({ openDetails: audio.id });
+      this.audio = audio;
+    }
+  }
+
   renderContent = () => {
     const {
       likes,
@@ -35,6 +53,8 @@ class Style extends React.Component {
             properties={itemProperties}
             key={tagItem.id}
             schema={category.metadata_schemas}
+            onClick={this.onItemClick}
+            isClicked={this.state.openDetails}
           />
         </div>
       );
@@ -57,7 +77,7 @@ class Style extends React.Component {
           </div>
         </div>
         {size(category.tag_items) ?
-          <div className="Category-content-container">{this.renderContent()}</div> :
+          <div className="Category-content-container" style={{ background: 'white' }}>{this.renderContent()}</div> :
           <TilePlaceholder />}
         {/* size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder /> */}
       </div>

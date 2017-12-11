@@ -1,13 +1,69 @@
 @import "ui/variables";
 
-.Category-style {
+  .Catergory-common-style {
+    min-width: 48rem; //61.5
+    padding: 1rem 1rem 1rem 3rem;
     background: $white;
-    color: $black;
-    font-family: 'PxGroteskBold';
+    color: $white;
+    text-align: left;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 5.2rem;
+    text-transform: uppercase;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   
     &:hover {
-      background: $black !important;
       color: $white !important;
-      transition: all 0.3s ease !important;
+      background: $black !important;
+      transition: all 0.3s ease;
+      cursor: pointer;
+  
+      .Category-common-style-inner {
+        .Player-icon-container {
+          background-color: black !important;
+          transition: all 0.3s ease;
+          visibility: visible !important;
+          .Player-icon {
+            visibility: visible !important;
+            -webkit-filter: invert(100%) !important;
+            filter: invert(100%) !important;
+            transition: all 0.3s ease;
+          }
+        }
+      }
     }
-  }
+  
+    .Category-common-style-inner {
+      display: flex;
+      justify-content: space-between;
+  
+      .Player-icon-container {
+        visibility: hidden;
+        background-color: white;
+        display: block;
+        width: 6rem;
+        height: 4.9rem;
+        flex-direction: column;
+        justify-content: flex-end;
+        display: flex;
+        transition: all 0.3s ease;
+      
+        .Player-icon {
+          visibility: hidden;
+          display: block;
+          width: 8rem;
+          height: 82%;
+          background: url(../../../public/images/play.svg) no-repeat;
+          margin: 0 1rem;
+          cursor: pointer;
+          -webkit-filter: invert(0%);
+          filter: invert(0%);
+          transition: all 0.3s ease;
+        }
+      }
+    }  
+  }  

@@ -57,14 +57,7 @@ class About extends React.Component {
           </div>
         </div>
 
-        <div className="Category-about-text Underline">CONTRIBUTORS</div>
-        <div style={{ height: 25 }} />
 
-        {size(category.tag_items) ? <div className="Category-about-container">
-          {this.renderContent()}
-        </div> : <TilePlaceholder />}
-
-        <div style={{ height: 35 }} />
         <div className="Category-about-text">ABOUT AUDIOASYL</div>
         <div style={{ height: 15 }} />
         <div className="Category-content-container White">
@@ -108,6 +101,14 @@ class About extends React.Component {
             </div>
           </div>
         </div>
+
+        <div className="Category-about-text Underline">HOSTS</div>
+        <div style={{ height: 25 }} />
+
+        {size(category.tag_items) ? <div className="Category-about-container">
+          {this.renderContent()}
+        </div> : <TilePlaceholder />}
+
         <div style={{ height: 125 }} />
       </div>
     );

@@ -26,7 +26,7 @@ export default class AboutConent extends React.Component {
 
   render() {
     return (
-      <div className="Catergory-common Category-about">{this.props.audio.name}</div>
+      <div className="Category-about">{this.props.audio.name}</div>
       // <div className="Catergory-container Category-about">
       //   <div>
       //     Mission of Audioasyl:<br />

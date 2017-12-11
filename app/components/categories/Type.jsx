@@ -11,6 +11,12 @@ import './Categories.scss';
 
 class Type extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.audio = null;
+    this.state = { openDetails: false };
+  }
+
   renderContent = () => {
     const {
       likes,
@@ -35,10 +41,24 @@ class Type extends React.Component {
             properties={itemProperties}
             key={tagItem.id}
             schema={category.metadata_schemas}
+            onClick={this.onItemClick}
+            isClicked={this.state.openDetails}
           />
         </div>
       );
     });
+  }
+
+  onItemClick = audio => {
+    if (this.state.openDetails === audio.id) {
+      this.setState({ openDetails: false });
+    } else if (!this.state.openDetails) {
+      this.setState({ openDetails: audio.id });
+      this.audio = audio;
+    } else {
+      this.setState({ openDetails: audio.id });
+      this.audio = audio;
+    }
   }
 
   render() {
