@@ -18,3 +18,15 @@
   }
 }
 
+.Twitter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .Twitter-container-inner {
+    width: 100%;
+    margin: 0 3rem -1rem 3rem;
+  }
+}
+

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 // import levenshtein from 'fast-levenshtein';
 import { map, flattenDeep, filter, reduce, toLower } from 'lodash';
+import VisibilitySensor from 'react-visibility-sensor';
 
 import { tagCategoriesWithTagItemsAndSchema } from '../queries/tagCategory';
 import { recordFiles, onlyFreshRecords } from '../queries/recordItem';
@@ -33,6 +34,7 @@ class Audioasyl extends React.Component {
       distance: Infinity,
       width: '0',
       height: '0',
+      on: false,
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -121,6 +123,10 @@ class Audioasyl extends React.Component {
     }
   }
 
+  onChange = isVisible => {
+    console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
+  };
+
   renderCategories = () => {
     const categories = this.filterMetaData();
     return (
@@ -132,6 +138,14 @@ class Audioasyl extends React.Component {
           freshRecordIds={this.state.freshRecordIds}
           ref={e => e && this.scrollToElement(e, '#news')}
         />
+        <VisibilitySensor>
+          {({ isVisible }) => {
+            console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
+            return (
+              <div style={{ height: 1 }} />
+            );
+          }}
+        </VisibilitySensor>
         <Show
           category={categories.series}
           likes={this.state.likes}
@@ -198,3 +212,4 @@ Audioasyl.contextTypes = {
 };
 
 export default Audioasyl;
+

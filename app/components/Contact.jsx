@@ -86,7 +86,6 @@ export default class Contact extends React.Component {
 
     return (
       <div className="Contact">
-        <Header />
         <form onSubmit={this.onSubmit} className="Contact-form">
           <input
             type="text"
@@ -127,6 +126,7 @@ export default class Contact extends React.Component {
           <button
             className="Contact-form-submit"
             type="submit"
+            onClick={this.props.onClose}
           >
             GO
           </button>
@@ -142,6 +142,7 @@ const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+
 Contact.propTypes = {
   router: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 Contact.childContextTypes = {

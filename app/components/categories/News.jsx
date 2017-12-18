@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { map, size, sortBy, lowerCase } from 'lodash';
+import { Timeline } from 'react-twitter-widgets';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import NewsContent from './NewsContent';
@@ -47,6 +48,19 @@ class News extends React.Component {
     return (
       <div className="Category" style={{ marginTop: '7rem' }}>
         <div className="Category-anchor" id="news" ref="anchor" />
+        <div className="Twitter-container">
+          <div className="Twitter-container-inner">
+            <Timeline
+              dataSource={{ sourceType: 'profile', screenName: 'audioasyl' }}
+              options={{
+                username: 'audioasyl',
+                chrome: 'nofooter noheader transparent noborders',
+                tweetLimit: 1,
+              }}
+              onLoad={() => console.log('Timeline is loaded!')}
+            />
+          </div>
+        </div>
         {size(category.tag_items) ? <div>{this.renderContent()}</div> : <TilePlaceholder />}
       </div>
     );
