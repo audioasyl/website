@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { map, size, sortBy, lowerCase } from 'lodash';
 import { Timeline } from 'react-twitter-widgets';
+import ScrollableAnchor from 'react-scrollable-anchor';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import NewsContent from './NewsContent';
@@ -47,7 +48,9 @@ class News extends React.Component {
     const { category } = this.props;
     return (
       <div className="Category" style={{ marginTop: '7rem' }}>
-        <div className="Category-anchor" id="news" ref="anchor" />
+        <ScrollableAnchor id={'news'}>
+          <div className="Category-anchor" id="news" ref="anchor" />
+        </ScrollableAnchor>  
         <div className="Twitter-container">
           <div className="Twitter-container-inner">
             <Timeline

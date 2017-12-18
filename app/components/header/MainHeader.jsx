@@ -9,7 +9,7 @@ import LogoButton from './LogoButton';
 import HeaderDropdown from './HeaderDropdown';
 
 import './MainHeader.scss';
-const Header = ({ onFilterChange, setSearchText }) => (
+const Header = ({ onFilterChange, setSearchText, on }) => (
   <div className="Header">
     <div className="Header-fixed">
       <div className="Header-left">
@@ -23,6 +23,7 @@ const Header = ({ onFilterChange, setSearchText }) => (
             label="Show"
             href="#show"
             type="show"
+            on={on}
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
@@ -30,6 +31,7 @@ const Header = ({ onFilterChange, setSearchText }) => (
             href="#style"
             label="Style"
             type="style"
+            on={on}
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
@@ -37,6 +39,7 @@ const Header = ({ onFilterChange, setSearchText }) => (
             href="#type"
             label="Type"
             type="type"
+            on={on}
           />
           <HeaderDropdown
             onFilterChange={onFilterChange}
@@ -44,6 +47,7 @@ const Header = ({ onFilterChange, setSearchText }) => (
             href="#about"
             type="about"
             label="About"
+            on={on}
           />
           <Search setSearchText={setSearchText} />
           {/* <Login /> */}
@@ -79,6 +83,7 @@ const genresOptions = [
 Header.propTypes = {
   onFilterChange: PropTypes.func,
   setSearchText: PropTypes.func,
+  on: PropTypes.number.isRequired,
 };
 
 Header.defaultProps = {

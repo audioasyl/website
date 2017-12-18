@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { map, remove } from 'lodash';
-//import classNames from 'classnames';
+import classNames from 'classnames';
 import CheckBox from './CheckBox';
 
 import './HeaderDropdown.scss';
@@ -38,16 +38,15 @@ export default class HeaderDropdown extends React.Component {
 
   render() {
     // const contentClasses = classNames('HeaderDropdown-content');
-
-    // const labelClasses = classNames(
-    //   'HeaderDropdown-label',
-    //   this.props.className,
-    //   { 'HeaderDropdown-label--filter-active': !!this.state.activeFilters.length }
-    // );
+    const isActive = this.props.on === this.props.label ? 'Header-active' : '';
+    const labelClasses = classNames(
+      'Header-dropdown',
+      { 'Header-active': isActive }
+    );
 
     return (
       <div>
-        <a href={this.props.href} className="Header-dropdown" onClick={this.props.onClick}>
+        <a href={this.props.href} className={labelClasses} onClick={this.props.onClick}>
           {this.props.label}
         </a>
         {/* <div className={contentClasses}>{this.renderOptions()}</div> */}
@@ -65,6 +64,7 @@ HeaderDropdown.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   onFilterChange: PropTypes.func.isRequired,
+  on: PropTypes.string.isRequired,
 };
 
 HeaderDropdown.defaultProps = {

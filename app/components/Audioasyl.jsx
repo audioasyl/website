@@ -34,7 +34,7 @@ class Audioasyl extends React.Component {
       distance: Infinity,
       width: '0',
       height: '0',
-      on: false,
+      on: 0,
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -123,58 +123,82 @@ class Audioasyl extends React.Component {
     }
   }
 
-  onChange = isVisible => {
-    console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
+  onNewsChange = isVisible => {
+    if (isVisible) {
+      this.setState({ on: 'News' });
+    }
+  };
+  onShowChange = isVisible => {
+    if (isVisible) {
+      this.setState({ on: 'Show' });
+    }
+  };
+  onStyleChange = isVisible => {
+    if (isVisible) {
+      this.setState({ on: 'Style' });
+    }
+  };
+  onTypeChange = isVisible => {
+    if (isVisible) {
+      this.setState({ on: 'Type' });
+    }
+  };
+  onAboutChange = isVisible => {
+    if (isVisible) {
+      this.setState({ on: 'About' });
+    }
   };
 
   renderCategories = () => {
     const categories = this.filterMetaData();
     return (
       <div>
-        <News
-          category={categories.series}
-          likes={this.state.likes}
-          metaData={this.state.metaData}
-          freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, '#news')}
-        />
-        <VisibilitySensor>
-          {({ isVisible }) => {
-            console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
-            return (
-              <div style={{ height: 1 }} />
-            );
-          }}
+        <VisibilitySensor minTopValue={100} intervalDelay={200} partialVisibility scrollCheck onChange={this.onNewsChange}>
+          <News
+            category={categories.series}
+            likes={this.state.likes}
+            metaData={this.state.metaData}
+            freshRecordIds={this.state.freshRecordIds}
+            ref={e => e && this.scrollToElement(e, '#news')}
+          />
         </VisibilitySensor>
-        <Show
-          category={categories.series}
-          likes={this.state.likes}
-          metaData={this.state.metaData}
-          freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, '#show')}
-          windowHeight={this.state.height}
-        />
-        <Style
-          category={categories.genre}
-          likes={this.state.likes}
-          metaData={this.state.metaData}
-          freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, '#style')}
-        />
-        <Type
-          category={categories.authors}
-          likes={this.state.likes}
-          metaData={this.state.metaData}
-          freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, '#type')}
-        />
-        <About
-          category={categories.authors}
-          likes={this.state.likes}
-          metaData={this.state.metaData}
-          freshRecordIds={this.state.freshRecordIds}
-          ref={e => e && this.scrollToElement(e, '#about')}
-        />
+        <VisibilitySensor minTopValue={100} intervalDelay={200} partialVisibility scrollCheck onChange={this.onShowChange}>
+          <Show
+            category={categories.series}
+            likes={this.state.likes}
+            metaData={this.state.metaData}
+            freshRecordIds={this.state.freshRecordIds}
+            ref={e => e && this.scrollToElement(e, '#show')}
+            windowHeight={this.state.height}
+          />
+        </VisibilitySensor>
+        <VisibilitySensor minTopValue={100} intervalDelay={200} partialVisibility scrollCheck onChange={this.onStyleChange}>
+          <Style
+            category={categories.genre}
+            likes={this.state.likes}
+            metaData={this.state.metaData}
+            freshRecordIds={this.state.freshRecordIds}
+            ref={e => e && this.scrollToElement(e, '#style')}
+          />
+        </VisibilitySensor>
+        <VisibilitySensor minTopValue={100} intervalDelay={200} partialVisibility scrollCheck onChange={this.onTypeChange}>
+          <Type
+            category={categories.authors}
+            likes={this.state.likes}
+            metaData={this.state.metaData}
+            freshRecordIds={this.state.freshRecordIds}
+            ref={e => e && this.scrollToElement(e, '#type')}
+          />
+        </VisibilitySensor>
+        <VisibilitySensor minTopValue={100} intervalDelay={200} partialVisibility scrollCheck onChange={this.onAboutChange}>
+          <About
+            category={categories.authors}
+            likes={this.state.likes}
+            metaData={this.state.metaData}
+            freshRecordIds={this.state.freshRecordIds}
+            ref={e => e && this.scrollToElement(e, '#about')}
+          />
+        </VisibilitySensor>
       </div>
     );
   }
@@ -193,6 +217,7 @@ class Audioasyl extends React.Component {
         <MainHeader
           onFilterChange={this.buildSearchContext}
           setSearchText={searchText => this.setState({ searchText })}
+          on={this.state.on}
         />
         {/* <MainAnimation windowWidth={this.state.width} windowHeight={this.state.height} /> */}
         {this.renderCategories()}

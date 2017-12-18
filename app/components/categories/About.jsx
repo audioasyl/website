@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { map, size, sortBy, lowerCase } from 'lodash';
 import Modal from 'react-modal';
+import ScrollableAnchor from 'react-scrollable-anchor';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import AboutContent from './AboutContent';
@@ -98,7 +99,9 @@ class About extends React.Component {
         </Modal>
 
         <div className="Category">
-          <div className="Category-anchor" id="about" ref="anchor" />
+          <ScrollableAnchor id={'about'}>
+            <div className="Category-anchor" id="about" ref="anchor" />
+          </ScrollableAnchor>
           <div className="Category-section">
             <div className="Category-section-left" />
             <div className="Category-section-right">

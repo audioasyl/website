@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { map, size, sortBy, lowerCase } from 'lodash';
+import ScrollableAnchor from 'react-scrollable-anchor';
 import TilePlaceholder from '../TilePlaceholder';
 import { metaDataItemsToProperties } from '../../parsers/metadataItems';
 import TypeContent from './TypeContent';
@@ -65,7 +66,9 @@ class Type extends React.Component {
     const { category } = this.props;
     return (
       <div className="Category">
-        <div className="Category-anchor" id="hosts" ref="anchor" />
+        <ScrollableAnchor id={'type'}>
+          <div className="Category-anchor" id="hosts" ref="anchor" />
+        </ScrollableAnchor>
         <div className="Category-section">
           <div className="Category-section-left" />
           <div className="Category-section-right">

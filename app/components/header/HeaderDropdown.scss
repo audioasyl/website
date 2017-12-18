@@ -55,3 +55,10 @@
     }
   }
 }
+
+.Header-active {
+  margin-bottom: -0.6rem;
+  margin-right: -0.6rem;
+  transition: all 0.3s ease;
+  font-size: 3.0rem;
+}
