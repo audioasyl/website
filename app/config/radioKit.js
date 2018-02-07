@@ -17,7 +17,7 @@ const getEnv = () => {
     apps: {
       plumber: { baseUrl: 'https://plumber.radiokitapp.org' },
       auth: { baseUrl: 'https://auth.radiokitapp.org' },
-      vault: { baseUrl: 'https://vault.radiokitapp.org' },
+      vault: { baseUrl: 'https://audioasyl-vault.radiokitapp.org' },
       agenda: { baseUrl: 'https://agenda.radiokitapp.org' },
       diffusor: { baseUrl: 'https://diffusor.radiokitapp.org' },
     },
